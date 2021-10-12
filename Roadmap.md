@@ -1,7 +1,9 @@
+# Confidential containers roadmap 
+
 When looking at the project's roadmap we distinguish between short term roadmap (2-4 month) vs the mid-long term roadmap (4-12 month):
 - The **short term roadmap** is focused on achieving an end-to-end easy to deploy confidential containers solution using at 
 least one HW encryption solution and integrated to k8s (with forked versions if needed)
-- The **mid/long term solutions** focuses and maturing the components of the short term solution and adding a number of 
+- The **mid/long term solutions** focuses on maturing the components of the short term solution and adding a number of 
 enhancements both to the solution and the project (such as CI, interoperability with other projects etc...)
 
 # Short term roadmap
@@ -19,7 +21,7 @@ The work is targeted to be completed by end of November 2021 and includes 3 mile
   - crictl only
 - **October 2021**
   - Encrypted image pulled inside the guest, kept in tmpfs
-  _ Image is decrypted with a pre-provisioned key (No attestation)
+  - Image is decrypted with a pre-provisioned key (No attestation)
 - **November 2021**
   - Image is optionally stored on an encrypted, ephemeral block device
   - Image is decrypted with a key obtained from a key brokering service (KBS)
