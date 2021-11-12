@@ -55,7 +55,7 @@ Prerequisites.
 ### Rustlang coding style
 
 * Use `rustfmt` to fix any mechanical style issues. Rustfmt uses a style which conforms to the
-[Rust Style Guide](https://github.com/rust-dev-tools/fmt-rfcs/blob/master/guide/guide.md).
+[Rust Style Guide](https://github.com/rust-dev-tools/fmt-rfcs/blob/main/guide/guide.md).
 * Use `clippy` to catch common mistakes and improve your Rust code.
 
 You can install the above tools as follows.
@@ -146,7 +146,7 @@ $ mkdir -p "$GOPATH"
 ```
 
 For further details on `golang`, refer to the 
-[requirements section of the Kata Developer Guide](https://github.com/confidential-containers/documentation/blob/master/Developer-Guide.md#requirements-to-build-individual-components).
+[requirements section of the Kata Developer Guide](https://github.com/confidential-containers/documentation/blob/main/Developer-Guide.md#requirements-to-build-individual-components).
 
 >*Note*: If you intend to make minor edits, it's acceptable
 > to simply fork and clone without adding the GOPATH variable.
@@ -209,7 +209,7 @@ For more details, see how to [set up a git remote](https://help.github.com/artic
     $ git checkout -b fix-contrib-bugs
     ```
 
-    >**Warning:** *Never* make changes directly to the `master` branch 
+    >**Warning:** *Never* make changes directly to the `main` branch 
     >--*always* create a new "topic branch" for PR work.
 
 1. Make some editorial changes. In this example, we modify the file that
@@ -264,7 +264,7 @@ commits you created to apply the review changes to your branch. Your branch
 now looks something like this:
 
 ```sh
-$ git log master.. --oneline --decorate=no
+$ git log main.. --oneline --decorate=no
 4928d57 docs: Fix typos and fold long lines
 829c6c8 apply review feedback changes
 7c9b1b2 remove blank lines
@@ -272,7 +272,7 @@ $ git log master.. --oneline --decorate=no
 ```
 
 >**Note:** The `git log` command compares your current branch 
->(`fix-contrib-bugs`) with the `master` branch and lists all the commits,
+>(`fix-contrib-bugs`) with the `main` branch and lists all the commits,
 >one per line.
 
 #### Git rebase if multiple commits
@@ -282,13 +282,13 @@ combine all four commits into a *single commit* on your PR. You need to
 [git rebase](https://help.github.com/github/using-git/about-git-rebase)
 multiple commits on your branch. Follow these steps.
 
-1. Update the `master` branch in your local copy of the upstream
+1. Update the `main` branch in your local copy of the upstream
    repository:
 
     ```
     $ cd $GOPATH/src/github.com/confidential-containers/community
-    $ git checkout master
-    $ git pull --rebase upstream master
+    $ git checkout main
+    $ git pull --rebase upstream main
     ```
 
     The previous command downloads all the latest changes from the upstream
@@ -300,10 +300,10 @@ multiple commits on your branch. Follow these steps.
     $ git checkout fix-contrib-bugs
     ```
 
-1. Rebase your changes against the `master` branch.
+1. Rebase your changes against the `main` branch.
 
     ```sh
-    $ git rebase -i master
+    $ git rebase -i main
     ```
 
     Example output:
@@ -340,7 +340,7 @@ multiple commits on your branch. Follow these steps.
    running the `git log` command again:
 
     ```sh
-    $ git log master.. --oneline --decorate=no
+    $ git log main.. --oneline --decorate=no
     3ea3aef docs: Fix typo
     ```
 
@@ -353,7 +353,7 @@ multiple commits on your branch. Follow these steps.
 
 >**Note:** Not only does this command upload your changes to your fork, it
 >also includes the *latest upstream changes* to your fork since you ran
->`git pull --rebase upstream master` on the master branch and then merged
+>`git pull --rebase upstream main` on the main branch and then merged
 >those changes into your PR branch. This ensures your fork is now "up to
 >date" with the upstream repository. The `-f` option is a "force push". Since
 >you created a new commit using `git rebase`, you must "overwrite" the old
@@ -395,7 +395,7 @@ automatically blocked from merging.
 
 If you raise a PR to update the vendored copy of one or more golang packages,
 after running the
-[`dep`](https://github.com/confidential-containers/community/blob/master/VENDORING.md) command, ensure you add any modified files under the `vendor/` directory to Git before committing the changes:
+[`dep`](https://github.com/confidential-containers/community/blob/main/VENDORING.md) command, ensure you add any modified files under the `vendor/` directory to Git before committing the changes:
 
 ```sh
 $ git add vendor/
@@ -444,13 +444,13 @@ body:
   read.
 
 For additional information on using the `dep` tool, see
-"[Performing vendoring for the Confidential Containers project](https://github.com/confidential-containers/community/blob/master/VENDORING.md)".
+"[Performing vendoring for the Confidential Containers project](https://github.com/confidential-containers/community/blob/main/VENDORING.md)".
 
 ## Use static checks for validation
 
 * Confidential Containers utilizes [Continuous Integration (CI)](#continuous-integration) to automatically check every PR.
 
-* We strongly encourage you to run the same CI tests on individual PRs, using [static checks](https://github.com/confidential-containers/tests/blob/master/.ci/static-checks.sh)
+* We strongly encourage you to run the same CI tests on individual PRs, using [static checks](https://github.com/confidential-containers/tests/blob/main/.ci/static-checks.sh)
 
 In repositories where a `Makefile` is present, you can execute 
 static checks for testing and development. To do so, invoke the `make check` and `make test` rules, after developer mode is enabled.
@@ -497,7 +497,7 @@ view its build logs to determine the cause of failure.
 
 If working on `kata-runtime`, first ensure you run `make` and `make install` 
 in the `virtcontainers` subdirectory, as shown below. For more information, 
-see [virtcontainers](https://github.com/confidential-containers/runtime/blob/master/virtcontainers/documentation/Developers.md#testing).
+see [virtcontainers](https://github.com/confidential-containers/runtime/blob/main/virtcontainers/documentation/Developers.md#testing).
 
 ```bash
 $ pushd runtime/virtcontainers
@@ -548,7 +548,7 @@ type of PR the user is raising.
 > **Notes:**
 >
 > - The porting labels are enforced by a
->   [GitHub action](https://github.com/confidential-containers/.github/blob/master/scripts/pr-porting-checks.sh).
+>   [GitHub action](https://github.com/confidential-containers/.github/blob/main/scripts/pr-porting-checks.sh).
 >   This means that *PRs that do not have a valid set of porting labels cannot be merged*.
 > - The "Common PR type" column in the table shows the most likely type of PR, but
 >   this is just a guide.
@@ -580,7 +580,7 @@ porting activities.
 ### Stable branch backports
 
 Confidential Containers maintains a number of stable branch releases. Bug fixes to
-the master branch are selectively applied to (or "backported") these stable branches.
+the main branch are selectively applied to (or "backported") these stable branches.
 
 In order to aid identification of commits that potentially should be
 backported to the stable branches, all PRs submitted must be labeled with 
@@ -822,7 +822,7 @@ is also acceptable to include additional or
 ### Verification
 
 Correct formatting of the PR patches is verified using the
-[`checkcommits`](https://github.com/kata-containers/tests/tree/master/cmd/checkcommits)
+[`checkcommits`](https://github.com/kata-containers/tests/tree/main/cmd/checkcommits)
 tool.
 
 ### Examples
