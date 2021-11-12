@@ -42,7 +42,6 @@ Special Git configuration is required for these contributors:
 
 * [Golang coding style](#golang-coding-style)
 * [Rustlang coding style](#rustlang-coding-style)
-* [Kata runtime static checks](#kata-runtime-static-checks)
 
 For all other contributor roles, follow the standard configuration, shown in
 Prerequisites. 
@@ -135,7 +134,7 @@ In this section, we explain these augmentations in more detail. Follow these gui
 
 ### Configure your environment
 
-Most [Confidential Containers repositories](https://github.com/confidential-containers)
+Some [Confidential Containers repositories](https://github.com/confidential-containers)
 contain code written in the [Go language (golang)](https://golang.org/). Go 
 requires all code to be put inside the directory specified by the `$GOPATH` 
 variable. Follow this example to put the code in the standard location.
@@ -144,9 +143,6 @@ variable. Follow this example to put the code in the standard location.
 $ export GOPATH=${GOPATH:-$HOME/go}
 $ mkdir -p "$GOPATH"
 ```
-
-For further details on `golang`, refer to the 
-[requirements section of the Kata Developer Guide](https://github.com/confidential-containers/documentation/blob/main/Developer-Guide.md#requirements-to-build-individual-components).
 
 >*Note*: If you intend to make minor edits, it's acceptable
 > to simply fork and clone without adding the GOPATH variable.
@@ -469,9 +465,8 @@ To replicate the static checks performed by the CI system:
 
 - [x] Ensure [`golangci-lint`](https://github.com/golangci/golangci-lint) is 
 current or has not been previously installed (the static check scripts will 
-install it if necessary). Changing the linters used or the Kata
-Containers code base can produce spurious errors that do not fail inside the 
-CI systems.
+install it if necessary). Changing the linters can produce spurious errors that do not fail inside
+the CI systems.
 
 ### Fix failed static checks after submitting PRs
 
@@ -493,21 +488,6 @@ view its build logs to determine the cause of failure.
 
     ![Build log error messages](fig2-ci-cd-log.png)
 
-### Kata runtime static checks
-
-If working on `kata-runtime`, first ensure you run `make` and `make install` 
-in the `virtcontainers` subdirectory, as shown below. For more information, 
-see [virtcontainers](https://github.com/confidential-containers/runtime/blob/main/virtcontainers/documentation/Developers.md#testing).
-
-```bash
-$ pushd runtime/virtcontainers
-$ make
-$ sudo -E PATH=$PATH make install
-$ popd
-```
-
->**Note:** The final `popd` is required to return to the top-level directory 
->from where other build rules can be executed.
 
 ## Porting
 
@@ -560,7 +540,6 @@ type of PR the user is raising.
 | A "standalone" PR | Feature | `no-backport-needed` | `no-forward-port-needed` | PR does not need to be ported. For example, a PR used to add a new feature to the latest release. |
 | PR that needs to be backported only | Bug fix | `needs-backport` | `no-forward-port-needed` | |
 | PR that needs to be forward ported only | Bug fix or feature | `no-backport-needed` | `needs-forward-port` | |
-| PR that needs to be ported backwards *and* forwards | Bug fix | `needs-backport` |  `needs-forward-port` | For example a Kata 1.x PR that needs to be ported to Kata 2.0 *and* to one or more Kata 1.x stable branches. |
 | A backport PR | Bug fix | `backport` | | PR to actually make the backport changes.<br/><br/>Must have an associated "parent" PR.<br/><br/>Title **must** contain original PRs title. |
 | A forward port PR | Bug fix or feature | |  `forward-port` | PR to actually make the forward port changes.<br/><br/>Must have an associated "parent" PR.<br/><br/>Title **must** contain original PRs title. |
 
@@ -598,8 +577,7 @@ one or more of the following labels. At least one label that is *not*
 In the event that a bug fix PR is selected for backporting to the stable
 branches, the `stable-candidate` label is added if not already present, and
 the original author of the PR is asked if they will submit the relevant
-backport PRs. For a quick guide on how to perform and submit a backport, see 
-the [Backport Guide](Backport-Guide.md) in this repository.
+backport PRs.
 
 ### Porting issue numbers
 
@@ -609,141 +587,6 @@ comment". See the [patch format](#patch-format) section for further details.
 
 For ports in different repositories, create a new issue, referencing the
 original issue URL in the issue text.
-
-### Porting comments
-
-Issues and PRs can only be linked if they are within the same repository.
-Since Kata 2.x uses a new central repository, it is essential to add a special
-comment to the **original PR** when new port PRs are created.
-
-| Port type | Port comment format |
-|-|-|
-| backport | `backport PR: <backport-pr-url>` |
-| forward port| `forward port PR: <forward-port-pr-url>` |
-
-> **Notes:**
->
-> - The special comments **must** appear at the start of a line.
->
-> - The special comments are used by tooling to check that porting has been
->   completed correctly.
->
-> - Although these comments strictly make the `backport` and `forward-port`
->   labels redundant, these labels are useful for general reporting since
->   users can search for "all port PRs in a particular repository" for
->   example.
-
-### Forward ports
-
-Forward ports tend to be much less common than backports. However,
-consolidating a number of standalone repositories into a single repository for
-the Kata 2.0 development effort introduced a potential forward port
-requirement. At the time, both Kata 1.x and 2.0 versions were being developed
-in parallel. This meant that lots of PRs raised in the Kata 1.x repositories
-needed to be forward ported to the Kata 2.0 repository (since this was to be
-the next major release and needed to contain all bug fixes and features where
-possible).
-
-| Initial PR raised | PR type | Backport? | Forward port? |
-|-|-|-|-|
-| Particular 1.x repository | bug fix | stable branches | 2.0 repository |
-| Particular 1.x repository | feature | | 2.0 repository |
-| The 2.0 repository | bug fix | 1.x (and maybe stable branches) | - |
-| The 2.0 repository | feature | | - |
-
-### Porting examples
-
-#### Backport and forward port example
-
-Imagine that you have just raised a new PR on a Kata 1.x repository. The PR
-contains three commits:
-
-- A commit to fix a "typo" in a comment.
-- A commit that changes the way a container is destroyed (and updates the tests).
-- A commit that updates the documentation explaining the new contain
-  destruction behaviour.
-
-Since the PR is not adding any new functionality and since it is correcting
-problems with existing code, it can be considered a bug fix PR. Bug fixes
-should generally be backported. However, this PR was raised in a Kata 1.x
-repository meaning it should also potentially be forward-ported to the Kata
-2.0 repository.
-
-Looking at the tables in the [porting labels](#porting-labels) and the [stable
-branch backports](#stable-branch-backports) sections shows that this PR needs
-to be labelled with the following labels:
-
-- `needs-backport`
-- `needs-forward-port`
-- `stable-candidate`
-
-Once this PR is approved and is merged in the Kata 1.x repository, it should
-now be backported and forward ported:
-
-- Backport: Raise new PRs on the currently maintained stable releases
-
-  - These PRs should be labelled with the `backport` label.
-  - The commit message should mention the original PR.
-  - The commit message should reference the *original* issue number in the
-    ["fixes" comment](#patch-format).
-
-- Forward port: Raise a new PR on the Kata 2.0 repository
-
-  - This PR should be labelled with the `forward-port` label.
-  - The commit message should mention the original PR.
-  - A new issue should be used for the PR and the original issue URL
-    referenced in the issue text.
-
-- Add [porting comments](#porting-comments) to the *original PR* with two comments,
-  one for each port:
-
-  ```
-  backport PR: https://github.com/confidential-containers/community/pull/XXX
-  forward port PR: https://github.com/confidential-containers/community/pull/YYY
-  ```
-
-#### Double backport example
-
-Imagine that you have just raised a new PR on the 2.x repository. The PR
-fixes a nasty bug, and adds some new unit tests to guarantee no future
-regression.
-
-This is a pure bug fix PR. There is no "newer" branch or version, so it is not
-possible to forward port. However, since the PR is an important bug fix, it
-should be backported, both to 1.x *and* the 1.x stable branches.
-
-Looking at the tables in the [porting labels](#porting-labels) and the [stable
-branch backports](#stable-branch-backports) sections shows that this PR needs
-to be labelled with the following labels:
-
-- `needs-backport`
-- `no-forward-port-needed`
-- `stable-candidate`
-
-Once this PR is approved and is merged in the 2.0 repository, it should
-now be backported *twice*:
-
-- 1.x: Raise a new PR on the 1.x runtime repository
-
-  - This PR should be labelled with the `backport` label.
-  - The commit message should mention the original PR.
-
-- Stable backports: Raise new PRs on each of the currently maintained stable
-  branches in the 1.x runtime repository
-
-  - These PRs should be labelled with the `backport` label.
-  - The commit message should mention the original PR.
-  - The commit message should reference the issue number used in the
-    ["fixes" comment](#patch-format) for the 1.x PR
-    (since that is in the same repository).
-
-- Add [porting comments](#porting-comments) to the *original PR* with two comments,
-  one for each port:
-
-  ```
-  backport PR: https://github.com/confidential-containers/community/pull/XXX
-  backport PR: https://github.com/confidential-containers/community/pull/YYY
-  ```
 
 ## Patch format
 
@@ -873,9 +716,6 @@ GitHub "Review changes" dialog to leave feedback. Notes left only in the
 comments fields, whilst sometimes useful, will not get registered
 in the acknowledgment counting system.
 
-Documentation PRs can sometimes use a modified process explained in the
-[Documentation Review Process](Documentation-Review-Process.md) guide.
-
 ### Review Examples
 
 The following is an example of a valid "ack", as long as
@@ -923,4 +763,3 @@ along with the [GitHub `CODEOWNERS`file](https://help.github.com/en/articles/abo
 
 - Two approvals from the repository-specific approval team.
 
-- One [documentation team](https://github.com/orgs/kata-containers/teams/documentation/members) approval if the PR modifies documentation.
