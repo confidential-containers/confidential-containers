@@ -1,49 +1,11 @@
-# Contribute to the Kata Containers project
+# Contribute to the Confidential Containers project
 
-* [Code of Conduct](#code-of-conduct)
-* [Pull requests](#pull-requests)
-* [GitHub basic setup](#github-basic-setup)
-    * [Prerequisites](#prerequisites)
-    * [Contributor roles](#contributor-roles)
-    * [Golang coding style](#golang-coding-style)
-    * [Rustlang coding style](#rustlang-coding-style)
-    * [Certificate of Origin](#certificate-of-origin)
-* [GitHub best practices](#github-best-practices)
-    * [Submit issues before PRs](#submit-issues-before-prs)
-    * [Issue tracking](#issue-tracking)
-    * [Closing issues](#closing-issues)
-* [GitHub workflow](#github-workflow)
-    * [Configure your environment](#configure-your-environment)
-    * [GitHub labels and keywords that block PRs](#github-labels-and-keywords-that-block-prs)
-* [Re-vendor PRs](#re-vendor-prs)
-* [Use static checks for validation](#use-static-checks-for-validation)
-    * [Fix failed static checks after submitting PRs](#fix-failed-static-checks-after-submitting-prs)
-    * [Kata runtime static checks](#kata-runtime-static-checks)
-* [Porting](#porting)
-    * [Porting labels](#porting-labels)
-    * [Stable branch backports](#stable-branch-backports)
-    * [Porting issue numbers](#porting-issue-numbers)
-    * [Porting comments](#porting-comments)
-    * [Forward ports](#forward-ports)
-    * [Porting examples](#porting-examples)
-* [Patch format](#patch-format)
-    * [General format](#general-format)
-    * [Subsystem](#subsystem)
-    * [Best practices for patches](#best-practices-for-patches)
-    * [Verification](#verification)
-    * [Examples](#examples)
-* [Reviews](#reviews)
-    * [Review Examples](#review-examples)
-* [Continuous Integration](#continuous-integration)
-* [Contact](#contact)
-* [Project maintainers](#project-maintainers)
-
-The Kata Containers project is an open source project licensed under the
+The Confidential Containers project is an open source project licensed under the
 [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0).
 
-It comprises a number of repositories under the [GitHub Kata
-Containers organisation](https://github.com/kata-containers). Unless
-explicitly stated otherwise, all the Kata Containers repositories follow the
+It comprises a number of repositories under the [GitHub Confidential 
+Containers organisation](https://github.com/confidential-containers). Unless
+explicitly stated otherwise, all the Confidential Containers repositories follow the
 process documented here.
 
 ## Code of Conduct
@@ -65,11 +27,11 @@ To get started, complete the prerequisites below.
 
 - [Set up Git](https://help.github.com/en/github/getting-started-with-github/set-up-git). 
   
-  >**Note:** The email address you specify must match the email address you 
-  >use to sign-off commits.
+  >**Note:** The email address you specify must match the email address you
+  > use to sign-off commits.
 
 - [Fork and Clone](https://help.github.com/en/github/getting-started-with-github/fork-a-repo) the relevant repository at the 
-  [Kata Containers Project](https://github.com/kata-containers).
+  [Confidential Containers Project](https://github.com/confidential-containers).
 
    Example: Your local clone should show `your-github-username`, as follows.
    `https://github.com/${your-github-username}/community`.
@@ -126,7 +88,7 @@ To report a bug that is not already documented, please open a GitHub issue for t
 
 If it is unclear which repository to raise your query against, first try to
 get in [contact](#contact) with us. If in doubt, raise the issue
-[here](https://github.com/kata-containers/community/issues/new) and we will
+[here](https://github.com/confidential-containers/community/issues/new) and we will
 help you to handle the query by routing it to the correct area for resolution.
 
 ### Closing issues
@@ -149,9 +111,9 @@ The issue is automatically closed by GitHub when the
 
 ## GitHub workflow
 
-Kata Containers employs certain augmentations to a 
+Confidential Containers employs certain augmentations to a 
 [standard GitHub workflow](https://guides.github.com/introduction/flow/). 
-In this section, we explain these augmentations in more detail. Follow these guidelines when contributing to Kata Containers repositories, except where noted below.
+In this section, we explain these augmentations in more detail. Follow these guidelines when contributing to Confidential Containers repositories, except where noted below.
 
 * Complete the [GitHub basic setup](#github-basic-setup) above before continuing.
 
@@ -173,7 +135,7 @@ In this section, we explain these augmentations in more detail. Follow these gui
 
 ### Configure your environment
 
-Most [Kata Containers repositories](https://github.com/kata-containers)
+Most [Confidential Containers repositories](https://github.com/confidential-containers)
 contain code written in the [Go language (golang)](https://golang.org/). Go 
 requires all code to be put inside the directory specified by the `$GOPATH` 
 variable. Follow this example to put the code in the standard location.
@@ -184,7 +146,7 @@ $ mkdir -p "$GOPATH"
 ```
 
 For further details on `golang`, refer to the 
-[requirements section of the Kata Developer Guide](https://github.com/kata-containers/documentation/blob/master/Developer-Guide.md#requirements-to-build-individual-components).
+[requirements section of the Kata Developer Guide](https://github.com/confidential-containers/documentation/blob/master/Developer-Guide.md#requirements-to-build-individual-components).
 
 >*Note*: If you intend to make minor edits, it's acceptable
 > to simply fork and clone without adding the GOPATH variable.
@@ -205,7 +167,7 @@ In this example, we configure a Git environment to contribute to this very
    so your real GitHub user name replaces `your-github-username` below.
   
 ```sh
-$ dir="$GOPATH/src/github.com/kata-containers" 
+$ dir="$GOPATH/src/github.com/confidential-containers" 
 $ mkdir -p "$dir"
 $ cd "$dir"
 $ git clone https://github.com/{your-github-username}/community
@@ -225,7 +187,7 @@ synchronize your forked copy, `origin`, with the `upstream`. The
 1. Set the remote `upstream` as follows. 
 
     ```sh
-    $ git remote add upstream https://github.com/kata-containers/community
+    $ git remote add upstream https://github.com/confidential-containers/community
     ```
 
 1. Run `git remote -v`. Your remotes should appear similar to these:
@@ -233,8 +195,8 @@ synchronize your forked copy, `origin`, with the `upstream`. The
     ```
     origin  https://github.com/your-github-username/community.git (fetch)  
     origin  https://github.com/your-github-username/community.git (push)  
-    upstream  https://github.com/kata-containers/community (fetch)  
-    upstream  https://github.com/kata-containers/community (push)  
+    upstream  https://github.com/confidential-containers/community (fetch)  
+    upstream  https://github.com/confidential-containers/community (push)  
     ```
 
 For more details, see how to [set up a git remote](https://help.github.com/articles/configuring-a-remote-for-a-fork).
@@ -281,12 +243,12 @@ For more details, see how to [set up a git remote](https://help.github.com/artic
 
    >**Note:** The `-u` option tells `git` to "link" your local clone with
    > your remote fork so that it knows from now on that the local repository
-   > and the remote fork refer to "the same" upstream repository. Strictly 
-   >speaking, this option is only required the first time you call `git push`
-   >for a new clone.
+   > and the remote fork refer to "the same" upstream repository. Strictly
+   > speaking, this option is only required the first time you call `git push`
+   > for a new clone.
 
 1. Create the PR:
-  - Browse to https://github.com/kata-containers/community.
+  - Browse to https://github.com/confidential-containers/community.
   - Click the "Compare & pull request" button that appears.
   - Click the "Create pull request" button.
 
@@ -324,7 +286,7 @@ multiple commits on your branch. Follow these steps.
    repository:
 
     ```
-    $ cd $GOPATH/src/github.com/kata-containers/community
+    $ cd $GOPATH/src/github.com/confidential-containers/community
     $ git checkout master
     $ git pull --rebase upstream master
     ```
@@ -403,7 +365,7 @@ This notification allows the team to once again review your PR more quickly.
 
 ### GitHub labels and keywords that block PRs
 
-Kata Containers CI systems have two methods that allow marking
+Confidential Containers CI systems have two methods that allow marking
 PRs to prevent them being merged. This practice is often used during
 development. The two methods are: 1) Use
 [GitHub labels](https://help.github.com/articles/about-labels/)
@@ -433,7 +395,7 @@ automatically blocked from merging.
 
 If you raise a PR to update the vendored copy of one or more golang packages,
 after running the
-[`dep`](https://github.com/kata-containers/community/blob/master/VENDORING.md) command, ensure you add any modified files under the `vendor/` directory to Git before committing the changes:
+[`dep`](https://github.com/confidential-containers/community/blob/master/VENDORING.md) command, ensure you add any modified files under the `vendor/` directory to Git before committing the changes:
 
 ```sh
 $ git add vendor/
@@ -482,13 +444,13 @@ body:
   read.
 
 For additional information on using the `dep` tool, see
-"[Performing vendoring for the Kata Containers project](https://github.com/kata-containers/community/blob/master/VENDORING.md)".
+"[Performing vendoring for the Confidential Containers project](https://github.com/confidential-containers/community/blob/master/VENDORING.md)".
 
 ## Use static checks for validation
 
-* Kata Containers utilizes [Continuous Integration (CI)](#continuous-integration) to automatically check every PR.
+* Confidential Containers utilizes [Continuous Integration (CI)](#continuous-integration) to automatically check every PR.
 
-* We strongly encourage you to run the same CI tests on individual PRs, using [static checks](https://github.com/kata-containers/tests/blob/master/.ci/static-checks.sh)
+* We strongly encourage you to run the same CI tests on individual PRs, using [static checks](https://github.com/confidential-containers/tests/blob/master/.ci/static-checks.sh)
 
 In repositories where a `Makefile` is present, you can execute 
 static checks for testing and development. To do so, invoke the `make check` and `make test` rules, after developer mode is enabled.
@@ -535,7 +497,7 @@ view its build logs to determine the cause of failure.
 
 If working on `kata-runtime`, first ensure you run `make` and `make install` 
 in the `virtcontainers` subdirectory, as shown below. For more information, 
-see [virtcontainers](https://github.com/kata-containers/runtime/blob/master/virtcontainers/documentation/Developers.md#testing).
+see [virtcontainers](https://github.com/confidential-containers/runtime/blob/master/virtcontainers/documentation/Developers.md#testing).
 
 ```bash
 $ pushd runtime/virtcontainers
@@ -586,7 +548,7 @@ type of PR the user is raising.
 > **Notes:**
 >
 > - The porting labels are enforced by a
->   [GitHub action](https://github.com/kata-containers/.github/blob/master/scripts/pr-porting-checks.sh).
+>   [GitHub action](https://github.com/confidential-containers/.github/blob/master/scripts/pr-porting-checks.sh).
 >   This means that *PRs that do not have a valid set of porting labels cannot be merged*.
 > - The "Common PR type" column in the table shows the most likely type of PR, but
 >   this is just a guide.
@@ -617,7 +579,7 @@ porting activities.
 
 ### Stable branch backports
 
-Kata Containers maintains a number of stable branch releases. Bug fixes to
+Confidential Containers maintains a number of stable branch releases. Bug fixes to
 the master branch are selectively applied to (or "backported") these stable branches.
 
 In order to aid identification of commits that potentially should be
@@ -736,19 +698,19 @@ now be backported and forward ported:
   one for each port:
 
   ```
-  backport PR: https://github.com/kata-containers/runtime/pull/XXX
-  forward port PR: https://github.com/kata-containers/kata-containers/pull/YYY
+  backport PR: https://github.com/confidential-containers/community/pull/XXX
+  forward port PR: https://github.com/confidential-containers/community/pull/YYY
   ```
 
 #### Double backport example
 
-Imagine that you have just raised a new PR on the Kata 2.x repository. The PR
-fixes a nasty runtime bug, and adds some new unit tests to guarantee no future
+Imagine that you have just raised a new PR on the 2.x repository. The PR
+fixes a nasty bug, and adds some new unit tests to guarantee no future
 regression.
 
 This is a pure bug fix PR. There is no "newer" branch or version, so it is not
 possible to forward port. However, since the PR is an important bug fix, it
-should be backported, both to Kata 1.x *and* the Kata 1.x stable branches.
+should be backported, both to 1.x *and* the 1.x stable branches.
 
 Looking at the tables in the [porting labels](#porting-labels) and the [stable
 branch backports](#stable-branch-backports) sections shows that this PR needs
@@ -758,16 +720,16 @@ to be labelled with the following labels:
 - `no-forward-port-needed`
 - `stable-candidate`
 
-Once this PR is approved and is merged in the Kata 2.0 repository, it should
+Once this PR is approved and is merged in the 2.0 repository, it should
 now be backported *twice*:
 
-- Kata 1.x: Raise a new PR on the Kata 1.x runtime repository
+- 1.x: Raise a new PR on the 1.x runtime repository
 
   - This PR should be labelled with the `backport` label.
   - The commit message should mention the original PR.
 
 - Stable backports: Raise new PRs on each of the currently maintained stable
-  branches in the Kata 1.x runtime repository
+  branches in the 1.x runtime repository
 
   - These PRs should be labelled with the `backport` label.
   - The commit message should mention the original PR.
@@ -779,8 +741,8 @@ now be backported *twice*:
   one for each port:
 
   ```
-  backport PR: https://github.com/kata-containers/runtime/pull/XXX
-  backport PR: https://github.com/kata-containers/runtime/pull/YYY
+  backport PR: https://github.com/confidential-containers/community/pull/XXX
+  backport PR: https://github.com/confidential-containers/community/pull/YYY
   ```
 
 ## Patch format
@@ -927,10 +889,9 @@ lgtm
 
 ## Continuous Integration
 
-The Kata Containers project has a gating process to prevent introducing
+The Confidential Containers project has a gating process to prevent introducing
 regressions. When your PR is submitted, a Continuous Integration (CI) system
-will run different checks on different platforms, based upon your changes. Currently Kata uses [Jenkins](http://jenkins.katacontainers.io)
-for testing your changes.
+will run different checks on different platforms, based upon your changes. 
 
 Some of the checks are:
 
@@ -939,19 +900,19 @@ Some of the checks are:
 - Functional tests.
 - Integration tests.
 
-The Jenkins jobs will wait to be triggered. A maintainer must add a `/test` 
+The CI jobs will wait to be triggered. A maintainer must add a `/test` 
 comment on the PR to let the CI jobs run.
 
 All CI jobs must pass in order to merge your PR.
 
 ## Contact
 
-The Kata Containers community can be reached
+The Confidential Containers community can be reached
 [through various channels](README.md#join-us).
 
 ## Project maintainers
 
-The Kata Containers project maintainers are the people accepting or
+The Confidential Containers project maintainers are the people accepting or
 rejecting any PR. Although [anyone can review PRs](#reviews), only the
 acknowledgement (or "ack") from an Approver counts towards the approval of a PR.
 
