@@ -1,0 +1,6 @@
+metadata:
+  name: ccv0-ssh-pod
+hostname: ccv0
+port_mappings:
+  - container_port: 22
+    host_port: 2222
