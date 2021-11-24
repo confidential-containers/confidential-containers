@@ -1,10 +1,13 @@
-# Confidential containers roadmap 
-
-When looking at the project's roadmap we distinguish between short term roadmap (2-4 month) vs the mid-long term roadmap (4-12 month):
-- The **short term roadmap** is focused on achieving an end-to-end easy to deploy confidential containers solution using at 
-least one HW encryption solution and integrated to k8s (with forked versions if needed)
-- The **mid/long term solutions** focuses on maturing the components of the short term solution and adding a number of 
-enhancements both to the solution and the project (such as CI, interoperability with other projects etc...)
+# Confidential containers roadmap
+When looking at the project's roadmap we distinguish between short term roadmap (2-4 month) vs 
+the mid-long term roadmap (4-12 month):
+- The **short term roadmap** is focused on achieving an end-to-end easy to deploy confidential 
+  containers solution using at 
+least one HW encryption solution and integrated to k8s (with forked versions if needed)
+- The **mid/long term solutions** focuses on maturing the components of the short term solution 
+  and adding a number of 
+enhancements both to the solution and the project (such as CI, interoperability with other 
+  projects etc...)
 
 # Short term roadmap
 The short term roadmap aims to achieve the following:
@@ -33,7 +36,44 @@ Tasks are tracked on a weekly basis through a dedicated spreadsheet.
 For more information see [Confidential Containers V0 Plan](https://docs.google.com/spreadsheets/d/1M_MijAutym4hMg8KtIye1jIDAUMUWsFCri9nq4dqGvA/edit#gid=0&fvid=1397558749).
 
 
-# Mid/long term roadmap 
+# Mid term roadmap
 
-TBD
+Continue our journey using knowledge and support of SME's in other projects to form stronger 
+opinions on what is needed from components which can be integrated to deliver the confidential 
+containers objectives.
+
+- Harden the code used for the demos, improve CI/CD, release process
+- Establish processes and tools to support planning, prioritisation, and work in progress
+- Simplify the process to get up and running with different underlying Trusted Execution 
+  Environments 
+- Develop a small, simple, secure, lightweight and high performance OCI container image 
+  management library [image-rs](https://github.com/confidential-containers/image-rs) for 
+  confidential containers.
+- Develop small, simple shim firmware ( [td-shim](https://github.com/confidential-containers/td-shim) )
+  in support of trusted execution environment for use with cloud native confidential containers.
+
+
+# Longer term roadmap
+
+Focused meetings will be setup to discuss architecture and the priority of longer term objectives 
+in the process of being setup.
+
+Each meeting will have an agreed focus with people sharing material/thoughts ahead of time.
+
+Topics under consideration:
+- CI/CD + Repositories
+- Community Structure and expectations
+- 2 on Mid Term Architecture
+	- Attestation 
+	- Images
+	- Runtimes  
+
+Proposed Topics to influence long term direction/architecture.
+- Baremetal / Peer Pod
+- Composability of alternative technologies to deliver confidential containers.
+- Performance 
+- Identity / Service Mesh
+- Reproducible Builds/Demos
+- Edge Computing
+- Reduce footprint of image pull
 
