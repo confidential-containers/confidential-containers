@@ -1,6 +1,6 @@
 # Confidential containers roadmap
 When looking at the project's roadmap we distinguish between short term roadmap (2-4 month) vs 
-the mid-long term roadmap (4-12 month):
+the mid/long term roadmap (4-12 month):
 - The **short term roadmap** is focused on achieving an end-to-end easy to deploy confidential 
   containers solution using at 
 least one HW encryption solution and integrated to k8s (with forked versions if needed)
@@ -17,14 +17,19 @@ The short term roadmap aims to achieve the following:
 - Integration with Kubernetes: kubectl apply -f confidential-pod.yaml
 
 The work is targeted to be completed by end of November 2021 and includes 3 milestones:
+![September 2021](./images/RoadmapSept2021.jpg)
 - **September 2021**
   - Unencrypted image pulled inside the guest, kept in tmpfs
   - Pod/Container runs from pulled image
   - Agent API is restricted
   - crictl only
+  
+![October 2021](./images/RoadmapOct2021.jpg)
 - **October 2021**
   - Encrypted image pulled inside the guest, kept in tmpfs
   - Image is decrypted with a pre-provisioned key (No attestation)
+  
+![November 2021](./images/RoadmapNov2021.jpg)
 - **November 2021**
   - Image is optionally stored on an encrypted, ephemeral block device
   - Image is decrypted with a key obtained from a key brokering service (KBS)
@@ -38,20 +43,25 @@ For more information see [Confidential Containers V0 Plan](https://docs.google.c
 
 # Mid term roadmap
 
-Continue our journey using knowledge and support of SME's in other projects to form stronger 
+Continue our journey using knowledge and support of Subject Matter Experts (SME's) in other 
+projects to form stronger 
 opinions on what is needed from components which can be integrated to deliver the confidential 
 containers objectives.
 
-- Harden the code used for the demos, improve CI/CD, release process
+- Harden the code used for the demos, 
+- improve CI/CD pipeline, 
+- clarify the release process
 - Establish processes and tools to support planning, prioritisation, and work in progress
-- Simplify the process to get up and running with different underlying Trusted Execution 
-  Environments 
+- Simple process to get up and running regardless of underlying Trusted Execution 
+  Environment technology. 
 - Develop a small, simple, secure, lightweight and high performance OCI container image 
   management library [image-rs](https://github.com/confidential-containers/image-rs) for 
   confidential containers.
 - Develop small, simple shim firmware ( [td-shim](https://github.com/confidential-containers/td-shim) )
   in support of trusted execution environment for use with cloud native confidential containers.
-
+- Document threat model and trust model, what are we protecting, how are we achieving it.
+- Identify technical convergence points with other confidential computing projects both inside 
+  and outside CNCF.
 
 # Longer term roadmap
 
