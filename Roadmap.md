@@ -49,8 +49,8 @@ opinions on what is needed from components which can be integrated to deliver th
 containers objectives.
 
 - Harden the code used for the demos, 
-- improve CI/CD pipeline, 
-- clarify the release process
+- Improve CI/CD pipeline, 
+- Clarify the release process
 - Establish processes and tools to support planning, prioritisation, and work in progress
 - Simple process to get up and running regardless of underlying Trusted Execution 
   Environment technology. 
