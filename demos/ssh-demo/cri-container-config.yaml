@@ -1,0 +1,4 @@
+metadata:
+  name: ccv0-ssh
+image:
+  image: docker.io/katadocker/ccv0-ssh
