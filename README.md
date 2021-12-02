@@ -16,6 +16,9 @@ Our key considerations are:
 delivering Confidential Computing for guest application or data inside the TEE.
 
 ## Further Detail
+
+[![asciicast](https://asciinema.org/a/eGHhZdQY3uYnDalFAfuB7VYqF.svg)](https://asciinema.org/a/eGHhZdQY3uYnDalFAfuB7VYqF)
+
 - [Project Overview](./Overview.md)
 - [Our Roadmap](./Roadmap.md)
 - [Alignment with other Projects](ALIGNMENT.md)
