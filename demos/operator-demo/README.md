@@ -78,7 +78,7 @@ cc-operator-controller-manager-7f8d6dd988-t9zdm   2/2     Running   0          1
 ## Confidential Containers Runtime setup
 
 Creating a `CCruntime` object sets up the container runtime
-The default payload image sets up the CCv0 version of kata-containers runtime.
+The default payload image sets up the CCv0 demo image of the kata-containers runtime.
 
 ```yaml
 cat << EOF | kubectl create -f -
@@ -92,7 +92,7 @@ spec:
   runtimeName: kata
   config:
     installType: bundle
-    payloadImage: quay.io/confidential-containers/runtime-payload:v0
+    payloadImage: quay.io/confidential-containers/runtime-payload:ccv0-ssh-demo
 EOF
 ```
 This will create an install daemonset targeting the worker nodes for installation.
@@ -117,3 +117,4 @@ kata-qemu   kata-qemu   92s
 `kata-cc` runtimeclass uses CCv0 specific configurations. 
 
 Now you can deploy the PODs targeting the specific runtimeclasses.
+The [SSH demo](/demos/ssh-demo) can be used as a compatible workload.

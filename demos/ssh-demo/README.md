@@ -10,6 +10,7 @@ Because this container image is encrypted, and the key to decrypting this image 
 ## Using a pre-provided container image
 
 If you would rather build the image with your own keys, skip to [Building the container image](#building-the-container-image).
+The [operator](/demos/operator-demo) can be used to set up a compatible runtime.
 
 A demo image is provided at [docker.io/katadocker/ccv0-ssh](https://hub.docker.com/r/katadocker/ccv0-ssh).
 It is encrypted with [Attestation Agent](https://github.com/confidential-containers/attestation-agent)'s [offline file system key broker](https://github.com/confidential-containers/attestation-agent/tree/64c12fbecfe90ba974d5fe4896bf997308df298d/src/kbc_modules/offline_fs_kbc) and [`aa-offline_fs_kbc-keys.json`](./aa-offline_fs_kbc-keys.json) as its key file.
@@ -49,7 +50,7 @@ The SSH host key fingerprint is displayed during the build.
 
 ## Connecting to the guest
 
-A [Kubernetes YAML file](./k8s-cc-ssh.yaml) specifying the [Kata Containers](https://github.com/kata-containers/kata-containers) runtime is included.
+A [Kubernetes YAML file](./k8s-cc-ssh.yaml) specifying the [`kata-cc`](https://github.com/kata-containers/kata-containers) runtime is included.
 If you use a [self-built image](#building-the-container-image), you should replace the image specification with the image you built.
 The default tag points to an `amd64` image, an `s390x` tag is also available.
 With common CNI setups, on the same host, with the service running, you can connect via SSH with
