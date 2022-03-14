@@ -7,9 +7,9 @@ assignees: ''
 
 ---
 
-### Part of the [CNCF onboarding issue](https://github.com/cncf/toc/issues/799) addressed by this issue
+### Parts of the [CNCF onboarding issue](https://github.com/cncf/toc/issues/799) tracked by this issue
 
-*Provide a list of all bullet points from the [CNCF onboarding issue](https://github.com/cncf/toc/issues/799) that you are going to work on:*
+*This is the list of all bullet points from the [CNCF onboarding issue](https://github.com/cncf/toc/issues/799) that this issue will track:*
 
 * [ ] *Bullet point foo*
 * [ ] *Bullet point bar*
