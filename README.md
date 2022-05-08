@@ -1,4 +1,5 @@
 ![alt text](coco_logo.png "Confidential Containers")
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fconfidential-containers%2Fcommunity.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fconfidential-containers%2Fcommunity?ref=badge_shield)
 
 ## Welcome to confidential-containers
 
@@ -18,3 +19,7 @@ TEE.
 
 ### Contribute...
 - [CONTRIBUTING](CONTRIBUTING.md)
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fconfidential-containers%2Fcommunity.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fconfidential-containers%2Fcommunity?ref=badge_large)
