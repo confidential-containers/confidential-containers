@@ -12,8 +12,8 @@ Our key considerations are:
 - Transparent deployment of unmodified containers
 - Support for multiple TEE and hardware platforms
 - A trust model which separates Cloud Service Providers (CSPs) from guest applications
-- Least privilege principles for the Kubernetes Cluster administration capabilities which impact 
-delivering Confidential Computing for guest application or data inside the TEE.
+- Least privilege principles for the Kubernetes cluster administration capabilities which impact 
+delivering Confidential Computing for guest applications or data inside the TEE
 
 ## Further Detail
 
