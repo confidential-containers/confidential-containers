@@ -73,7 +73,7 @@ Further, as leaders in the community, the SC members will make themselves famili
 
 ### Members
 
-The initial composition of the SC is self-defined and is made of 10 members:
+The current members of the SC are:
 
 * Larry Dewey (@larrydewey) - AMD
 * Jiang Liu (@jiangliu) and Jia Zhang (@jiazhang0) - Alibaba
@@ -84,7 +84,49 @@ The initial composition of the SC is self-defined and is made of 10 members:
 
 #### Selection
 
-The initial SC members will be responsible for defining how and when the SC membership can be expanded or renewed.
+The convention of the SC is for each organization that is significantly engaged
+in the project to be represented by one or two members.
+In addition to a company, an organization could also refer to a
+non-corporate institution such as school.
+Selection of the representatives of each organization is not within scope
+of the SC.
+The organization itself should select the individual(s) to represent it.
+Membership changes can fall into one of four categories,
+as described in the following sections.
+Each of these processes should be initiated by opening a PR against
+this document, explaining the motivations of the change and introducing
+any potential new members.
+Membership changes can be approved via GitHub and do not require an SC meeting.
+
+##### Expansion
+
+The SC can be expanded if a new organization begins making significant contributions
+to the project.
+When evaluating requests for expansion, the SC will mainly consider whether
+the organization in question is making significant contributions to the community.
+There is no standard definition for significant contributions.
+The SC should prioritize including relevant stakeholders.
+The candidates from a organization are understood to represent
+that organization. The SC may do some basic checks to ensure that
+candidates are familiar with the project and represent relevant contributors.
+Expansion should be approved by at least 2/3rds of current SC members.
+
+##### Replacement
+
+An SC member can replace themselves with another member from the same organization at will.
+This is understood to represent a decision by that organization.
+If the SC contains another member from the same organization, they must approve the replacement.
+Otherwise, unless there are significant concerns that the change does not represent the
+organization in question, a vote is not required to approve a replacement.
+
+##### Recusal
+
+An individual can remove themselves from the SC at any time. A vote is not required for recusal.
+
+##### Removal
+
+A member can be removed from the SC in the case of gross violation of the Code of Conduct.
+This should be done only in exceptional circumstances and requires a unanimous vote of remaining SC members.
 
 ### Decision-making
 
@@ -95,9 +137,16 @@ The main goal is not to get full agreement from all SC members on a final decisi
 
 Voting on a decision proposal should be used as a last resort solution, as it can potentially leave several SC members major concerns unaddressed.
 
+Some procedural decisions, such as expansion, can be approved without an SC meeting. This is done via GitHub and requires approval by
+2/3rds of SC members. If an SC member feels that further discussion is required a meeting can be called, even if the PR has otherwise been approved.
+If a meeting is called, the above procedure should be followed.
+
+Community members who are not on the SC are also welcome to submit non-binding feedback regarding any SC process.
+
 ### Meeting
 
-The SC meets every other week. Meeting time may change depending on the composition of the SC, in order to adapt to SC members local time zones.
+The SC will determine an appropriate cadence for meeting and may schedule additional meetings when needed.
+Meeting time may change depending on the composition of the SC, in order to adapt to SC members local time zones.
 The meeting is public and recorded, and follows a [publicly available agenda](https://docs.google.com/document/d/1YNbkUlcosjN1MFKvs3bJ0CAIZJEp-UEFALW8lDgilLU).
 
 The SC meeting scope is different from the weekly [Confidential Containers community meeting](https://docs.google.com/document/d/1E3GLCzNgrcigUlgWAZYlgqNTdVwiMwCRTJ0QnJhLZGA/edit?usp=sharing), the latter being mostly focused on specific and technical details of one or more Confidential Containers project.
