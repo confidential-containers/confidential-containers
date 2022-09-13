@@ -20,6 +20,7 @@ delivering Confidential Computing for guest applications or data inside the TEE
 [![asciicast](https://asciinema.org/a/eGHhZdQY3uYnDalFAfuB7VYqF.svg)](https://asciinema.org/a/eGHhZdQY3uYnDalFAfuB7VYqF)
 
 - [Project Overview](./overview.md)
+- [Project Architecture](./architecture.md)
 - [Our Roadmap](./roadmap.md)
 - [Alignment with other Projects](alignment.md)
 
