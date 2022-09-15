@@ -1,51 +1,77 @@
-# About 
+# About
 Welcome :-)
 
 We are thrilled to share with you Confidential Containers (COCO) release X.X.X .
 
-In this document we will take you through the content of this release, installation instructions, deploying workloads and troubleshooting if things go wrong. 
+In this document we will take you through the content of this release, installation instructions, deploying workloads and troubleshooting if things go wrong.
 
-# Release notes 
+# Release notes
 
-## Goals 
+## Goals
 
 This release focused on the following:
 
-- **Simplicity** - Using the operator to deploy and configure
-- **Stability** - Supporting CI for the key workflows of the release
+- **Simplicity** - Using a dedicated Kubernetes operator, the COCO operator, to deploy and configure
+- **Stability** - Supporting Continuous Integration (CI) for the key workflows of the release
 - **Documentation** - Details instruction of how to deploy and use this release
 
-## Use cases 
+## Use cases
 
 This release supports the following use cases:
 
 - Creating a sample COCO workload
 - Creating a COCO workload using a pre-existing encrypted image
-- Creating a COCO workload using a pre-existing encrypted image on CC HW
+- Creating a COCO workload using a pre-existing encrypted image on hardware with support for Confidential Computing (CC HW)
 - Building a new encrypted container image and deploying it as a COCO workload
 
-## Limitations 
+## Limitations
 
-The following are known limitations of this release: 
+The following are known limitations of this release:
 
-- A
-- B
-- C
+- Platform support is currently limited, and rapidly changing
+  * AMD SEV is tested by the CI (with some limitations regarding attestation, see below)
+  * Intel TDX is expected to work, but not currently tested in the CI
+  * S390x is not supported by the COCO operator
+- Attestation and key brokering support is still under development
+  * The disk-based key broker client (KBC) is still the primary method used for development, even if it will never be an acceptable approach in production.
+  * Remote attestion with simple-kbs, a simple key broker service (KBS) is expected to be merged just prior to release
+  * For developers, other KBCs can be experimented with.
+- Signature support is in a transitory state, and should be replaced in the next release
+  * We currently use skopeo, which requires kernel command-line options in order to do signature verification
+  * This is not the option retained for the longer term
+- The format of encrypted container images is still subject to change
+  * The oci-crypt container image format itself may still change
+  * The tools to generate images are not in their final form
+  * The image format itself is subject to change in upcoming releases
+  * Image repository support for encrypted images is unequal
+- COCO currently requires a custom build of `containerd`
+  * The COCO operator will deploy the correct version of `containerd` for you
+  * Changes are required to delegate `PullImage` to the agent in the virtual machine
+  * The required changes are not part of the vanilla `containerd`
+  * The final form of the required changes in `containerd` is expected to be different
+  * `crio` is not supported
+* COCO is not fully integrated with the orchestration ecosystem (Kubernetes, OpenShift)
+  * OpenShift is a non-started at the moment due to their dependency on CRIO
+  * Existing APIs do not fully support the COCO security and threat model
+  * Some commands accessing confidential data, such as `kubectl exec`, may either fail to work, or incorrectly expose information to the host
+  * Container image sharing is not possible in this release
+  * Container images are downloaded by the guest (with encryption), not  by the host
+  * As a result, the same image will be downloaded separately by every pod using it, not shared between pods on the same host.
 
-# Installing 
+# Installing
 
-The COCO solution can be installed, uninstalled and configured using the COCO operator. 
+The COCO solution can be installed, uninstalled and configured using the COCO operator.
 
 * *TBD: we will move the below sections to the operator documentation and only refer to that link
-Installing the operator* * 
+Installing the operator* *
 
 Follow the steps described in https://github.com/confidential-containers/operator/blob/main/docs/INSTALL.md
 
-Assuming the operator was installed successfully you can move on to creating a workload (**the following section is optional**). 
+Assuming the operator was installed successfully you can move on to creating a workload (**the following section is optional**).
 
 ## Details on the CC operator installation
 
-A few points to mention if your interested in the details: 
+A few points to mention if your interested in the details:
 
 ### Deploy the the operator:
 
@@ -53,7 +79,7 @@ A few points to mention if your interested in the details:
 kubectl apply -f https://raw.githubusercontent.com/confidential-containers/operator/main/deploy/deploy.yaml
 ```
 
-You may get the following error when deploying the operator: 
+You may get the following error when deploying the operator:
 
 ```
 Error from server (Timeout): error when creating "https://raw.githubusercontent.com/confidential-containers/operator/main/deploy/deploy.yaml": Timeout: request did not complete within requested timeout - context deadline exceeded
@@ -65,7 +91,7 @@ After you deployed the operator and before you create the custom resource run th
 ```
 kubectl get pods -n confidential-containers-system
 ```
-Output: 
+Output:
 ```
 NAME                                              READY   STATUS    RESTARTS   AGE
 cc-operator-controller-manager-5df7584679-kffzf   2/2     Running   0          4m35s
@@ -79,7 +105,7 @@ In our case the operator has created the ccruntime CRD as can be observed in the
 ```
 kubectl get crd | grep ccruntime
 ```
-Output: 
+Output:
 ```
 ccruntimes.confidentialcontainers.org   2022-09-08T06:10:37Z
 ```
@@ -89,34 +115,34 @@ The following command provides the details on the CcRuntime CRD:
 ```
 kubectl explain ccruntimes.confidentialcontainers.org
 ```
-Output: 
+Output:
 ```
 KIND:     CcRuntime
 VERSION:  confidentialcontainers.org/v1beta1
- 
+
 DESCRIPTION:
      CcRuntime is the Schema for the ccruntimes API
- 
+
 FIELDS:
    apiVersion	<string>
      APIVersion defines the versioned schema of this representation of an
      object. Servers should convert recognized schemas to the latest internal
      value, and may reject unrecognized values. More info:
      https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
- 
+
    kind	<string>
      Kind is a string value representing the REST resource this object
      represents. Servers may infer this from the endpoint the client submits
      requests to. Cannot be updated. In CamelCase. More info:
      https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
- 
+
    metadata	<Object>
      Standard object's metadata. More info:
      https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
- 
+
    spec	<Object>
      CcRuntimeSpec defines the desired state of CcRuntime
- 
+
    status	<Object>
      CcRuntimeStatus defines the observed state of CcRuntime
  ```
@@ -136,12 +162,12 @@ Create the custom resource:
 kubectl apply  -f https://raw.githubusercontent.com/confidential-containers/operator/main/config/samples/ccruntime.yaml
 ```
 
-Check that the ccruntime was created successfully: 
+Check that the ccruntime was created successfully:
 ```
 kubectl get ccruntimes
 ```
-Output: 
-``` 
+Output:
+```
 NAME               AGE
 ccruntime-sample   5s
 ```
@@ -159,7 +185,7 @@ Once we also create the custom resource the validation will show us 2 additional
 ```
 kubectl get pods -n confidential-containers-system
 ```
-Output: 
+Output:
 ```
 NAME                                              READY   STATUS    RESTARTS   AGE
 cc-operator-controller-manager-5df7584679-kffzf   2/2     Running   0          21m
@@ -171,7 +197,7 @@ Once the CR was created you will notice we have multiple runtime classes:
 ```
 kubectl get runtimeclass
 ```
-Output: 
+Output:
 ```
 NAME            HANDLER         AGE
 kata            kata            9m55s
@@ -191,13 +217,13 @@ Details on each of the runtime classes:
 -- * *TBD: we need to add the SEV runtimes as well* *
 
 
-# Post installation configuration 
+# Post installation configuration
 * *TBD:...* *
 
-# Creating a workload 
-## Creating a sample COCO workload 
+# Creating a workload
+## Creating a sample COCO workload
 
-The first workload we create will show how the COCO building blocks work together without encryption or CC HW support (which will be demonstrated in later workloads). 
+The first workload we create will show how the COCO building blocks work together without encryption or CC HW support (which will be demonstrated in later workloads).
 
 A key point when working on COCO is to ensure that the container images get downloaded inside the VM and not on the host.
 
@@ -224,20 +250,20 @@ root@cluster01-master-0:/home/ubuntu# crictl  -r  unix:///run/containerd/contain
 
 Create a pod YAML file as previously described (we named it `nginx.yaml`) .
 
-Create the workload: 
+Create the workload:
 ```
 kubectl apply -f nginx.yaml
 ```
-Output: 
+Output:
 ```
 pod/nginx created
 ```
 
 Ensure the pod was created successfully (in running state):
 ```
-kubectl get pods        
+kubectl get pods
 ```
-Output: 
+Output:
 ```
 NAME    READY   STATUS    RESTARTS   AGE
 nginx   1/1     Running   0          3m50s
@@ -250,7 +276,7 @@ root@cluster01-master-0:/home/ubuntu# crictl  -r  unix:///run/containerd/contain
 
 ## Creating a COCO workload using a pre-existing encrypted image
 
-We will now proceed to download and run an encrypted container image using the COCO building blocks. 
+We will now proceed to download and run an encrypted container image using the COCO building blocks.
 
 * *TBD: based on https://github.com/confidential-containers/operator/issues/77* *
 
@@ -267,7 +293,5 @@ In case the user wants to run the workload on a TDX capable hardware, using QEMU
 
 * *TBD: instructions to build encrypted container image and other requirements (attestation, key etc)* *
 
-# Debugging problems 
+# Debugging problems
 * *TBD: describe tools to debug problems, logs etc…* *
-
-
