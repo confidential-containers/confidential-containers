@@ -1,69 +1,43 @@
-# About
-Welcome :-)
-
-We are thrilled to share with you Confidential Containers (COCO) release X.X.X .
-
-In this document we will take you through the content of this release, installation instructions, deploying workloads and troubleshooting if things go wrong.
-
-# Release notes
-
-## Goals
-
-This release focused on the following:
-
-- **Simplicity** - Using a dedicated Kubernetes operator, the COCO operator, to deploy and configure
-- **Stability** - Supporting Continuous Integration (CI) for the key workflows of the release
-- **Documentation** - Details instruction of how to deploy and use this release
+# Getting Started
+This document contains an overview of Confidential Containers use cases and support
+as well as a guide for installing Confidential Containers, deploying workloads,
+and troubleshooting if things go wrong.
 
 ## Use cases
 
-This release supports the following use cases:
+Confidential Containers (CoCo) supports the following use cases:
 
-- Creating a sample COCO workload
-- Creating a COCO workload using a pre-existing encrypted image
-- Creating a COCO workload using a pre-existing encrypted image on hardware with support for Confidential Computing (CC HW)
-- Building a new encrypted container image and deploying it as a COCO workload
+- Running unencrypted containers without Confidential Computing (CC) hardware
+- Running encrypted containers without CC HW (sample container images provided)
+- Running unencrypted container images or sample encrypted images with CC HW
+- Running your own encrypted container images with CC HW
+
+The first two cases are mainly for testing and development or new users who want to
+explore the project. This guide explains all four cases below.
+
+## Hardware Support
+Confidential Containers is tested with attestation on the following platforms:
+- Intel TDX
+- AMD SEV
+
+Confidential Containers can also be run on Linux without any Confidential Computing hardware
+for testing or development.
+
+The following platforms are untested or partially supported:
+- AMD SEV-ES
+- IBM Z SE
+
+The following platforms are in development:
+- Intel SGX
+- AMD SEV-SNP
 
 ## Limitations
 
-The following are known limitations of this release:
-
-- Platform support is currently limited, and rapidly changing
-  * AMD SEV is tested by the CI (with some limitations regarding attestation, see below)
-  * Intel TDX is expected to work, but not currently tested in the CI
-  * S390x is not supported by the COCO operator
-- Attestation and key brokering support is still under development
-  * The disk-based key broker client (KBC) is still the primary method used for development, even if it will never be an acceptable approach in production.
-  * Currently, there are two KBS that can be used:
-    - simple-kbs:  simple key broker service (KBS) is expected to be merged just prior to release.
-    - [Verdictd](https://github.com/inclavare-containers/verdictd): An external project with which Attestation Agent can conduct remote attestation communication and key acquisition via EAA KBC
-  * The full-featured generic KBS and the corresponding KBC are still in the development stage.
-  * For developers, other KBCs can be experimented with.
-- Signature support is in a transitory state, and should be replaced in the next release
-  * We currently use skopeo, which requires kernel command-line options in order to do signature verification
-  * This is not the option retained for the longer term
-- The format of encrypted container images is still subject to change
-  * The oci-crypt container image format itself may still change
-  * The tools to generate images are not in their final form
-  * The image format itself is subject to change in upcoming releases
-  * Image repository support for encrypted images is unequal
-- COCO currently requires a custom build of `containerd`
-  * The COCO operator will deploy the correct version of `containerd` for you
-  * Changes are required to delegate `PullImage` to the agent in the virtual machine
-  * The required changes are not part of the vanilla `containerd`
-  * The final form of the required changes in `containerd` is expected to be different
-  * `crio` is not supported
-* COCO is not fully integrated with the orchestration ecosystem (Kubernetes, OpenShift)
-  * OpenShift is a non-started at the moment due to their dependency on CRIO
-  * Existing APIs do not fully support the COCO security and threat model
-  * Some commands accessing confidential data, such as `kubectl exec`, may either fail to work, or incorrectly expose information to the host
-  * Container image sharing is not possible in this release
-  * Container images are downloaded by the guest (with encryption), not  by the host
-  * As a result, the same image will be downloaded separately by every pod using it, not shared between pods on the same host.
+Confidential Containers is still maturing. See [release notes](./releases) for currrent limitations.
 
 # Installing
 
-The COCO solution can be installed, uninstalled and configured using the COCO operator.
+You can enable Confidential Containers in an existing Kubernetes cluster using the Confidential Containers Operator.
 
 * *TBD: we will move the below sections to the operator documentation and only refer to that link
 Installing the operator* *
@@ -208,27 +182,24 @@ kata-clh        kata-clh        9m55s
 kata-clh-tdx    kata-clh-tdx    9m55s
 kata-qemu       kata-qemu       9m55s
 kata-qemu-tdx   kata-qemu-tdx   9m55s
+kata-qemu-sev   kata-qemu-sev   9m55s
 ```
 
 Details on each of the runtime classes:
 
--- kata - standard kata runtime using the QEMU hypervisor including all COCO building blocks for a non CC HW
--- kata-clh - standard kata runtime using the cloud hypervisor including all COCO building blocks for a non CC HW
+-- kata - standard kata runtime using the QEMU hypervisor including all CoCo building blocks for a non CC HW
+-- kata-clh - standard kata runtime using the cloud hypervisor including all CoCo building blocks for a non CC HW
 -- kata-clh-tdx - using the Cloud Hypervisor, with TD-Shim, and support for Intel TDX CC HW
 -- kata-qemu - same as kata
 -- kata-qemu-tdx - using QEMU, with TDVF, and support for Intel TDX CC HW
 -- * *TBD: we need to add the SEV runtimes as well* *
 
+# Running a workload
+## Creating a sample CoCo workload
 
-# Post installation configuration
-* *TBD:...* *
-
-# Creating a workload
-## Creating a sample COCO workload
-
-The first workload we create will show how the COCO building blocks work together without encryption or CC HW support (which will be demonstrated in later workloads).
-
-A key point when working on COCO is to ensure that the container images get downloaded inside the VM and not on the host.
+Once you've used the operator to install Confidential Containers, you can run a pod with CoCo by simply adding a runtime class.
+First, we will use the `kata` runtime class which uses CoCo wihout hardware support.
+Initially we will try this with an unencrypted container image.
 
 In our example we will be using the bitnami/nginx image as described in the following yaml:
 ```
@@ -246,10 +217,12 @@ spec:
   runtimeClassName: kata
 ```
 
+With Confidential Containers, the workload container images are never downloaded on the host.
 For verifying that the container image doesn’t exist on the host you should log into the k8s node and ensure the following command returns an empty result:
 ```
 root@cluster01-master-0:/home/ubuntu# crictl  -r  unix:///run/containerd/containerd.sock image ls | grep bitnami/nginx
 ```
+You will run this command again after the container has started.
 
 Create a pod YAML file as previously described (we named it `nginx.yaml`) .
 
@@ -277,26 +250,38 @@ Now go back to the k8s node and ensure that you still don’t have any bitnami/n
 root@cluster01-master-0:/home/ubuntu# crictl  -r  unix:///run/containerd/containerd.sock image ls | grep bitnami/nginx
 ```
 
-## Creating a COCO workload using a pre-existing encrypted image
+## Creating a CoCo workload using a pre-existing encrypted image
 
-We will now proceed to download and run an encrypted container image using the COCO building blocks.
+We will now proceed to download and run an encrypted container image using the CoCo building blocks.
 
 * *TBD: based on https://github.com/confidential-containers/operator/issues/77* *
 
+Change the yaml to point to the sample container image
+The keys for this image should be in the rootfs
 
-## Creating a COCO workload using a pre-existing encrypted image on CC HW
 
-For running one of the sample workloads provided in the previous step, but now taking advantage of a specific TEE vendor, the user will have to set the runtime class of the workload accordingly in the workload yaml file.
+## Creating a CoCo workload using a pre-existing encrypted image on CC HW
 
+For running one of the sample workloads provided in the previous step, but now taking advantage of a specific TEE vendor,
+the user will have to set the runtime class of the workload accordingly in the workload yaml file.
+
+### TDX
 In case the user wants to run the workload on a TDX capable hardware, using QEMU (which uses TDVF as its firmware) the `kata-qemu-tdx` runtime class must be specified.  In case the user prefers using Cloud Hypervisor (which uses TD-Shim as its firmware) then the `kata-clh-tdx` runtime class must be specified.
 
-* *TBD: do we have enough details on TDX and SEV-ES to write this section* *
+### SEV
 
-## Building a new encrypted container image and deploying it as a COCO workload
+`kata-qemu-sev`
+Export cert chain
+Start KBS (even for unencrypted)
+
+Use the sample image or an unencrypted image
+
+
+## Building a new encrypted container image and deploying it as a CoCo workload
 
 * *TBD: instructions to build encrypted container image and other requirements (attestation, key etc)* *
 
-### Use EAA KBC and Verdictd
+### Use EAA KBC and Verdictd (TDX)
 
 EAA is used to perform attestation at runtime and provide guest with confidential resources such as keys.
 It is based on [rats-tls](https://github.com/inclavare-containers/rats-tls).
@@ -349,10 +334,15 @@ so you need to confirm that [rats-tls](https://github.com/inclavare-containers/r
 
 Add configuration `aa_kbc_params= 'eaa_kbc::<$IP>:<$PORT>'` to agent config file, the IP and PORT should be consistent with verdictd.
 
-# Experience Trusted Ephemeral Storage for container image and RW layer
+### Use offline SEV KBC and simple-kbs (SEV)
 
-Container image in COCO is pulled inside guest VM, it will be save in CC HW protected guest memory by default.
-Since memory is an expensive resource, COCO implemented [trusted ephemeral storage](https://github.com/confidential-containers/documentation/issues/39) for container image and RW layer.
+TODO: add instructions for simple-kbs with encrypted images
+
+# Trusted Ephemeral Storage for container images
+
+With CoCo, container images are pulled inside the guest VM.
+By default container images are saved in guest memory which is protected by CC hardware.
+Since memory is an expensive resource, CoCo implemented [trusted ephemeral storage](https://github.com/confidential-containers/documentation/issues/39) for container image and RW layer.
 
 This solution is verified with Kubernetes CSI driver [open-local](https://github.com/alibaba/open-local). Please follow this [user guide](https://github.com/alibaba/open-local/blob/main/docs/user-guide/user-guide.md) to install open-local.
 
@@ -395,7 +385,7 @@ spec:
       storage: 1Gi
   storageClassName: open-local-lvm
 ```
-Before deploy the workload, we can follow this [documentation](https://github.com/kata-containers/kata-containers/blob/CCv0/docs/how-to/how-to-build-and-test-ccv0.md) and use [ccv0.sh](https://github.com/kata-containers/kata-containers/blob/CCv0/docs/how-to/ccv0.sh) to enable COCO console debug(optional, check whether working as expected).
+Before deploy the workload, we can follow this [documentation](https://github.com/kata-containers/kata-containers/blob/CCv0/docs/how-to/how-to-build-and-test-ccv0.md) and use [ccv0.sh](https://github.com/kata-containers/kata-containers/blob/CCv0/docs/how-to/ccv0.sh) to enable CoCo console debug(optional, check whether working as expected).
 
 Create the workload:
 ```
@@ -445,4 +435,7 @@ layers  lost+found  overlay
 ```
 
 # Debugging problems
-* *TBD: describe tools to debug problems, logs etc…* *
+
+Enable kata debug (this will change the measurement)
+Has the guest booted or not?
+TODO: finish this
