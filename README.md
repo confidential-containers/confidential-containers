@@ -2,6 +2,8 @@
 
 # Confidential Containers
 
+[![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/5719/badge)](https://bestpractices.coreinfrastructure.org/projects/5719)
+
 ## Welcome to confidential-containers
 
 Confidential Containers is an open source community working to leverage 
@@ -42,3 +44,4 @@ delivering Confidential Computing for guest applications or data inside the TEE
 
 ## License
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fconfidential-containers%2Fcommunity.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fconfidential-containers%2Fcommunity?ref=badge_large)
+
