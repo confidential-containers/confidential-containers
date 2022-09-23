@@ -19,9 +19,9 @@ delivering Confidential Computing for guest applications or data inside the TEE
 
 [![asciicast](https://asciinema.org/a/eGHhZdQY3uYnDalFAfuB7VYqF.svg)](https://asciinema.org/a/eGHhZdQY3uYnDalFAfuB7VYqF)
 
-- [Project Overview](./Overview.md)
-- [Our Roadmap](./Roadmap.md)
-- [Alignment with other Projects](ALIGNMENT.md)
+- [Project Overview](./overview.md)
+- [Our Roadmap](./roadmap.md)
+- [Alignment with other Projects](alignment.md)
 
 
 ### Associated Repositories
