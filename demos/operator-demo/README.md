@@ -58,7 +58,7 @@ cck8s-demo-worker-0   Ready    worker                 25d   v1.22.3
 ## Operator Setup
 
 ```
-kubectl apply -f https://raw.githubusercontent.com/confidential-containers/operator/main/deploy/deploy.yaml
+kubectl apply -f https://raw.githubusercontent.com/confidential-containers/operator/ccv0-demo/deploy/deploy.yaml
 ```
 
 The operator installs everything under the `confidential-containers-system` namespace
