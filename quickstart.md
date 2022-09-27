@@ -39,6 +39,8 @@ Confidential Containers is still maturing. See [release notes](./releases) for c
 
 You can enable Confidential Containers in an existing Kubernetes cluster using the Confidential Containers Operator.
 
+If you need to quickly deploy a single-node test cluster, you can use the [run-local.sh script](https://github.com/confidential-containers/operator/blob/main/tests/e2e/run-local.sh) from the operator test suite, which will setup a single-node cluster on your machine for testing purpose. This script requires `ansible-playbook`, which you can install on CentOS/RHEL using `dnf install ansible-core`, and the Ansible `docker_container` module, which you can get using `ansble-galaxy colection install community.docker`.
+
 * *TBD: we will move the below sections to the operator documentation and only refer to that link
 Installing the operator* *
 
