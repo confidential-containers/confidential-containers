@@ -189,12 +189,12 @@ kata-qemu-sev   kata-qemu-sev   9m55s
 
 Details on each of the runtime classes:
 
--- kata - standard kata runtime using the QEMU hypervisor including all CoCo building blocks for a non CC HW
--- kata-clh - standard kata runtime using the cloud hypervisor including all CoCo building blocks for a non CC HW
--- kata-clh-tdx - using the Cloud Hypervisor, with TD-Shim, and support for Intel TDX CC HW
--- kata-qemu - same as kata
--- kata-qemu-tdx - using QEMU, with TDVF, and support for Intel TDX CC HW
--- * *TBD: we need to add the SEV runtimes as well* *
+- *kata* - standard kata runtime using the QEMU hypervisor including all CoCo building blocks for a non CC HW
+- *kata-clh* - standard kata runtime using the cloud hypervisor including all CoCo building blocks for a non CC HW
+- *kata-clh-tdx* - using the Cloud Hypervisor, with TD-Shim, and support for Intel TDX CC HW
+- *kata-qemu* - same as kata
+- *kata-qemu-tdx* - using QEMU, with TDVF, and support for Intel TDX CC HW
+- *TBD: we need to add the SEV runtimes as well*
 
 # Running a workload
 ## Creating a sample CoCo workload
