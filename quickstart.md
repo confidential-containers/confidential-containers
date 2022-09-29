@@ -933,6 +933,10 @@ Confidential Containers integrates several components. If you run into problems,
 it can sometimes be difficult to figure out what is going on or how to move forward.
 Here are some tips.
 
+If you get stuck or find a bug, please make an issue on this repository or
+the repository for the component in question, e.g.,
+[the operator](https://github.com/confidential-containers/operator/issues).
+
 ## Kubernetes
 
 To figure out which basic area you problem is in, first make sure that your Kubernetes
