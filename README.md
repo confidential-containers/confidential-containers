@@ -1,11 +1,13 @@
 ![logo](./images/coco_logo.png)
 
-# Welcome to documentation repository for Confidential Containers 
+# Confidential Containers Documentation
 
 Confidential Containers is an open source community working to leverage 
 [Trusted Execution Environments](https://en.wikipedia.org/wiki/Trusted_execution_environment) 
 to protect containers and data and to deliver cloud native 
 confidential computing.
+
+**Release v0.1.0 is Live!** See [Release Notes](./releases/v0.1.0.md) or [Quickstart Guide](./quickstart.md)
 
 Our key considerations are:
 - Allow cloud native application owners to enforce application security requirements
