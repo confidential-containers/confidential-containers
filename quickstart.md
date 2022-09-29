@@ -635,8 +635,10 @@ sudo docker push [REGISTRY_URL]:encrypted
 * CentOS / Fedora / RHEL:
 
   ```
-  sudo dnf install community-mysql jq
+  sudo dnf install [ mysql | mariadb | community-mysql ] jq
   ```
+
+The `mysql-client` package name may differ depending on OS flavor and version.
 
 The `simple-kbs` uses default settings and credentials for the MySQL database. These settings can be changed by the `simple-kbs` administrator and saved into a credential file. For the purposes of this quick start, set them in the environment for use with the MySQL client command line:
 
