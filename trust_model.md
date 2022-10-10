@@ -30,6 +30,9 @@ Confidential Computing. We explore trust using different orthogonal ways of cons
 native approaches when they use an underlying TEE technology and
 identifying where there may be considerations to preserve the value of using a TEE.
 
+### Trust Model Considerations
+- [Personas](./trust_model_personas.md)
+
 Further documentation will highlight specific [threat vectors](./threats_overview.md) in detail,
 considering risk,
 impact, mitigation etc as the project progresses. The Security Assurance section, Page 31, of
