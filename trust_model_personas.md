@@ -129,7 +129,7 @@ their data, however they do not trust the Orchestration Operator or Cloud Operat
 data and wish to ensure data confidentiality.
 
 
-# Workload Provider vs. Container Image Provider
+### Workload Provider vs. Container Image Provider
 
 The Workload Provider is free to choose Container Image Providers that will provide not only 
 the images they need but also support the verification method they require.  A key aspect to this
