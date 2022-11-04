@@ -39,7 +39,7 @@ Confidential Containers is still maturing. See [release notes](./releases) for c
 
 You can enable Confidential Containers in an existing Kubernetes cluster using the Confidential Containers Operator.
 
-:information_source: If you need to quickly deploy a single-node test cluster, you can
+> **Note** If you need to quickly deploy a single-node test cluster, you can
 use the [run-local.sh
 script](https://github.com/confidential-containers/operator/blob/main/tests/e2e/run-local.sh)
 from the operator test suite, which will setup a single-node cluster on your
@@ -48,7 +48,7 @@ This script requires `ansible-playbook`, which you can install on CentOS/RHEL us
 `dnf install ansible-core`, and the Ansible `docker_container` module, which you can
 get using `ansible-galaxy colection install community.docker`.
 
-:information_source: You can also use a Kind or Minikube cluster with containerd runtime to try out the CoCo stack
+> **Note** You can also use a Kind or Minikube cluster with containerd runtime to try out the CoCo stack
 for development purposes.
 
 ## Prerequisites
@@ -180,7 +180,7 @@ A demo container image is provided at [docker.io/katadocker/ccv0-ssh](https://hu
 It is encrypted with [Attestation Agent](https://github.com/confidential-containers/attestation-agent)'s [offline file system key broker](https://github.com/confidential-containers/attestation-agent/tree/64c12fbecfe90ba974d5fe4896bf997308df298d/src/kbc_modules/offline_fs_kbc) and [`aa-offline_fs_kbc-keys.json`](https://github.com/confidential-containers/documentation/blob/main/demos/ssh-demo/aa-offline_fs_kbc-keys.json) as its key file.
 
 We have prepared a sample CoCo operator custom resource that is based on the standard `ccruntime.yaml`, but in addition has the the decryption keys and configuration required to decrypt this sample container image.
-> **Note**: All pods started with this sample resource will be able to decrypt the sample container and all keys shown are for demo purposes only and should not be used in production.
+> **Note** All pods started with this sample resource will be able to decrypt the sample container and all keys shown are for demo purposes only and should not be used in production.
 
  To test out creating a workload from the sample encrypted container image, we can take the following steps:
 
@@ -501,7 +501,7 @@ So when deploy the encrypted image, Verdictd is needed to be launched:
 verdictd --listen <$ip>:<$port> --mutual
 ```
 
-**Note:** The communication between Verdictd and EAA KBC is based on rats-tls,
+> **Note** The communication between Verdictd and EAA KBC is based on rats-tls,
 so you need to confirm that [rats-tls](https://github.com/inclavare-containers/rats-tls) has been correctly installed in your running environment.
 
 3. Agent Configuration
