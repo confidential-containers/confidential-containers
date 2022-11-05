@@ -21,7 +21,7 @@ spec:
       labels:
         app: ccv0-ssh
     spec:
-      runtimeClassName: kata-cc
+      runtimeClassName: kata
       containers:
       - name: ccv0-ssh
         image: docker.io/katadocker/ccv0-ssh

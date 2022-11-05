@@ -50,7 +50,7 @@ The SSH host key fingerprint is displayed during the build.
 
 ## Connecting to the guest
 
-A [Kubernetes YAML file](./k8s-cc-ssh.yaml) specifying the [`kata-cc`](https://github.com/kata-containers/kata-containers) runtime is included.
+A [Kubernetes YAML file](./k8s-cc-ssh.yaml) specifying the [`kata`](https://github.com/kata-containers/kata-containers) runtime is included.
 If you use a [self-built image](#building-the-container-image), you should replace the image specification with the image you built.
 The default tag points to an `amd64` image, an `s390x` tag is also available.
 With common CNI setups, on the same host, with the service running, you can connect via SSH with
