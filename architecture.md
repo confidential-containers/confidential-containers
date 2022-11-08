@@ -89,7 +89,7 @@ example:
 ## Confidential Container Stack
 
 The CC components can be arranged together and configured to provide
-containerized worklooads with the Confidential Computing security guarantees.
+containerized workloads with the Confidential Computing security guarantees.
 
 The two following sections describe a generic software architecture for
 Kubernetes pods to run in either VM-based or process-based TEEs.
