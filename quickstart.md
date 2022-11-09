@@ -123,12 +123,27 @@ Details on each of the runtime classes:
 - *kata-qemu-tdx* - using QEMU, with TDVF, and support for Intel TDX CC HW
 - *kata-qemu-sev* - using QEMU, and support for AMD SEV HW
 
+For the process based CoCo TEE (aka. `enclave-cc`) the operator setup steps are the same but instead
+of `ccruntime.yaml`, either `ccruntime-enclave-cc-sim.yaml` or `ccruntime-enclave-cc.yaml` for the
+**simulated** SGX mode build or **hardware** SGX mode build, respectively, should be used.
+
+These result in a `RuntimeClass` as follows:
+
+```
+kubectl get runtimeclass
+```
+Output:
+```
+NAME            HANDLER         AGE
+enclave-cc      enclave-cc      9m55s
+```
+
 # Running a workload
 
 ## Creating a sample CoCo workload
 
 Once you've used the operator to install Confidential Containers, you can run a pod with CoCo by simply adding a runtime class.
-First, we will use the `kata` runtime class which uses CoCo wihout hardware support.
+First, we will use the `kata` runtime class which uses CoCo without hardware support.
 Initially we will try this with an unencrypted container image.
 
 In our example we will be using the bitnami/nginx image as described in the following yaml:
@@ -178,6 +193,72 @@ nginx   1/1     Running   0          3m50s
 Now go back to the k8s node and ensure that you still don’t have any bitnami/nginx images on it:
 ```
 root@cluster01-master-0:/home/ubuntu# crictl  -r  unix:///run/containerd/containerd.sock image ls | grep bitnami/nginx
+```
+
+## Creating a sample Coco workload using enclave-cc
+
+Following the previous example that used the `kata` runtime class, we setup a sample *hello world*
+workload using the `enclave-cc` runtime class for process based TEEs. The deployment below assumes
+the simulated SGX mode build (`ccruntime-enclave-cc-sim.yaml`) is installed by the operator. With that,
+the workload can be deployed on a non-TEE system too.
+
+The example uses a trivial hello world C application:
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: enclave-cc-pod-sim
+spec:
+  containers:
+  - image: docker.io/huaijin20191223/scratch-base:v1.8
+    name: hello-world
+    workingDir: "/run/rune/boot_instance/"
+    command:
+    - /run/rune/boot_instance/build/bin/occlum-run
+    - /bin/hello_world
+  runtimeClassName: enclave-cc
+```
+
+**Note** When the hardware SGX mode payload is used in an SGX enabled cluster, `sgx.intel.com/epc: 600Mi`
+resource request must be added to the pod spec.
+
+Again, create a pod YAML file as previously described (this time we named it `enclave-cc-pod-sim.yaml`) .
+
+Create the workload:
+```
+kubectl apply -f enclave-cc-pod-sim.yaml
+```
+Output:
+```
+pod/enclave-cc-pod-sim created
+```
+
+Ensure the pod was created successfully (in running state):
+```
+kubectl get pods
+```
+Output:
+```
+NAME                 READY   STATUS    RESTARTS   AGE
+enclave-cc-pod-sim   1/1     Running   0          22s
+```
+
+Check the pod is running as expected:
+```
+kubectl logs enclave-cc-pod-sim | head -5
+```
+Output:
+```
+["init"]
+Hello world!
+
+Hello world!
+
+```
+
+We can also verify the host does not have the image for others to use:
+```
+root@cluster01-master-0:/home/ubuntu# crictl -r unix:///run/containerd/containerd.sock image ls | grep scratch-base
 ```
 
 ## Creating a CoCo workload using a pre-existing encrypted image
