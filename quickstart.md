@@ -59,14 +59,22 @@ for development purposes.
 - Ensure at least one Kubernetes node in the cluster is having the label `node-role.kubernetes.io/worker=`
 
 
-For more details on the operator, including the custom resources managed by the operator, refer to the operator [docs](https://github.com/confidential-containers/operator)
+For more details on the operator, including the custom resources managed by the operator, refer to the operator [docs](https://github.com/confidential-containers/operator).
 
 ## Operator Installation
 
 ### Deploy the the operator
 
+Deploy the operator by running the following command  where `<RELEASE_VERSION>` needs to be substituted
+with the desired [release tag](https://github.com/confidential-containers/operator/tags).
+
 ```
-kubectl apply -f https://raw.githubusercontent.com/confidential-containers/operator/main/deploy/deploy.yaml
+kubectl apply -k github.com/confidential-containers/operator/config/release?ref=<RELEASE_VERSION>
+```
+
+For example, to deploy the `v0.2.0` release run:
+```
+kubectl apply -k github.com/confidential-containers/operator/config/release?ref=v0.2.0
 ```
 
 Wait until each pod has the STATUS of Running.
