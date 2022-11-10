@@ -15,25 +15,10 @@ Confidential Containers (CoCo) supports the following use cases:
 The first two cases are mainly for testing and development or new users who want to
 explore the project. This guide explains all four cases below.
 
-## Hardware Support
-Confidential Containers is tested with attestation on the following platforms:
-- Intel TDX
-- AMD SEV
+## Hardware Support and Limitations
 
-Confidential Containers can also be run on Linux without any Confidential Computing hardware
-for testing or development.
-
-The following platforms are untested or partially supported:
-- AMD SEV-ES
-- IBM Z SE
-
-The following platforms are in development:
-- Intel SGX
-- AMD SEV-SNP
-
-## Limitations
-
-Confidential Containers is still maturing. See [release notes](./releases) for currrent limitations.
+Confidential Containers is still maturing. See [release notes](./releases) for currrent 
+hardware support and limitations.
 
 # Installing
 
