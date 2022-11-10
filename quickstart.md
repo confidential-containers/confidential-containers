@@ -398,7 +398,16 @@ The image encryption key and key for SSH access have been attached to the CoCo s
 
 To learn more about creating custom policies, see the section on [Creating a simple-kbs Policy to Verify the SEV Firmware Measurement](#creating-a-simple-kbs-policy-to-verify-the-sev-firmware-measurement).
 
-Currently, the SEV unencrypted image use case also requires the `simple-kbs` to be deployed. This will change in a future CoCo release.
+A KBS is not required to run unencrypted containers.
+Instead, disable pre-attestation by editing the Kata config file located at `/opt/confidential-containers/share/defaults/kata-containers/configuration-qemu-sev.toml`.
+```
+guest_pre_attestation = false
+```
+Image decryption and signature validation will not work if pre-attestation is disabled.
+
+> **Note** It is not recommended to edit the Kata configuration file manually.
+These changes might be overwritten by the operator.
+
 
 `docker-compose` is required to run the `simple-kbs` and its database in docker containers:
 
