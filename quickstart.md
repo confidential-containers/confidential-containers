@@ -36,6 +36,9 @@ get using `ansible-galaxy colection install community.docker`.
 > **Note** You can also use a Kind or Minikube cluster with containerd runtime to try out the CoCo stack
 for development purposes.  Make sure to use the `kata-clh` runtime class for your workloads when using Kind or
 Minikube, [as QEMU is known to **not** be working with Kind or Minikube](https://github.com/confidential-containers/operator/issues/124).
+Also, with the `enclave-cc` runtime class, the cluster must be prepared so that `/opt/confidential-containers`
+on the worker nodes is **not** on an overlayfs mount but the path is a `hostPath` mount (see
+[a sample configuration](https://github.com/confidential-containers/operator/blob/cf6a4f38114f7c5b71daec6cb666b1b40bcea140/tests/e2e/enclave-cc-kind-config.yaml#L6-L8))
 
 ## Prerequisites
 
