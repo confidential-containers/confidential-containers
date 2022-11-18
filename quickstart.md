@@ -31,7 +31,7 @@ from the operator test suite, which will setup a single-node cluster on your
 machine for testing purpose.
 This script requires `ansible-playbook`, which you can install on CentOS/RHEL using
 `dnf install ansible-core`, and the Ansible `docker_container` module, which you can
-get using `ansible-galaxy colection install community.docker`.
+get using `ansible-galaxy collection install community.docker`.
 
 > **Note** You can also use a Kind or Minikube cluster with containerd runtime to try out the CoCo stack
 for development purposes.  Make sure to use the `kata-clh` runtime class for your workloads when using Kind or
