@@ -384,8 +384,8 @@ Follow these steps to install `sevctl`:
 If using the SEV kata configuration template file, the SEV certificate chain must be placed in `/opt/sev`. Export the SEV certificate chain using the following commands:
 
 ```
-mkdir -p /opt/sev
-./sevctl/target/debug/sevctl export --full /opt/sev/cert_chain.cert
+sudo mkdir -p /opt/sev
+sudo ./sevctl/target/debug/sevctl export --full /opt/sev/cert_chain.cert
 ```
 
 #### Setup and Run the simple-kbs
@@ -513,7 +513,8 @@ pod_ip=$(kubectl get pod -o wide | grep encrypted-image-tests | awk '{print $6;}
 Get the CoCo sample encrypted container image SSH access key from docker image label and save it to a file:
 
 ```
-sudo docker inspect quay.io/kata-containers/encrypted-image-tests:encrypted | \
+docker pull quay.io/kata-containers/encrypted-image-tests:encrypted
+docker inspect quay.io/kata-containers/encrypted-image-tests:encrypted | \
   jq -r '.[0].Config.Labels.ssh_key' \
   | sed "s|\(-----BEGIN OPENSSH PRIVATE KEY-----\)|\1\n|g" \
   | sed "s|\(-----END OPENSSH PRIVATE KEY-----\)|\n\1|g" \
@@ -635,14 +636,14 @@ Store this `Dockerfile` in the same directory as the `encrypted-image-tests` ssh
 Build image:
 
 ```
-sudo docker build -t encrypted-image-tests .
+docker build -t encrypted-image-tests .
 ```
 
 Tag and upload this unencrypted docker image to a registry:
 
 ```
-sudo docker tag encrypted-image-tests:latest [REGISTRY_URL]:unencrypted
-sudo docker push [REGISTRY_URL]:unencrypted
+docker tag encrypted-image-tests:latest [REGISTRY_URL]:unencrypted
+docker push [REGISTRY_URL]:unencrypted
 ```
 
 Be sure to replace `[REGISTRY_URL]` with the desired registry URL.
@@ -698,17 +699,18 @@ Run skopeo to encrypt the image created in the previous section:
 
 ```
 sudo OCICRYPT_KEYPROVIDER_CONFIG=$(pwd)/attestation-agent/sample_keyprovider/src/enc_mods/offline_fs_kbs/ocicrypt.conf \
-skopeo copy docker-daemon:[REGISTRY_URL]:unencrypted \
+skopeo copy --insecure-policy docker-daemon:[REGISTRY_URL]:unencrypted \
 docker-daemon:[REGISTRY_URL]:encrypted \
 --encryption-key provider:attestation-agent:$(pwd)/keys.json:key_id1
 ```
 
 Again, be sure to replace `[REGISTRY_URL]` with the desired registry URL.
+`--insecure-policy` flag is used to connect to the attestation agent and will not impact the security of the project.
 
 Push the encrypted image to the registry:
 
 ```
-sudo docker push [REGISTRY_URL]:encrypted
+docker push [REGISTRY_URL]:encrypted
 ```
 
 `mysql-client` is required to insert the key into the `simple-kbs` database. `jq` is required to json parse responses on the command line.
@@ -739,7 +741,7 @@ KBS_DB_TYPE="mysql"
 Retrieve the host address of the MySQL database container:
 
 ```
-KBS_DB_HOST=$(sudo docker network inspect simple-kbs_default \
+KBS_DB_HOST=$(docker network inspect simple-kbs_default \
   | jq -r '.[].Containers[] | select(.Name | test("simple-kbs[_-]db.*")).IPv4Address' \
   | sed "s|/.*$||g")
 ```
@@ -819,13 +821,13 @@ If the container image is not already present, pull it:
 
 ```
 encrypted_image_url="quay.io/kata-containers/encrypted-image-tests:encrypted"
-sudo docker pull "${encrypted_image_url}"
+docker pull "${encrypted_image_url}"
 ```
 
 Retrieve the encryption key from docker image label:
 
 ```
-enc_key=$(sudo docker inspect ${encrypted_image_url} \
+enc_key=$(docker inspect ${encrypted_image_url} \
   | jq -r '.[0].Config.Labels.enc_key')
 ```
 
