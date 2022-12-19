@@ -723,6 +723,13 @@ docker-daemon:[REGISTRY_URL]:encrypted \
 Again, be sure to replace `[REGISTRY_URL]` with the desired registry URL.
 `--insecure-policy` flag is used to connect to the attestation agent and will not impact the security of the project.
 
+At this point it is a good idea to inspect the image was really encrypted as skopeo can silently leave it unencrypted. Use
+`skopeo inspect` as shown below to check that the layers MIME types are **application/vnd.oci.image.layer.v1.tar+gzip+encrypted**:
+
+```
+skopeo inspect docker-daemon:[REGISTRY_URL]:encrypted
+```
+
 Push the encrypted image to the registry:
 
 ```
