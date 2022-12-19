@@ -367,7 +367,7 @@ To enable SEV on the host platform, first ensure that it is supported. Then foll
 
 #### Install sevctl and Export SEV Certificate Chain
 
-[sevctl](https://github.com/enarx/sevctl) is the SEV command line utility and is needed to export the SEV certificate chain.
+[sevctl](https://github.com/virtee/sevctl) is the SEV command line utility and is needed to export the SEV certificate chain.
 
 Follow these steps to install `sevctl`:
 
