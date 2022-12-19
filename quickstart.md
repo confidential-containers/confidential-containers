@@ -1161,6 +1161,22 @@ the output to the source to get some clues about what is happening.
 You might also see something more obvious, like a panic coming from
 the Kata agent.
 
+#### failed to create shim task: failed to mount "/run/kata-containers/shared/containers/CONTAINER_NAME/rootfs"
+
+If your CoCo Pod gets an error like showed below then it is likely the image pull policy is set to **IfNotPresent** and the image has been found in the kubelet cache. It fails because the container runtime will not delegate to the Kata agent to pull the image inside the VM and the agent in turn will try to mount the bundle rootfs that only exist in the host filesystem.
+
+Therefore, you must ensure that the image pull policy is set to **Always** for any CoCo Pod. This ways the images are always handled entirely by the agent inside the VM. Worth mentioning we recognize that this behavior is suboptimal and so the community has worked on solutions to avoid constant images downloads for each and every workload.
+
+```
+Events:
+  Type     Reason     Age               From               Message
+  ----     ------     ----              ----               -------
+  Normal   Scheduled  20s               default-scheduler  Successfully assigned default/coco-fedora-69d9f84cd7-j597j to virtlab1012
+  Normal   Pulled     5s (x3 over 19s)  kubelet            Container image "docker.io/wainersm/coco-fedora_sshd@sha256:a7108f9f0080c429beb66e2cf0abff143c9eb9c7cf4dcde3241bc56c938d33b9" already present on machine
+  Normal   Created    5s (x3 over 19s)  kubelet            Created container coco-fedora
+  Warning  Failed     5s (x3 over 19s)  kubelet            Error: failed to create containerd task: failed to create shim task: failed to mount "/run/kata-containers/shared/containers/coco-fedora/rootfs" to "/run/kata-containers/coco-fedora/rootfs", with error: ENOENT: No such file or directory: unknown
+  Warning  BackOff    4s (x3 over 18s)  kubelet            Back-off restarting failed container
+```
 
 #### Debug Console
 
