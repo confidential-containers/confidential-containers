@@ -695,7 +695,7 @@ cat > attestation-agent/sample_keyprovider/src/enc_mods/offline_fs_kbs/ocicrypt.
 EOF
 ```
 
-Set a desired value for the encryption key:
+Set a desired value for the encryption key that should be a 32-bytes and base64 encoded value:
 
 ```
 enc_key="RcHGava52DPvj1uoIk/NVDYlwxi0A6yyIZ8ilhEX3X4="
