@@ -395,6 +395,8 @@ Follow these steps to install `sevctl`:
   sudo dnf install sevctl
   ```
 
+> **Note** Due to [this bug](https://bugzilla.redhat.com/show_bug.cgi?id=2037963) on sevctl for RHEL and Fedora you might need to build the tool from sources to pick the fix up.
+
 If using the SEV kata configuration template file, the SEV certificate chain must be placed in `/opt/sev`. Export the SEV certificate chain using the following commands:
 
 ```
