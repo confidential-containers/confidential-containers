@@ -187,39 +187,45 @@ root@cluster01-master-0:/home/ubuntu# crictl  -r  unix:///run/containerd/contain
 ## Creating a sample Coco workload using enclave-cc
 
 Following the previous example that used the `kata` runtime class, we setup a sample *hello world*
-workload using the `enclave-cc` runtime class for process based TEEs. The deployment below assumes
-the simulated SGX mode build (`ccruntime-enclave-cc-sim.yaml`) is installed by the operator. With that,
-the workload can be deployed on a non-TEE system too.
+workload with an encrypted and cosign signed image using the `enclave-cc` runtime class for process based TEEs. The deployment below assumes
+the hardware SGX mode build (`ccruntime-enclave-cc.yaml`) is installed by the operator. To try on a non-TEE system, please use (`ccruntime-enclave-cc-sim.yaml`).
 
 The example uses a trivial hello world C application:
 ```
 apiVersion: v1
 kind: Pod
 metadata:
-  name: enclave-cc-pod-sim
+  name: enclave-cc-pod
 spec:
   containers:
-  - image: docker.io/huaijin20191223/scratch-base:v1.8
+  - image: docker.io/eqmcc/helloworld_enc
     name: hello-world
     workingDir: "/run/rune/boot_instance/"
+    resources:
+      limits:
+        sgx.intel.com/epc: 600Mi
+    env:
+    - name: OCCLUM_RELEASE_ENCLAVE
+      value: "1"
     command:
     - /run/rune/boot_instance/build/bin/occlum-run
     - /bin/hello_world
   runtimeClassName: enclave-cc
+
 ```
 
 **Note** When the hardware SGX mode payload is used in an SGX enabled cluster, `sgx.intel.com/epc: 600Mi`
 resource request must be added to the pod spec.
 
-Again, create a pod YAML file as previously described (this time we named it `enclave-cc-pod-sim.yaml`) .
+Again, create a pod YAML file as previously described (this time we named it `enclave-cc-pod.yaml`) .
 
 Create the workload:
 ```
-kubectl apply -f enclave-cc-pod-sim.yaml
+kubectl apply -f enclave-cc-pod.yaml
 ```
 Output:
 ```
-pod/enclave-cc-pod-sim created
+pod/enclave-cc-pod created
 ```
 
 Ensure the pod was created successfully (in running state):
@@ -229,12 +235,12 @@ kubectl get pods
 Output:
 ```
 NAME                 READY   STATUS    RESTARTS   AGE
-enclave-cc-pod-sim   1/1     Running   0          22s
+enclave-cc-pod   1/1     Running   0          22s
 ```
 
 Check the pod is running as expected:
 ```
-kubectl logs enclave-cc-pod-sim | head -5
+kubectl logs enclave-cc-pod | head -5
 ```
 Output:
 ```
@@ -247,7 +253,7 @@ Hello world!
 
 We can also verify the host does not have the image for others to use:
 ```
-root@cluster01-master-0:/home/ubuntu# crictl -r unix:///run/containerd/containerd.sock image ls | grep scratch-base
+crictl -r unix:///run/containerd/containerd.sock image ls | grep helloworld_enc
 ```
 
 ## Creating a CoCo workload using a pre-existing encrypted image
