@@ -187,8 +187,17 @@ root@cluster01-master-0:/home/ubuntu# crictl  -r  unix:///run/containerd/contain
 ## Creating a sample Coco workload using enclave-cc
 
 Following the previous example that used the `kata` runtime class, we setup a sample *hello world*
-workload with an encrypted and cosign signed image using the `enclave-cc` runtime class for process based TEEs. The deployment below assumes
-the hardware SGX mode build (`ccruntime-enclave-cc.yaml`) is installed by the operator. To try on a non-TEE system, please use (`ccruntime-enclave-cc-sim.yaml`).
+workload with an encrypted and cosign signed image using the `enclave-cc` runtime class.
+For the process based CoCo TEE (aka. `enclave-cc`) the operator setup steps are the same and the custom resources
+can be deployed using either
+```
+kubectl apply -k github.com/confidential-containers/operator/config/samples/enclave-cc/sim?ref=<RELEASE_VERSION>
+```
+or
+```
+kubectl apply -k github.com/confidential-containers/operator/config/samples/enclave-cc/hw?ref=
+```
+for the **simulated** SGX mode build or **hardware** SGX mode build, respectively.
 
 The example uses a trivial hello world C application:
 ```
