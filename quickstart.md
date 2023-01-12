@@ -195,7 +195,7 @@ kubectl apply -k github.com/confidential-containers/operator/config/samples/encl
 ```
 or
 ```
-kubectl apply -k github.com/confidential-containers/operator/config/samples/enclave-cc/hw?ref=
+kubectl apply -k github.com/confidential-containers/operator/config/samples/enclave-cc/hw?ref=<RELEASE_VERSION>
 ```
 for the **simulated** SGX mode build or **hardware** SGX mode build, respectively.
 
