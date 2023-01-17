@@ -61,9 +61,9 @@ with the desired [release tag](https://github.com/confidential-containers/operat
 kubectl apply -k github.com/confidential-containers/operator/config/release?ref=<RELEASE_VERSION>
 ```
 
-For example, to deploy the `v0.2.0` release run:
+For example, to deploy the `v0.3.0` release run:
 ```
-kubectl apply -k github.com/confidential-containers/operator/config/release?ref=v0.2.0
+kubectl apply -k github.com/confidential-containers/operator/config/release?ref=v0.3.0
 ```
 
 Wait until each pod has the STATUS of Running.
