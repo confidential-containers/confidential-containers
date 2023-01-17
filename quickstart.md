@@ -42,7 +42,7 @@ on the worker nodes is **not** on an overlayfs mount but the path is a `hostPath
 
 ## Prerequisites
 
-- Ensure a minimum of 8GB RAM and 2 vCPU for the Kubernetes cluster node
+- Ensure a minimum of 8GB RAM and 4 vCPU for the Kubernetes cluster node
 - Only containerd runtime based Kubernetes clusters are supported with the current CoCo release
 - The minimum Kubernetes version should be 1.24
 - Ensure at least one Kubernetes node in the cluster is having the label `node-role.kubernetes.io/worker=`
