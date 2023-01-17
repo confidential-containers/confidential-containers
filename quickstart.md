@@ -121,7 +121,7 @@ Details on each of the runtime classes:
 - *kata-clh* - standard kata runtime using the cloud hypervisor including all CoCo building blocks for a non CC HW
 - *kata-clh-tdx* - using the Cloud Hypervisor, with TD-Shim, and support for Intel TDX CC HW
 - *kata-qemu* - same as kata
-- *kata-qemu-tdx* - using QEMU, with TDVF, and support for Intel TDX CC HW
+- *kata-qemu-tdx* - using QEMU, with TDVF, and support for Intel TDX CC HW, prepared for using Verdictd and EAA KBC.
 - *kata-qemu-sev* - using QEMU, and support for AMD SEV HW
 
 For the process based CoCo TEE (aka. `enclave-cc`) the operator setup steps are the same and the custom resources
