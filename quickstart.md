@@ -1210,15 +1210,11 @@ debug_console = true
 debug_console_vport = 1026
 ```
 
-Unfortunately, the agent config file is inside the guest rootfs. If you are
-using an initrd, you can update the config file by unpacking the initrd,
-changing the file, and then compressing it again. To rebuild the initrd,
-use Kata's initrd builder script:
-```
-kata-containers/tools/osbuilder/initrd-builder/initrd-builder.sh
-```
+Enabling the debug console via the Kata Configuration file will overwrite
+any settings in the agent configuration file in the guest initrd.
+Enabling the debug console will change the launch measurement.
 
-Once you've started a pod with the new initrd, get the id of the pod
+Once you've started a pod with the new configuration, get the id of the pod
 you want to access. Do this via `ps -ef | grep qemu` or equivalent.
 The id is the long id that shows up in many different arguments.
 It should look like `1a9ab65be63b8b03dfd0c75036d27f0ed09eab38abb45337fea83acd3cd7bacd`.
