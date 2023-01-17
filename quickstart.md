@@ -78,7 +78,19 @@ Creating a custom resource installs the required CC runtime pieces into the clus
 the `RuntimeClasses`
 
 ```
-kubectl apply  -f https://raw.githubusercontent.com/confidential-containers/operator/main/config/samples/ccruntime.yaml
+kubectl apply -k github.com/confidential-containers/operator/config/samples/ccruntime/<CCRUNTIME_OVERLAY>?ref=<RELEASE_VERSION>
+```
+
+The current present overlays are: `default` and `s390x`
+
+For example, to deploy the `v0.3.0` release for `x86_64`, run:
+```
+kubectl apply -k github.com/confidential-containers/operator/config/samples/ccruntime/default?ref=v0.3.0
+```
+
+And to deploy `v0.3.0` release for `s390x`, run:
+```
+kubectl apply -k github.com/confidential-containers/operator/config/samples/ccruntime/s390x?ref=v0.3.0
 ```
 
 Wait until each pod has the STATUS of Running.
@@ -280,11 +292,11 @@ We have prepared a sample CoCo operator custom resource that is based on the sta
 
 Support for multiple custom resources in not available in the current release. Consequently, if a custom resource already exists, then you'll need to remove it first before deploying a new one. We can remove the standard custom resource with:
 ```
-kubectl delete -f https://raw.githubusercontent.com/confidential-containers/operator/main/config/samples/ccruntime.yaml
+kubectl delete -k github.com/confidential-containers/operator/config/samples/ccruntime/<CCRUNTIME_OVERLAY>?ref=<RELEASE_VERSION>
 ```
 and in it's place install the modified version with the sample container's decryption key:
 ```
-kubectl apply -f https://raw.githubusercontent.com/confidential-containers/operator/main/config/samples/ccruntime-ssh-demo.yaml
+kubectl apply -k github.com/confidential-containers/operator/config/samples/ccruntime/ssh-demo?ref=<RELEASE_VERSION>
 ```
 Wait until each pod has the STATUS of Running.
 ```
