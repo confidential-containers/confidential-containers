@@ -440,6 +440,17 @@ Image decryption and signature validation will not work if pre-attestation is di
 > **Note** It is not recommended to edit the Kata configuration file manually.
 These changes might be overwritten by the operator.
 
+If you are using attestation, you will need to update the above Kata configuration file to point
+to the URI of the KBS.
+
+For example, set
+`guest_pre_attestation_proxy = "<KBS IP>:44444"`
+
+You will also need to update the Kata configuration to add an extra kernel parameter specifying KBS information.
+For example, add `agent.aa_kbc_params=online_sev_kbc::<KBS IP>:44444`
+to the `kernel_params` field in the configuration file.
+
+The KBS IP must be accesible from inside the guest. Port 44444 is the default port per the directions below, but it can be configured.
 
 `docker-compose` is required to run the `simple-kbs` and its database in docker containers:
 
