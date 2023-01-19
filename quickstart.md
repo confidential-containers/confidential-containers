@@ -146,6 +146,25 @@ NAME            HANDLER         AGE
 enclave-cc      enclave-cc      9m55s
 ```
 
+### Configuring enclave-cc custom resource to use a different KBC
+
+**Note** The KBC configuration changes to the enclave-cc custom resource yaml 
+must be made **before** deploying it. 
+
+Enclave CC supports Verdictd and in order to use it, users will have to
+properly configure a decrypt_config.conf, in order to set the `KBC` (`sample_kbc`
+or `eaa_kbc`) `IP`,`PORT`, and the `SECURITY_VALIDATE` (`false` or  `true`)
+```
+{
+    "key_provider": "provider:attestation-agent:KBC::IP:PORT",
+    "security_validate": SECURITY_VALIDATE
+}
+```
+
+Once that's set according to the users needs, the user will then have to run:
+`cat decrypt_config.conf | base64 -w 0` in order to get the data encoded and
+set it accordingly [here](https://github.com/confidential-containers/operator/blob/6f241fbc056f0a5d9e1bd2c10b2cedc0782b99ff/config/samples/enclave-cc/base/ccruntime-enclave-cc.yaml#L124).
+
 # Running a workload
 
 ## Creating a sample CoCo workload
