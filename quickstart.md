@@ -759,13 +759,18 @@ Run skopeo to encrypt the image created in the previous section:
 
 ```
 sudo OCICRYPT_KEYPROVIDER_CONFIG=$(pwd)/attestation-agent/sample_keyprovider/src/enc_mods/offline_fs_kbs/ocicrypt.conf \
-skopeo copy --insecure-policy docker-daemon:[REGISTRY_URL]:unencrypted \
-docker-daemon:[REGISTRY_URL]:encrypted \
+skopeo copy --insecure-policy \
+docker:[REGISTRY_URL]:unencrypted \
+docker:[REGISTRY_URL]:encrypted \
 --encryption-key provider:attestation-agent:$(pwd)/keys.json:key_id1
 ```
 
 Again, be sure to replace `[REGISTRY_URL]` with the desired registry URL.
 `--insecure-policy` flag is used to connect to the attestation agent and will not impact the security of the project.
+
+Make sure to use the `docker` prefix in the source and destination URL when running the `skopeo copy` command as demonstrated above. 
+Utilizing images via the local `docker-daemon` is known to have issues, and the `skopeo copy` command does not return an adequate error 
+response. A remote registry known to support encrypted images like GitHub Container Registry (GHCR) is required.
 
 At this point it is a good idea to inspect the image was really encrypted as skopeo can silently leave it unencrypted. Use
 `skopeo inspect` as shown below to check that the layers MIME types are **application/vnd.oci.image.layer.v1.tar+gzip+encrypted**:
