@@ -57,9 +57,9 @@ following services:
 
 - **Attestation service** -  The primary purpose of the attestation service is
   to validate the evidence provided by the hardware TEE. This is the *Verifier*,
-  as defined in the [RATS architecture](https://datatracker.ietf.org/doc/html/draft-ietf-rats-architecture-21).
+  as defined in the [RATS architecture](https://www.rfc-editor.org/rfc/rfc9334).
 - **Key Broker Service (KBS)** -  The KBS is the *Relying Party*, as defined by
-  the [RATS architecture](https://datatracker.ietf.org/doc/html/draft-ietf-rats-architecture-21).
+  the [RATS architecture](https://www.rfc-editor.org/rfc/rfc9334).
   Following are its primary functions:
   - Receive evidence from the *Attester* (confidential VM or container) via a
     challenge-response protocol.
