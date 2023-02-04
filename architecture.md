@@ -77,7 +77,7 @@ following services:
   include [Quay.io](https://quay.io/), [Docker Hub](https://hub.docker.com/),
   CSPs provided registries, etc.
 
-Both the **Confidential VM** and the ** Confidential Containers** block contain
+Both the **Confidential VM** and the **Confidential Containers** block contain
 the **Enclave Software Stack**. This stack is made of the trusted CC components
 responsible for collectively running the whole attestation flows, and for
 example:
