@@ -1,3 +1,11 @@
+---
+name: New project release
+about: Checklist for the coming project's release
+title: "[Release] Check list for v<TARGET_RELEASE>"
+labels: ''
+assignees: ''
+---
+
 # v<TARGET_RELEASE>
 
 ## Code freeze
