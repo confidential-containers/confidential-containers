@@ -20,7 +20,7 @@ assignees: ''
 
         * https://github.com/confidential-containers/image-rs/blob/main/Cargo.toml
           * Change the revision
-          * Run `cargo update -p image-rs`
+          * Run `cargo update -p attestation_agent`
 
 - [ ] - 3. Update Enclave CC to use the latest commit from image-rs
 
