@@ -26,7 +26,7 @@ assignees: ''
 
         * https://github.com/confidential-containers/enclave-cc/blob/main/src/enclave-agent/Cargo.toml
           * Change the revision
-          * Run `cargo -p update image-rs`
+          * Run `cargo update -p image-rs`
         Note that you can point to your own fork here, so you don't actually do changes in the other projects
         before making sure this step works as expected.
 
@@ -34,7 +34,7 @@ assignees: ''
 
         * https://github.com/kata-containers/kata-containers/blob/CCv0/src/agent/Cargo.toml
           * Change the revision
-          * Run `cargo -p update image-rs`
+          * Run `cargo update -p image-rs`
         Note that you can point to your own fork here, so you don't actually do changes in the other projects
         before making sure this step works as expected.
 
