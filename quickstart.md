@@ -388,13 +388,164 @@ the user will have to set the runtime class of the workload accordingly in the w
 ### TDX
 In case the user wants to run the workload on a TDX capable hardware, using QEMU (which uses TDVF as its firmware) the `kata-qemu-tdx` runtime class must be specified.  In case the user prefers using Cloud Hypervisor (which uses TD-Shim as its firmware) then the `kata-clh-tdx` runtime class must be specified.
 
-You can use [EAA Verdictd](guides/eaa-verdictd-guide.md) to do that, refer to [Verdictd guide](guides/eaa-verdictd-guide.md).
+Now you can use CoCo Key Broker System cluster to create encrypted container image and deploying it, refer to: [Deploy and Configure tenant-side Key Broker System cluster](#deploy-and-configure-tenant-side-coco-key-broker-system-cluster).
+You also can use [EAA Verdictd](guides/eaa-verdictd-guide.md) to do that, refer to [Verdictd guide](guides/eaa-verdictd-guide.md).
 
 ### SEV
 The `kata-qemu-sev` runtime class must be specified.
 
 Now you can use [simple-kbs](guides/sev-guide.md) to create encrypted container image and depolying it on SEV.
 Please refer to [sev-guide.md](guides/sev-guide.md)
+
+### Deploy and Configure tenant-side CoCo Key Broker System cluster
+
+A tenant-side CoCo Key Broker System cluster include:
+- Key Broker Service (KBS): Brokering service for confidential resources.
+- Attestation Service (AS): Verifier for remote attestation.
+- Reference Value Provicer Service (RVPS): Provides reference values for AS.
+- CoCo Keyprovider: Component to encrypt the images following ocicrypt spec.
+
+To quick start the KBS cluster, a `docker-compose` yaml is provided to launch.
+
+```shell
+# Clone KBS git repository
+git clone https://github.com/confidential-containers/kbs.git
+cd kbs
+export KBS_DIR_PATH=$(pwd)
+
+# Generate a user auth key pair
+openssl genpkey -algorithm ed25519 > config/private.key
+openssl pkey -in config/private.key -pubout -out config/public.pub
+
+# Start KBS cluster
+docker-compose up -d
+```
+
+If configuration of KBS cluster is required, edit the following config files and restart the KBS cluster with `docker-compose`:
+
+- `$KBS_DIR_PATH/config/kbs-config.json`: configuration for Key Broker Service.
+- `$KBS_DIR_PATH/config/as-config.json`: configuration for Attestation Service.
+- `$KBS_DIR_PATH/config/sgx_default_qcnl.conf`: configuration for Intel TDX/SGX verification.
+
+When KBS cluster is running, you can modify the policy file used by AS policy engine ([OPA](https://www.openpolicyagent.org/)) at any time:
+
+- `$KBS_DIR_PATH/data/attestation-service/opa/policy.rego`: Policy file for evidence verification of AS, refer to [AS Policy Engine](https://github.com/confidential-containers/attestation-service#policy-engine) for more infomation.
+
+### Encrypt Image
+
+[skopeo](https://github.com/containers/skopeo) is required to encrypt the container image. Follow the instructions here to install `skopeo`:
+
+[skopeo Installation](https://github.com/containers/skopeo/blob/main/install.md)
+
+Use `skopeo` to encrypt an image on the same node of the KBS cluster (use busybox:latest for example):
+
+```shell
+# edit ocicrypt.conf
+tee > ocicrypt.conf <<EOF
+{
+    "key-providers": {
+        "attestation-agent": {
+            "grpc": "127.0.0.1:50000"
+        }
+    }
+}
+EOF
+
+# encrypt the image
+OCICRYPT_KEYPROVIDER_CONFIG=ocicrypt.conf skopeo copy --insecure-policy --encryption-key provider:attestation-agent docker://library/busybox dir:busybox:encrypted
+```
+
+The image will be encrypted, and things happens in the KBS cluster background include:
+
+- CoCo Keyprovider generates a random key and a key-id. Then encrypts the image using the key.
+- CoCo Keyprovider registers the key with key-id into KBS.
+
+Then push the image to registry:
+
+```shell
+skopeo copy dir:busybox:encrypted [SCHEME]://[REGISTRY_URL]:encrypted
+```
+Be sure to replace `[SCHEME]` with registry scheme type like `docker`, replace `[REGISTRY_URL]` with the desired registry URL like `docker.io/encrypt_test/busybox`.
+
+### Sign Image
+
+[cosign](https://github.com/sigstore/cosign) is required to sign the container image. Follow the instructions here to install `cosign`:
+
+[cosign installation](https://docs.sigstore.dev/cosign/installation/)
+
+Generate a cosign key pair and register the public key to KBS storage:
+
+```shell
+cosign generate-key-pair
+mkdir -p $KBS_DIR_PATH/data/kbs-storage/default/cosign-key && cp cosign.pub $KBS_DIR_PATH/data/kbs-storage/default/cosign-key/1
+```
+
+Sign the encrypted image with cosign private key:
+
+```shell
+cosign sign --key cosign.key [REGISTRY_URL]:encrypted
+```
+
+Be sure to replace `[REGISTRY_URL]` with the desired registry URL of the encrypted image generated in previous steps.
+
+Then edit an image pulling validation policy file.
+Here is a sample policy file `security-policy.json`:
+
+```json
+{
+    "default": [{"type": "reject"}], 
+    "transports": {
+        "docker": {
+            "[REGISTRY_URL]": [
+                {
+                    "type": "sigstoreSigned",
+                    "keyPath": "kbs:///default/cosign-key/1"
+                }
+            ]
+        }
+    }
+}
+```
+
+Be sure to replace `[REGISTRY_URL]` with the desired registry URL of the encrypted image.
+
+Register the image pulling validation policy file to KBS storage:
+
+```shell
+mkdir -p $KBS_DIR_PATH/data/kbs-storage/default/security-policy
+cp security-policy.json $KBS_DIR_PATH/data/kbs-storage/default/security-policy/test
+```
+
+### Deploy encrypted image as a CoCo workload on CC HW
+
+Here is a sample yaml for encrypted image deploying:
+
+```shell
+cat << EOT | tee encrypted-image-test-busybox.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: encrypted-image-test-busybox
+  name: encrypted-image-test-busybox
+spec:
+  containers:
+  - image: [REGISTRY_URL]:encrypted
+    name: busybox
+  dnsPolicy: ClusterFirst
+  runtimeClassName: [RUNTIME_CLASS]
+EOT
+```
+
+Be sure to replace `[REGISTRY_URL]` with the desired registry URL of the encrypted image generated in previous step, replace `[RUNTIME_CLASS]` with kata runtime class for CC HW.
+
+Then configure `/opt/confidential-containers/share/defaults/kata-containers/configuration-<RUNTIME_CLASS_SUFFIX>.toml` to add `agent.aa_kbc_params=cc_kbc::<KBS_URI>` to kernal parameters. Here `RUNTIME_CLASS_SUFFIX` is something like `qemu-tdx`, `KBS_URI` is the address of Key Broker Service in KBS cluster like `http://123.123.123.123:8080`.
+
+Deploy encrypted image as a workload:
+
+```shell
+kubectl apply -f encrypted-image-test-busybox.yaml
+```
 
 # Trusted Ephemeral Storage for container images
 
