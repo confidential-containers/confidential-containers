@@ -29,7 +29,7 @@ Key Characteristics of Confidential Computing, as defined by the
 The following diagram shows how the different building blocks for Confidential
 Computing (CC) come together:
 
-![CC_all_blocks](https://github.com/confidential-containers/documentation/blob/main/images/CC_all_blocks.jpg)
+![CC_all_blocks](./images/CC_all_blocks.jpg)
 
 Let’s start by describing the lower level blocks of the CC solution
 (**colored blue**):
@@ -108,7 +108,8 @@ same goals and attributes:
 VM-based TEEs (e.g. AMD SEV, IBM SE or Intel TDX) can be used to build a
 confidential containers software architecture:
 
-![CC_TEE_container](https://github.com/confidential-containers/documentation/blob/main/images/CC_TEE_container.jpg)
+![CC_TEE_container](./images/CC_TEE_container.png)
+
 
 Following is the workflow when deploying a Kubernetes pod with VM-based TEEs:
 
@@ -135,7 +136,7 @@ Following is the workflow when deploying a Kubernetes pod with VM-based TEEs:
 The confidential containers software architecture can also be built on top of
 process-based TEEs like e.g. Intel SGX:
 
-![CC_SGX_container](https://github.com/confidential-containers/documentation/blob/main/images/CC_SGX_container.jpg)
+![CC_SGX_container](./images/CC_SGX_container.png)
 
 Following is the workflow when deploying a Kubernetes pod with a process-based
 TEEs. The main differences from the VM-based TEE approach are the last 3 steps
@@ -178,7 +179,7 @@ The CNCF Confidential Containers project is an implementation of the
 confidential containers architecture described in the previous section.
 
 It relies on several major cloud native components like `containerd`, both the
-`Kata Containers` and the `Inclavare` runtimes, or the `ocicrypt` container
+`Kata Containers` and the `enclave-cc` runtimes, or the `ocicrypt` container
 image encryption APIs.
 It also depends on the standard Linux virtualization stack, including the `KVM`
 hypervisor and open source VMMs like `QEMU` or `cloud-hypervisor`.
@@ -193,11 +194,15 @@ project.
 The following diagram shows the upcoming v1 architecture to run Confidential
 Containers using VM-based TEEs and the Kata Containers runtime:
 
-![COCO_ccv1_TEE](https://github.com/confidential-containers/documentation/blob/main/images/COCO_ccv1_TEE.jpg)
+![COCO_ccv1_TEE](./images/COCO_ccv1_TEE.png)
+
+The following diagram shows the upcoming v1 architecture to run Confidential
+Containers using VM-based TEEs by leveraging the peer-pods approach. This relies on Kata Containers remote hypervisor support and the [cloud-api-adaptor](https://github.com/confidential-containers/cloud-api-adaptor/) project:
+
+![COCO_ccv1_TEE](./images/COCO_ccv1_peerpods_TEE.png)
 
 The following diagram shows the upcoming v1 architecture to run Confidential
 Containers using the Intel SGX process-based TEE. It relies on the
-[Inclavare Containers](https://github.com/inclavare-containers/inclavare-containers)
-runtime:
+[enclave-cc](https://github.com/confidential-containers/enclave-cc) project:
 
-![COCO_ccv1_enclave](https://github.com/confidential-containers/documentation/blob/main/images/COCO_ccv1_enclave.jpg)
+![COCO_ccv1_enclave](./images/COCO_ccv1_enclave.png)
