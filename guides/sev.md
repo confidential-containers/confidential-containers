@@ -2,13 +2,13 @@
 
 ## Creating a CoCo workload using a pre-existing encrypted image on SEV
 
-#### Platform Setup
+### Platform Setup
 
 To enable SEV on the host platform, first ensure that it is supported. Then follow these instructions to enable SEV:
 
 [AMD SEV - Prepare Host OS](https://github.com/AMDESE/AMDSEV#prepare-host-os)
 
-#### Install sevctl and Export SEV Certificate Chain
+### Install sevctl and Export SEV Certificate Chain
 
 [sevctl](https://github.com/virtee/sevctl) is the SEV command line utility and is needed to export the SEV certificate chain.
 
@@ -47,7 +47,7 @@ sudo mkdir -p /opt/sev
 sudo ./sevctl/target/debug/sevctl export --full /opt/sev/cert_chain.cert
 ```
 
-#### Setup and Run the simple-kbs
+### Setup and Run the simple-kbs
 
 The [simple-kbs](https://github.com/confidential-containers/simple-kbs) is a basic key broker service that hosts secret storage and provides secret release policies configurable by container workload creators or users.
 
@@ -118,7 +118,7 @@ Run the service with `docker-compose`:
   (cd simple-kbs && sudo docker compose up -d)
   ```
 
-#### Launch the Pod and Verify SEV Encryption
+### Launch the Pod and Verify SEV Encryption
 
 Here is a sample kubernetes service yaml for an encrypted image:
 
@@ -170,7 +170,7 @@ kubectl describe pod ${pod_name}
 
 If there are no errors, a CoCo encrypted container with SEV has been successfully launched!
 
-#### Verify SEV Memory Encryption
+### Verify SEV Memory Encryption
 
 The container `dmesg` report can be parsed to verify SEV memory encryption.
 
