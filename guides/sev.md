@@ -1,4 +1,10 @@
-# SEV Guide
+# SEV-ES Guide
+
+Confidential Containers supports SEV(-ES) with pre-attestation using
+[simple-kbs](https://github.com/confidential-containers/simple-kbs).
+
+This guide covers platform-specific setup for SEV(-ES) and walks through
+complete flows for attestation and encrypted images.
 
 ## Creating a CoCo workload using a pre-existing encrypted image on SEV
 
