@@ -26,7 +26,7 @@ generic message such as the following:
 Failed to create pod sandbox: rpc error: code = Unknown desc = failed to create containerd task: failed to create shim: Failed to Check if grpc server is working: rpc error: code = DeadlineExceeded desc = timed out connecting to vsock 637456061:1024: unknown
 ```
 
-Unfortunately this is a generic message. You'll need to go deeper to figure out
+Unfortunately, because this is a generic message, you'll need to go deeper to figure out
 what is going on.
 
 ## CoCo Debugging
@@ -37,7 +37,7 @@ You can see if there is a hypervisor process running with something like this.
 ps -ef | grep qemu
 ```
 
-If you are using a different hypervisor, adjust command accordingly.
+If you are using a different hypervisor, adjust your command accordingly.
 If there are no hypervisor processes running on the worker node, the VM has
 either failed to start or was shutdown. If there is a hypervisor process,
 the problem is probably inside the guest.
@@ -47,7 +47,7 @@ To do this, first look at the containerd config file located at
 `/etc/containerd/config.toml`. At the bottom of the file there should
 be a section for each runtime class. For example:
 
-```
+```toml
 [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.kata-qemu-sev]
   cri_handler = "cc"
   runtime_type = "io.containerd.kata-qemu-sev.v2"
@@ -75,7 +75,7 @@ sudo journalctl -xeu containerd
 ```
 
 Kata writes many messages to this log. It's good to know what you're looking for. There are many
-generic messages that are not significant, often arising from a VM not shutting down cleanly
+generic messages that are insignificant, often arising from a VM not shutting down cleanly
 after an unrelated issue.
 
 ### VM Doesn't Start
@@ -122,9 +122,9 @@ the Kata agent.
 
 #### failed to create shim task: failed to mount "/run/kata-containers/shared/containers/CONTAINER_NAME/rootfs"
 
-If your CoCo Pod gets an error like showed below then it is likely the image pull policy is set to **IfNotPresent** and the image has been found in the kubelet cache. It fails because the container runtime will not delegate to the Kata agent to pull the image inside the VM and the agent in turn will try to mount the bundle rootfs that only exist in the host filesystem.
+If your CoCo Pod gets an error like the one shown below, then it is likely the image pull policy is set to **IfNotPresent**, and the image has been found in the kubelet cache. It fails because the container runtime will not delegate to the Kata agent to pull the image inside the VM and the agent in turn will try to mount the bundle rootfs that only exist in the host filesystem.
 
-Therefore, you must ensure that the image pull policy is set to **Always** for any CoCo Pod. This ways the images are always handled entirely by the agent inside the VM. Worth mentioning we recognize that this behavior is suboptimal and so the community has worked on solutions to avoid constant images downloads for each and every workload.
+Therefore, you must ensure that the image pull policy is set to **Always** for any CoCo pod. This way the images are always handled entirely by the agent inside the VM. It is worth mentioning we recognize that this behavior is sub-optimal, so the community provides solutions to avoid constant image downloads for each workload.
 
 ```
 Events:
@@ -139,7 +139,7 @@ Events:
 
 #### Debug Console
 
-One very useful deugging tool is the Kata guest debug console. You can
+One very useful debugging tool is the Kata guest debug console. You can
 enable this by editing the Kata agent configuration file and adding the lines
 ``` toml
 debug_console = true
@@ -148,7 +148,7 @@ debug_console_vport = 1026
 
 Enabling the debug console via the Kata Configuration file will overwrite
 any settings in the agent configuration file in the guest initrd.
-Enabling the debug console will change the launch measurement.
+Enabling the debug console will also change the launch measurement.
 
 Once you've started a pod with the new configuration, get the id of the pod
 you want to access. Do this via `ps -ef | grep qemu` or equivalent.
@@ -167,7 +167,7 @@ investigate missing dependencies or incorrect configurations.
 #### Guest Firmware Logs
 
 If the VM is running but there is no guest output in the log,
-the guest might have stalled in the firmware. Firmware output will
+the guest may have stalled in the firmware. Firmware output will
 depend on your firmware and hypervisor. If you are using QEMU and OVMF,
 you can see the OVMF output by adding `-global isa-debugcon.iobase=0x402`
 and `-debugcon file:/tmp/ovmf.log` to the QEMU command line using the

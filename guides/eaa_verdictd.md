@@ -8,7 +8,7 @@ The EAA KBC is an optional module in the attestation-agent at compile time,
 which can be used to communicate with Verdictd.
 The communication is established on the encrypted channel provided by rats-tls.
 
-EAA can now be used on intel TDX and intel SGX platforms.
+EAA can now be used on Intel TDX and Intel SGX platforms.
 
 ## Create encrypted image
 

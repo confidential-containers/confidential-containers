@@ -13,7 +13,7 @@ must be made **before** deploying it.
 Enclave CC supports Verdictd and in order to use it, users will have to
 properly configure a decrypt_config.conf, in order to set the `KBC` (`sample_kbc`
 or `eaa_kbc`) `IP`,`PORT`, and the `SECURITY_VALIDATE` (`false` or  `true`)
-```
+```json
 {
     "key_provider": "provider:attestation-agent:KBC::IP:PORT",
      "security_validate": SECURITY_VALIDATE
@@ -32,7 +32,7 @@ The deployment below assumes the hardware SGX mode build is installed by the ope
 use simulate SGX mode build.
 
 The example uses a trivial hello world C application:
-```
+```yaml
 apiVersion: v1
 kind: Pod
 metadata:
@@ -61,7 +61,7 @@ resource request must be added to the pod spec.
 Again, create a pod YAML file as previously described (this time we named it `enclave-cc-pod.yaml`) .
 
 Create the workload:
-```
+```sh
 kubectl apply -f enclave-cc-pod.yaml
 ```
 Output:
@@ -70,7 +70,7 @@ pod/enclave-cc-pod created
 ```
 
 Ensure the pod was created successfully (in running state):
-```
+```sh
 kubectl get pods
 ```
 Output:
@@ -80,7 +80,7 @@ enclave-cc-pod   1/1     Running   0          22s
 ```
 
 Check the pod is running as expected:
-```
+```sh
 kubectl logs enclave-cc-pod | head -5
 ```
 Output:
@@ -93,5 +93,6 @@ Hello world!
 ```
 
 We can also verify the host does not have the image for others to use:
-```
+```sh
 crictl -r unix:///run/containerd/containerd.sock image ls | grep helloworld_enc
+```

@@ -2,7 +2,7 @@
 
 Without Confidential Computing hardware, there is no way to securely provision
 the keys for an encrypted image. Nonetheless, in this demo we describe how to
-test encrypted images suppot with the nontee `kata`/`kata-qemu` runtimeclass.
+test encrypted images support with the non-tee `kata`/`kata-qemu` runtimeclass.
 
 ## Creating a CoCo workload using a pre-existing encrypted image
 
@@ -19,21 +19,21 @@ We have prepared a sample CoCo operator custom resource that is based on the sta
 ### Swap out the standard custom resource for our sample
 
 Support for multiple custom resources in not available in the current release. Consequently, if a custom resource already exists, then you'll need to remove it first before deploying a new one. We can remove the standard custom resource with:
-```
+```sh
 kubectl delete -k github.com/confidential-containers/operator/config/samples/ccruntime/<CCRUNTIME_OVERLAY>?ref=<RELEASE_VERSION>
 ```
 and in it's place install the modified version with the sample container's decryption key:
-```
+```sh
 kubectl apply -k github.com/confidential-containers/operator/config/samples/ccruntime/ssh-demo?ref=<RELEASE_VERSION>
 ```
 Wait until each pod has the STATUS of Running.
-```
+```sh
 kubectl get pods -n confidential-containers-system --watch
 ```
 ### Test creating a workload from the sample encrypted image
 
 Create a new Kubernetes deployment that uses the `docker.io/katadocker/ccv0-ssh` container image with:
-```
+```sh
 cat << EOF > ccv0-ssh-demo.yaml
 kind: Service
 apiVersion: v1
@@ -67,24 +67,24 @@ EOF
 ```
 
 Apply this with:
-```
+```sh
 kubectl apply -f ccv0-ssh-demo.yaml
 ```
-and waiting for the pod to start. This process should show that we are able to pull the encrypted image and using the decryption key configured in the CoCo sample guest image decrypt the container image and create a workload using it.
+and wait for the pod to start. This process should show that we are able to pull the encrypted image, and using the decryption key configured in the CoCo sample guest image, decrypt the container image and create a workload using it.
 
-The demo image has an SSH host key embedded in it, which is protected by it's encryption, but we can download the sample private key and use this to ssh into the container and validate the host key to ensure that it hasn't been tampered with.
+The demo image has an SSH host key embedded in it, which is protected by it's encryption, but we can download the sample private key and use this to ssh into the container to validate it hasn't been tampered with.
 
 Download the SSH key with:
-```
+```sh
 curl -Lo ccv0-ssh https://raw.githubusercontent.com/confidential-containers/documentation/main/demos/ssh-demo/ccv0-ssh
 ```
 Ensure that the permissions are set correctly with:
-```
+```sh
 chmod 600 ccv0-ssh
 ```
 
 We can then use the key to ssh into the container:
-```
+```sh
 $ ssh -i ccv0-ssh root@$(kubectl get service ccv0-ssh -o jsonpath="{.spec.clusterIP}")
 ```
 You will be prompted about whether the host key fingerprint is correct. This fingerprint should match the one specified in the container image: `wK7uOpqpYQczcgV00fGCh+X97sJL3f6G1Ku4rvlwtR0.`

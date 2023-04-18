@@ -58,20 +58,20 @@ sudo ./sevctl/target/debug/sevctl export --full /opt/sev/cert_chain.cert
 
 By default, the `kata-qemu-sev` runtime class uses pre-attestation with the
 `online-sev-kbc` and [simple-kbs](https://github.com/confidential-containers/simple-kbs) to attest the guest and provision secrets.
-`simple-kbs` is a basic prototype key broker that can validate a guest measurement according to a policy and conditionally release secrets.
+`simple-kbs` is a basic prototype key broker which can validate a guest measurement according to a specified policy and conditionally release secrets.
 To use encrypted images, signed images, or authenticated registries with SEV, you should setup `simple-kbs`.
 If you simply want to run an unencrypted container image, you can disable pre-attestation by adding the following annotation
 `io.katacontainers.config.pre_attestation.enabled: "false"` to your pod.
 
-If you are using pre-attestation, you will need to add an annotation to your pod that contains the URI of `simple-kbs`.
+If you are using pre-attestation, you will need to add an annotation to your pod configuration which contains the URI of a `simple-kbs` instance.
 This annotation should be of the form `io.katacontainers.config.pre_attestation.uri: "<KBS IP>:44444"`.
-Port 44444 is the default port per the directions below, but it can be configured.
+Port 44444 is the default port per the directions below, but it may be configured to use another port.
 The KBS IP must be accessible from inside the guest.
 Usually it should be the public IP of the node where `simple-kbs` runs.
 
 The SEV policy can also be set by adding `io.katacontainers.config.sev.policy: "<SEV POLICY>"` to your pod configuration.
 Setting the second bit of the policy enables SEV-ES.
-For more information see chapter 3 of the AMD Secure Encrypted Virtualization API.
+For more information see chapter 3 of the [Secure Encrypted Virtualization API](https://www.amd.com/system/files/TechDocs/55766_SEV-KM_API_Specification.pdf#page=31).
 The SEV policy is not the same as the policies that drive `simple-kbs`.
 
 The CoCo project has created a sample encrypted container image ([encrypted-image-tests](ghcr.io/fitzthum/encrypted-image-tests:encrypted)). This image is encrypted using a key that comes already provisioned inside the `simple-kbs` for ease of testing. No `simple-kbs` policy is required to get things running.
