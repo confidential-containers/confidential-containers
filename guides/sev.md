@@ -29,7 +29,7 @@ Follow these steps to install `sevctl`:
   sudo apt install -y musl-dev musl-tools
 
   # Additional packages are required to build
-  sudo apt install -y pkg-config libssl-dev
+  sudo apt install -y pkg-config libssl-dev asciidoctor
 
   # Clone the repository
   git clone https://github.com/virtee/sevctl.git
@@ -269,7 +269,7 @@ The Attestation Agent hosts a grpc service to support encrypting the image. Clon
 ```
 attestation_agent_tag="v0.1.0"
 git clone https://github.com/confidential-containers/attestation-agent.git
-(cd simple-kbs && git checkout -b "branch_${attestation_agent_tag}" "${attestation_agent_tag}")
+(cd attestation-agent && git checkout -b "branch_${attestation_agent_tag}" "${attestation_agent_tag}")
 ```
 
 Run the offline_fs_kbs:
