@@ -71,7 +71,7 @@ Usually it should be the public IP of the node where `simple-kbs` runs.
 
 The SEV policy can also be set by adding `io.katacontainers.config.sev.policy: "<SEV POLICY>"` to your pod configuration.
 Setting the second bit of the policy enables SEV-ES.
-For more information see chapter 3 of the [Secure Encrypted Virtualization API](https://www.amd.com/system/files/TechDocs/55766_SEV-KM_API_Specification.pdf#page=31).
+For more information see chapter 3 of the Secure Encrypted Virtualization API.
 The SEV policy is not the same as the policies that drive `simple-kbs`.
 
 The CoCo project has created a sample encrypted container image ([encrypted-image-tests](ghcr.io/fitzthum/encrypted-image-tests:encrypted)). This image is encrypted using a key that comes already provisioned inside the `simple-kbs` for ease of testing. No `simple-kbs` policy is required to get things running.
