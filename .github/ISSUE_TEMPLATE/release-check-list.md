@@ -73,47 +73,61 @@ assignees: ''
 
 - [ ] - 10. Cut an attestation-agent v<TARGET_RELEASE>, if changes happened in the project
 
-- [ ] - 11. Cut an image-rs v<TARGET_RELEASE> release, using the latest release of:
+- [ ] - 11. Cut an attestation-service v<TARGET_RELEASE> and make images for AS and RVPS, if changes happened in the project.
+
+       * https://github.com/confidential-containers/attestation-service
+       * Cut a release (AS/RVPS images will be automatically built triggered by release)
+
+- [ ] - 12. Update kbs to use the latest commit from attestation-service, cut a release and make image
+
+       * https://github.com/confidential-containers/kbs/blob/main/src/api_server/Cargo.toml
+       * Change the revision for the following crates (both use `v<TARGET_RELEASE>`)
+         * `as-types`
+         * `attestation-service`
+       * Cut a release (kbs image will be automatically built triggered by release)
+
+- [ ] - 13. Cut an image-rs v<TARGET_RELEASE> release, using the latest release of:
 
         * ocicrypt-rs (redo step 1, but now using v<TARGET_RELEASE>)
         * attestation-agent (redo step 2, but now using v<TARGET_RELEASE>)
 
-- [ ] - 12. Cut a td-shim v<TARGET_RELEASE> release, if changes happened in the project
+- [ ] - 14. Cut a td-shim v<TARGET_RELEASE> release, if changes happened in the project
 
-- [ ] - 13. Update Enclave CC to use the released version of image-rs
+- [ ] - 15. Update Enclave CC to use the released version of image-rs
 
         * redo step 3, but now using v<TARGET_RELEASE>
 
-- [ ] - 14. Update Kata Containers to the latest released version of:
+- [ ] - 16. Update Kata Containers to the latest released version of:
 
         * image-rs (redo step 4, but now using the v<TARGET_RELEASE>)
         * attestation-agent (redo step 5, but now using the v<TARGET_RELEASE>)
         * td-shim (redo step 6, but now using the v<TARGET_RELEASE>)
 
-- [ ] - 15. Update the operator to use the images generated from the latest commit of both Kata Containers and Enclave CC
+- [ ] - 17. Update the operator to use the images generated from the latest commit of both Kata Containers and Enclave CC
 
         * redo step 8, but now targetting the latest payload image generated for Kata Containers and Enclave CC
 
-- [ ] - 16. Make sure all the operator tests are passing
+- [ ] - 18. Make sure all the operator tests are passing
 
-- [ ] - 17. Cut an Enclave CC release
+- [ ] - 19. Cut an Enclave CC release
 
-- [ ] - 18. Add a new Kata Containers tag
+- [ ] - 20. Add a new Kata Containers tag
 
 ## Release
 
-- [ ] - 19. Update the operator to use the release tags coming from Enclave CC and Kata Containers
+
+- [ ] - 21. Update the operator to use the release tags coming from Enclave CC and Kata Containers
 
         * redo step 8, but now targetting thje latest release of the payload image generated for Kata Containers eand Enclave CC
 
-- [ ] - 20. Update the Operator version
+- [ ] - 22. Update the Operator version
 
         * https://github.com/confidential-containers/operator/blob/main/config/release/kustomization.yaml#L7
 
-- [ ] - 21. Cut an operator release
+- [ ] - 23. Cut an operator release
 
-- [ ] - 22. Make sure to update the release notes
+- [ ] - 24. Make sure to update the release notes
 
         * https://github.com/confidential-containers/documentation/tree/main/releases/v<TARGET_RELEASE>.md
         
-- [ ] - 23. Poke Jens Freimann (jfreiman@redhat.com) to update the release to the OperatorHub
+- [ ] - 25. Poke Jens Freimann (jfreiman@redhat.com) to update the release to the OperatorHub
