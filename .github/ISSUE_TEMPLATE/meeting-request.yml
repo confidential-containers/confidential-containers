@@ -1,0 +1,49 @@
+---
+name: Meeting Request
+description: Request for a CoCo Zoom room for a meeting
+title: "[Meeting Request]"
+labels: meeting-request
+assignees:
+  - fitzthum
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Fill in this form to request a Zoom meeting with the official CoCo Zoom.
+        All meetings will be public and recorded.
+  - type: input
+    id: title
+    attributes:
+      label: Meeting Title
+      description: What is the title of the meeting?
+      placeholder: Ex. CoCo-IO Discussion
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Meeting Description
+      description: What is the purpose of the meeting
+      placeholder: Ex. coordinate search for extraterrestrial life
+    validations:
+      required: true
+  - type: input
+    id: when
+    attributes:
+      label: Meeting date and time
+      description: When is the meeting?
+      placeholder: Ex. September 8th, 2023 at 10 PM EST
+    validations:
+      required: true
+  - type: dropdown
+    id: recurrence
+    attributes:
+      label: Meeting recurrence
+      description: When should this meeting repeat?
+      options:
+        - Never
+        - Weekly
+        - Biweekly
+        - Monthly
+    validations:
+      required: true
