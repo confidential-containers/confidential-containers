@@ -30,45 +30,43 @@ assignees: ''
         Note that you can point to your own fork here, so you don't actually do changes in the other projects
         before making sure this step works as expected.
 
-- [ ] - 4. Update Kata Containers to use the latest commit from image-rs
+- [ ] - 4. Update Kata Containers to use the latest commit from image-rs, attestation-agent and td-shim
 
-        * https://github.com/kata-containers/kata-containers/blob/CCv0/src/agent/Cargo.toml
+        * image-rs
+          * https://github.com/kata-containers/kata-containers/blob/CCv0/src/agent/Cargo.toml
           * Change the revision
           * Run `cargo update -p image-rs`
-        Note that you can point to your own fork here, so you don't actually do changes in the other projects
-        before making sure this step works as expected.
+          Note that you can point to your own fork here, so you don't actually do changes in the other projects
+          before making sure this step works as expected.
+        * attestation-agent and td-shim
+          * https://github.com/kata-containers/kata-containers/blob/CCv0/versions.yaml
+            * Change the version
 
-- [ ] - 5. Update Kata Containers to use the latest attestation-agent
+- [ ] - 5. Wait for kata-runtime-payload-ci to be successfully built
+        * After the previous PR is merged wait for the kata-runtime-payload-ci (https://github.com/kata-containers/kata-containers/actions/workflows/cc-payload-after-push.yaml) has completed, so the latest kata-runtime-payload-ci contains the changes
 
-        * https://github.com/kata-containers/kata-containers/blob/CCv0/versions.yaml
-          * Change the version
-
-- [ ] - 6. Update Kata Containers to use the latest td-shim
-
-        * https://github.com/kata-containers/kata-containers/blob/CCv0/versions.yaml
-          * Change the version
-
-- [ ] - 7. Check if there are new changes in the pre install payload script
+- [ ] - 6. Check if there are new changes in the pre install payload script
 
         * https://github.com/confidential-containers/operator/tree/main/install/pre-install-payload
           * The last commit there must match what's in the following files as preInstall / postUninstall image
             * Enclave CC: https://github.com/confidential-containers/operator/blob/main/config/samples/enclave-cc/base/ccruntime-enclave-cc.yaml
             * Kata Containers:
               Note that for Kata Containers, we're looking for the newTag, below the quay.io/confidential-containers/container-engine-for-cc-payload image
-              * s390x: https://github.com/confidential-containers/operator/blob/main/config/samples/ccruntime/s390x/kustomization.yaml
-              * x86_64: https://github.com/confidential-containers/operator/blob/main/config/samples/ccruntime/default/kustomization.yaml
+              * default: https://github.com/confidential-containers/operator/blob/main/config/samples/ccruntime/default/kustomization.yaml
 
-- [ ] - 8. Ensure the Operator is using the latest CI builds and that the Operator tests are passsing
+- [ ] - 7. Ensure the Operator is using the latest CI builds and that the Operator tests are passsing
 
         * Enclave CC:
           * SIM: https://github.com/confidential-containers/operator/blob/main/config/samples/enclave-cc/sim/kustomization.yaml
           * HW: https://github.com/confidential-containers/operator/blob/main/config/samples/enclave-cc/base/ccruntime-enclave-cc.yaml
           * Note that we need the quay.io/confidential-containers/runtime-payload-ci registry and enclave-cc-{SIM,HW}-latest tags
         * Kata Containers:
-          * s390x: https://github.com/confidential-containers/operator/blob/main/config/samples/ccruntime/s390x/kustomization.yaml
-          * x86_64: https://github.com/confidential-containers/operator/blob/main/config/samples/ccruntime/default/kustomization.yaml
+          * default: https://github.com/confidential-containers/operator/blob/main/config/samples/ccruntime/default/kustomization.yaml
+          * peer-pods: https://github.com/confidential-containers/operator/blob/main/config/samples/ccruntime/peer-pods/kustomization.yaml
           Note that we need the quay.io/confidential-containers/runtime-payload-ci registry and kata-containers-latest tag
 
+- [ ] - 8. Contact @stevenhorsman and/or @bpradipt to update peer pods to use the latest commits of kata-containers and attestation-agent and test it 
+    
 - [ ] - 9. Cut an ocicrypt-rs v<TARGET_RELEASE> release, if changes happened in the project
 
 - [ ] - 10. Cut an attestation-agent v<TARGET_RELEASE>, if changes happened in the project
@@ -107,27 +105,41 @@ assignees: ''
 
         * redo step 8, but now targetting the latest payload image generated for Kata Containers and Enclave CC
 
-- [ ] - 18. Make sure all the operator tests are passing
+- [ ] - 19. Make sure all the operator tests are passing
 
 - [ ] - 19. Cut an Enclave CC release
 
 - [ ] - 20. Add a new Kata Containers tag
 
+
+- [ ] - 21. Wait for release kata-runtime-payload to be successfully built
+        * After the Kata tag is created wait for (https://github.com/kata-containers/kata-containers/actions/workflows/cc-payload.yaml) to be successfully completed, so the latest commit kata-runtime-payload for the release is created
+
+- [ ] - 22. Contact @stevenhorsman and/or @bpradipt to get the peer pods release ready
+  - Update the versions of the peer pods dependencies:
+    - attestation-agent - set to the the release tag
+    - kata-containers - set to the release tag
+  - Create the new peer pods release: 
+  - Wait for the release artifacts to be generated
+  - Run the tests on the released artifacts
+  - Update any peer pods release notes
+  - Update go mod to point to released version for peerpod-ctl and csi-wrapper e.g. confidential-containers/cloud-api-adaptor/pull/825
+
 ## Release
 
 
-- [ ] - 21. Update the operator to use the release tags coming from Enclave CC and Kata Containers
+- [ ] - 23. Update the operator to use the release tags coming from Enclave CC and Kata Containers
 
-        * redo step 8, but now targetting thje latest release of the payload image generated for Kata Containers eand Enclave CC
+        * redo step 8, but now targeting the latest release of the payload image generated for Kata Containers eand Enclave CC
 
-- [ ] - 22. Update the Operator version
+- [ ] - 24. Update the Operator version
 
         * https://github.com/confidential-containers/operator/blob/main/config/release/kustomization.yaml#L7
 
-- [ ] - 23. Cut an operator release
+- [ ] - 25. Cut an operator release
 
-- [ ] - 24. Make sure to update the release notes
+- [ ] - 26. Make sure to update the release notes
 
         * https://github.com/confidential-containers/documentation/tree/main/releases/v<TARGET_RELEASE>.md
         
-- [ ] - 25. Poke Jens Freimann (jfreiman@redhat.com) to update the release to the OperatorHub
+- [ ] - 27. Poke Wainer Moschetta (@wainersm) to update the release to the OperatorHub
