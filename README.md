@@ -1,6 +1,8 @@
 ![logo](./images/coco_logo.png)
 
-# Confidential Containers Documentation
+# Confidential Containers
+
+## Welcome to confidential-containers
 
 Confidential Containers is an open source community working to leverage 
 [Trusted Execution Environments](https://en.wikipedia.org/wiki/Trusted_execution_environment) 
@@ -18,10 +20,15 @@ Our key considerations are:
 - Least privilege principles for the Kubernetes cluster administration capabilities which impact 
 delivering Confidential Computing for guest applications or data inside the TEE
 
-## Further Detail
+### Get started quickly... 
+- [Kubernetes Operator for Confidential
+  Computing](https://github.com/confidential-containers/confidential-containers-operator) : An
+  operator to deploy confidential containers runtime (and required configs) on a Kubernetes cluster
 
+
+## Further Detail
 [![asciicast](https://asciinema.org/a/eGHhZdQY3uYnDalFAfuB7VYqF.svg)](https://asciinema.org/a/eGHhZdQY3uYnDalFAfuB7VYqF)
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fconfidential-containers%2Fdocumentation.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fconfidential-containers%2Fdocumentation?ref=badge_shield)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fconfidential-containers%2Fcommunity.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fconfidential-containers%2Fcommunity?ref=badge_shield)
 
 - [Project Overview](./overview.md)
 - [Project Architecture](./architecture.md)
@@ -29,10 +36,9 @@ delivering Confidential Computing for guest applications or data inside the TEE
 - [Alignment with other Projects](alignment.md)
 
 
-### Associated Repositories
-- [Kubernetes Operator for Confidential Computing](https://github.com/confidential-containers/confidential-containers-operator)
-: An operator to deploy confidential containers runtime (and required configs) on a Kubernetes cluster
+### Contribute...
+- [CONTRIBUTING](CONTRIBUTING.md)
 
 
 ## License
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fconfidential-containers%2Fdocumentation.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fconfidential-containers%2Fdocumentation?ref=badge_large)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fconfidential-containers%2Fcommunity.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fconfidential-containers%2Fcommunity?ref=badge_large)
