@@ -1,0 +1,28 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: ccv0-ssh
+spec:
+  selector:
+    app: ccv0-ssh
+  ports:
+  - port: 22
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: ccv0-ssh
+spec:
+  selector:
+    matchLabels:
+      app: ccv0-ssh
+  template:
+    metadata:
+      labels:
+        app: ccv0-ssh
+    spec:
+      runtimeClassName: kata
+      containers:
+      - name: ccv0-ssh
+        image: ghcr.io/confidential-containers/test-container:multi-arch-encrypted
+        imagePullPolicy: Always
