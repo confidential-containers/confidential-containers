@@ -48,7 +48,7 @@ therefore refer to and build on trust and security models already defined.
 For example:
 
 - Confidential Computing Consortium (CCC) published
-  "[A Technical Analysis of Confidential Computing](https://confidentialcomputing.io/wp-content/uploads/sites/85/2021/03/CCC-Tech-Analysis-Confidential-Computing-V1.pdf)"
+  "[A Technical Analysis of Confidential Computing](https://confidentialcomputing.io/wp-content/uploads/sites/10/2023/03/CCC-A-Technical-Analysis-of-Confidential-Computing-v1.3_unlocked.pdf)"
   section 5 of which defines the threat model for confidential computing.
 - CNCF Security Technical Advisory Group published
   "[Cloud Native Security Whitepaper](https://github.com/cncf/tag-security/blob/main/security-whitepaper/v2/CNCF_cloud-native-security-whitepaper-May2022-v2.pdf)"
@@ -61,7 +61,7 @@ The commonality between confidential containers project and confidential computi
 the ability for unauthorised access to data and code inside TEEs sufficiently such that this path
 is not an economically or logically viable attack during execution (5.1 Goal within the CCC
 publication
-[A Technical Analysis of Confidential Computing](https://confidentialcomputing.io/wp-content/uploads/sites/85/2021/03/CCC-Tech-Analysis-Confidential-Computing-V1.pdf)).
+[A Technical Analysis of Confidential Computing](https://confidentialcomputing.io/wp-content/uploads/sites/10/2023/03/CCC-A-Technical-Analysis-of-Confidential-Computing-v1.3_unlocked.pdf)).
 
 This means our trust and threat modelling should
 - Focus on which aspects of code and data have integrity and/or confidentiality protections.

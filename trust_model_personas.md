@@ -13,7 +13,7 @@ In identifying personas we consider :
   Security as Cloud, Cluster, Container and Code. However data is core to confidential
   containers rather than code.
 - The Confidential Computing Consortium paper
-  [A Technical Analysis of Confidential Computing v1.1](https://confidentialcomputing.io/wp-content/uploads/sites/85/2021/03/CCC-Tech-Analysis-Confidential-Computing-V1.pdf)
+  [A Technical Analysis of Confidential Computing](https://confidentialcomputing.io/wp-content/uploads/sites/10/2023/03/CCC-A-Technical-Analysis-of-Confidential-Computing-v1.3_unlocked.pdf)
  defines Confidential Computing as the protection of data in use by performing computations in a
   hardware-based Trusted Execution Environment (TEE).
 
@@ -163,7 +163,7 @@ the same workload (or parts such as logging/monitoring etc) can be re-used with 
 sets to provide a service/solution. In the case of bespoke workload, the workload provider and
 Data Owner may be the same persona. As mentioned the Data Owner must have a level of
 trust in the Workload Provider to use and expose the data provided in an expected and approved
-manner. Page 10 of [A Technical Analysis of Confidential Computing v1.1](https://confidentialcomputing.io/wp-content/uploads/sites/85/2021/03/CCC-Tech-Analysis-Confidential-Computing-V1.pdf)
+manner. Page 10 of [A Technical Analysis of Confidential Computing](https://confidentialcomputing.io/wp-content/uploads/sites/10/2023/03/CCC-A-Technical-Analysis-of-Confidential-Computing-v1.3_unlocked.pdf)
 , suggests some approaches to establish trust between them.
 
 The TEE boundary allows the introduction of secrets but just as we recognised the
@@ -197,4 +197,3 @@ some cases these may not be identical. For example data may be provided to a wor
 analysis and results to be made available to an end user. The original data is never provided
 directly to the end user but the derived data is, in this case the data owner can be different
 from the end user and may wish to protect this data from the end user.
-
