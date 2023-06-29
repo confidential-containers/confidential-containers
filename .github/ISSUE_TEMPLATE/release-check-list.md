@@ -65,7 +65,7 @@ assignees: ''
           * peer-pods: https://github.com/confidential-containers/operator/blob/main/config/samples/ccruntime/peer-pods/kustomization.yaml
           Note that we need the quay.io/confidential-containers/runtime-payload-ci registry and kata-containers-latest tag
 
-- [ ] - 8. Contact @stevenhorsman and/or @bpradipt to update peer pods to use the latest commits of kata-containers and attestation-agent and test it 
+- [ ] - 8. Update peer-pods with latest commits of kata-containers and attestation-agent and test it, following the [release candidate testing process](https://github.com/confidential-containers/cloud-api-adaptor/blob/main/docs/Release-Process.md#release-candidate-testing)
     
 - [ ] - 9. Cut an ocicrypt-rs v<TARGET_RELEASE> release, if changes happened in the project
 
@@ -115,15 +115,7 @@ assignees: ''
 - [ ] - 21. Wait for release kata-runtime-payload to be successfully built
         * After the Kata tag is created wait for (https://github.com/kata-containers/kata-containers/actions/workflows/cc-payload.yaml) to be successfully completed, so the latest commit kata-runtime-payload for the release is created
 
-- [ ] - 22. Contact @stevenhorsman and/or @bpradipt to get the peer pods release ready
-  - Update the versions of the peer pods dependencies:
-    - attestation-agent - set to the the release tag
-    - kata-containers - set to the release tag
-  - Create the new peer pods release: 
-  - Wait for the release artifacts to be generated
-  - Run the tests on the released artifacts
-  - Update any peer pods release notes
-  - Update go mod to point to released version for peerpod-ctl and csi-wrapper e.g. confidential-containers/cloud-api-adaptor/pull/825
+- [ ] - 22. Update peer pods to use the release versions and then cut a release following the [documented flow](https://github.com/confidential-containers/cloud-api-adaptor/blob/main/docs/Release-Process.md#cutting-releases)
 
 ## Release
 
