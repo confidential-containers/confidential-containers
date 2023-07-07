@@ -14,7 +14,8 @@ All contributors must agree to the project [code of conduct](CODE_OF_CONDUCT.md)
 
 ## Pull requests
 
-All the repositories accept contributions via [GitHub Pull requests (PR)](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests). Submit PRs by following the [GitHub workflow](#github-workflow).
+All the repositories accept contributions via [GitHub Pull requests (PR)](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests).
+Submit PRs by following the [GitHub workflow](#github-workflow).
 
 ## GitHub basic setup
 
@@ -38,20 +39,14 @@ To get started, complete the prerequisites below.
 
 ### Contributor roles
 
-Special Git configuration is required for these contributors:
+If you contribute code change in Rust or Go, please adhere to the following style guides. 
 
-* [Golang coding style](#golang-coding-style)
-* [Rustlang coding style](#rustlang-coding-style)
+### Go coding style
 
-For all other contributor roles, follow the standard configuration, shown in
-Prerequisites. 
-
-### Golang coding style
-
-* Review [Go Code Review Comments](https://github.com/golang/go/wiki/CodeReviewComments) to avoid common `Golang` errors.
+* Review [Go Code Review Comments](https://github.com/golang/go/wiki/CodeReviewComments) to avoid common Go errors.
 * Use `gofmt` to fix any mechanical style issues.
 
-### Rustlang coding style
+### Rust coding style
 
 * Use `rustfmt` to fix any mechanical style issues. Rustfmt uses a style which conforms to the
 [Rust Style Guide](https://github.com/rust-dev-tools/fmt-rfcs/blob/main/guide/guide.md).
@@ -124,10 +119,11 @@ In this section, we explain these augmentations in more detail. Follow these gui
 * Follow carefully the [patch format](#patch-format) for PRs.
 
 * Apply the appropriate GitHub labels to your PR. This
-  is particularly relevant to maintain [Stable branch backports](#stable-branch-backports). See also [GitHub labels and keywords that block PRs](#github-labels-and-keywords-that-block-prs)
+  is particularly relevant to maintain [Stable branch backports](#stable-branch-backports).
+  See also [GitHub labels and keywords that block PRs](#github-labels-and-keywords-that-block-prs)
 
-  >**Note:** External contributors should use keywords, explained in the
-  >link above. Labels may not be visible to external contributors. 
+  > **Note:** External contributors should use keywords, explained in the
+  > link above. Labels may not be visible to external contributors. 
 
 * [Rebase](https://help.github.com/en/github/using-git/about-git-rebase)
   commits on your branch and `force push` after each cycle of feedback.
@@ -135,22 +131,13 @@ In this section, we explain these augmentations in more detail. Follow these gui
 ### Configure your environment
 
 Some [Confidential Containers repositories](https://github.com/confidential-containers)
-contain code written in the [Go language (golang)](https://golang.org/). Go 
-requires all code to be put inside the directory specified by the `$GOPATH` 
-variable. Follow this example to put the code in the standard location.
-
-```sh
-$ export GOPATH=${GOPATH:-$HOME/go}
-$ mkdir -p "$GOPATH"
-```
-
->*Note*: If you intend to make minor edits, it's acceptable
-> to simply fork and clone without adding the GOPATH variable.
+contain code written in the [Go language (golang)](https://go.dev/). Follow the [setup guide](https://go.dev/doc/install)
+to install the latest Go command.
 
 #### Fork and clone
 
 In this example, we configure a Git environment to contribute to this very 
-`Community` repo. We create a sample branch, incorporate reviewer feedback, and rebase our commits.
+`confidential-containers` repo. We create a sample branch, incorporate reviewer feedback, and rebase our commits.
 
 1. Fork the [upstream repository](https://help.github.com/articles/cloning-a-repository):
 
@@ -160,25 +147,24 @@ In this example, we configure a Git environment to contribute to this very
    and copy the URL. 
 
 1. Run the commands below and **paste the copied URL** (previous step),
-   so your real GitHub user name replaces `your-github-username` below.
+   so your real GitHub username replaces `your-github-username` below.
   
 ```sh
-$ dir="$GOPATH/src/github.com/confidential-containers" 
-$ mkdir -p "$dir"
-$ cd "$dir"
-$ git clone https://github.com/{your-github-username}/community
-$ cd community
+$ git clone https://github.com/{your-github-username}/confidential-containers
+$ cd confidential-containers
 ```
    
->**Note:** Cloning a forked repository automatically gives a remote `origin`.
+> **Note:** Cloning a forked repository automatically gives a remote `origin`.
 
 #### Configure the upstream remote
 
+> **Note:** You can also use the GitHub web interface to synchronize your `origin` with the upstream repository.
+
 Next, add the remote `upstream`. Configuring this remote allows you to
 synchronize your forked copy, `origin`, with the `upstream`. The 
-`upstream` URL varies by repository. We use the `upstream` from the Community for this example. 
+`upstream` URL varies by repository. We use the `upstream` from this repository for this example. 
 
-1. Change directory into `community`. 
+1. Ensure you are within your local clone of the `confidential-containers` repository. 
 
 1. Set the remote `upstream` as follows. 
 
@@ -201,17 +187,17 @@ For more details, see how to [set up a git remote](https://help.github.com/artic
 
 1. Create a new "topic branch" to do your work on:
 
-    ```
+    ```sh
     $ git checkout -b fix-contrib-bugs
     ```
 
     >**Warning:** *Never* make changes directly to the `main` branch 
-    >--*always* create a new "topic branch" for PR work.
+    >-- *always* create a new "topic branch" for PR work.
 
 1. Make some editorial changes. In this example, we modify the file that
    you are reading.
 
-    ```
+    ```sh
     $ $EDITOR CONTRIBUTING.md
     ```
 
@@ -227,28 +213,29 @@ For more details, see how to [set up a git remote](https://help.github.com/artic
 1. Commit your changes to the current (`fix-contrib-bugs`) branch. Assure
    you use the correct [patch format](#patch-format):
 
-    ```
+    ```sh
     $ git commit -as
     ```
 
 1. Push your local `fix-contrib-bugs` branch to your remote fork:
 
-    ```
+    ```sh
     $ git push -u origin fix-contrib-bugs
     ```
 
-   >**Note:** The `-u` option tells `git` to "link" your local clone with
+   > **Note:** The `-u` option tells `git` to "link" your local clone with
    > your remote fork so that it knows from now on that the local repository
    > and the remote fork refer to "the same" upstream repository. Strictly
    > speaking, this option is only required the first time you call `git push`
    > for a new clone.
 
 1. Create the PR:
-  - Browse to https://github.com/confidential-containers/community.
-  - Click the "Compare & pull request" button that appears.
-  - Click the "Create pull request" button.
+   
+   - Browse to https://github.com/confidential-containers/community.
+   - Click the `Compare & pull request` button that appears.
+   - Click the `Create pull request` button.
 
-  >**Note:** You do not need to change any of the defaults on this page.
+   > **Note:** You do not need to change any of the defaults on this page.
 
 #### Update your PR based on review comments
 
@@ -267,7 +254,7 @@ $ git log main.. --oneline --decorate=no
 60e2b2b doh - missed one
 ```
 
->**Note:** The `git log` command compares your current branch 
+> **Note:** The `git log` command compares your current branch 
 >(`fix-contrib-bugs`) with the `main` branch and lists all the commits,
 >one per line.
 
@@ -281,8 +268,7 @@ multiple commits on your branch. Follow these steps.
 1. Update the `main` branch in your local copy of the upstream
    repository:
 
-    ```
-    $ cd $GOPATH/src/github.com/confidential-containers/community
+    ```sh
     $ git checkout main
     $ git pull --rebase upstream main
     ```
@@ -290,9 +276,17 @@ multiple commits on your branch. Follow these steps.
     The previous command downloads all the latest changes from the upstream
     repository and adds them to your *local copy*.
 
+    In case you didn't configure an upstream origin but want to sync via the GitHub web interface,
+    sync your `main` branch there and execute:
+
+    ```sh
+    $ git checkout main
+    $ git pull
+    ```
+
 1. Now, switch back to your PR branch:
 
-    ```
+    ```sh
     $ git checkout fix-contrib-bugs
     ```
 
@@ -312,48 +306,41 @@ multiple commits on your branch. Follow these steps.
     ```
 
 1. In your editor, read the comments at the bottom of the screen. 
-   Do not modify the first line, `pick 2e335ac docs: Fix typos ...`. Instead, revise `pick` to `squash` at the start of all following lines.
+   Do not modify the first line, `pick 2e335ac docs: Fix typos ...`. Instead, revise `pick` to `fixup` at the start of all following lines.
 
     Example output:
 
     ```sh
     pick 2e335ac docs: Fix typos and fold long lines
-    squash 6d6deb0 apply review feedback changes
-    squash 23bc01d remove blank lines
-    squash 3a4ba3f doh - missed one
+    fixup 6d6deb0 apply review feedback changes
+    fixup 23bc01d remove blank lines
+    fixup 3a4ba3f doh - missed one
     ```
 
-1. Save your changes and quit the editor. Git puts you *back* into your
-   editor. You will see all the commit *messages*. 
-
-1. At top is your first commit, which should be in the 
-   [correct format](#patch-format). Keep your first commit and delete 
-   all the following commits, as appropriate, based on 
-   the review feedback.
-
-1. Save the file and quit the editor. Once this operation completes, the four
+   Once this operation completes, the four
    commits will have been converted into a single new commit. Check this by
    running the `git log` command again:
 
     ```sh
     $ git log main.. --oneline --decorate=no
-    3ea3aef docs: Fix typo
+    3ea3aef docs: Fix typos and fold long lines
     ```
 
 1. Force push your updated local `fix-contrib-bugs` branch to `origin`
    remote:
 
     ```sh
-    $ git push -f origin fix-contrib-bugs
+    $ git push --force-with-lease origin fix-contrib-bugs
     ```
 
->**Note:** Not only does this command upload your changes to your fork, it
->also includes the *latest upstream changes* to your fork since you ran
->`git pull --rebase upstream main` on the main branch and then merged
->those changes into your PR branch. This ensures your fork is now "up to
->date" with the upstream repository. The `-f` option is a "force push". Since
->you created a new commit using `git rebase`, you must "overwrite" the old
->copy of your branch in your fork on GitHub. 
+> **Note:** Not only does this command upload your changes to your fork, it
+> also includes the *latest upstream changes* to your fork since you ran
+> `git pull --rebase upstream main` on the main branch and then merged
+> those changes into your PR branch. This ensures your fork is now "up to
+> date" with the upstream repository. The `--force-with-lease` option is a "force push". Since
+> you created a new commit using `git rebase`, you must "overwrite" the old
+> copy of your branch in your fork on GitHub. Be careful with force pushes, 
+> it is one of the few things that can cause you to lose previous work in git.
 
 Your PR is now updated on GitHub. To ensure team members are aware of this,
 leave a message on the PR stating something like, "Review feedback applied".
@@ -419,7 +406,7 @@ Some submitted PRs fail to pass static checks. After such a PR fails,
 view its build logs to determine the cause of failure.
 
 1. At the bottom of the PR, if a message appears, "Some checks were not
-   successful,"  select "Details", as shown below.
+   successful," select "Details", as shown below.
     
     ![Failed CI-CD](fig1-ci-cd-failure.png)
 
@@ -585,7 +572,7 @@ Examples:
 
 To see the subsystem values chosen for existing commits:
 
-```
+```sh
 $ git log --no-merges --pretty="%s" | cut -d: -f1 | sort -u
 ```
 
