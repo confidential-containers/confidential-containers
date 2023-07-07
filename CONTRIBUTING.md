@@ -54,7 +54,7 @@ Prerequisites.
 ### Rustlang coding style
 
 * Use `rustfmt` to fix any mechanical style issues. Rustfmt uses a style which conforms to the
-[Rust Style Guide](https://github.com/rust-dev-tools/fmt-rfcs/blob/main/guide/guide.md).
+[Rust Style Guide](https://doc.rust-lang.org/nightly/style-guide/).
 * Use `clippy` to catch common mistakes and improve your Rust code.
 
 You can install the above tools as follows.
