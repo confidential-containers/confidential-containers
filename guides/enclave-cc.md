@@ -7,16 +7,37 @@ section of the [quickstart guide](../quickstart.md).
 
 ## Configuring enclave-cc custom resource to use a different KBC
 
+**Note** Before configuring KBC, please refer to the
+[guide](../quickstart.md#deploy-and-configure-tenant-side-coco-key-broker-system-cluster) to deploy KBS cluster.
+
 **Note** The KBC configuration changes to the enclave-cc custom resource yaml 
 must be made **before** deploying it. 
 
-Enclave CC supports Verdictd and in order to use it, users will have to
-properly configure a decrypt_config.conf, in order to set the `KBC` (`sample_kbc`
-or `eaa_kbc`) `IP`,`PORT`, and the `SECURITY_VALIDATE` (`false` or  `true`)
+Enclave CC supports cc-kbc and sample-kbc, in order to use them, users will have to
+properly configure a `decrypt_config.conf`, in order to set the `KBC` (`cc_kbc`
+or `sample_kbc`) `IP`,`PORT`, and the `SECURITY_VALIDATE` (`false` or  `true`).
+
 ```json
 {
     "key_provider": "provider:attestation-agent:KBC::IP:PORT",
      "security_validate": SECURITY_VALIDATE
+}
+```
+
+The following is an example of `cc_kbc`:
+
+```json
+{
+    "key_provider": "provider:attestation-agent:cc_kbc::http://127.0.0.1:8080",
+    "security_validate": true
+}
+```
+The following is an example of `sample_kbc`:
+
+```json
+{
+    "key_provider": "provider:attestation-agent:sample_kbc::127.0.0.1:50000",
+    "security_validate": false
 }
 ```
 
@@ -27,7 +48,11 @@ set it accordingly [here](https://github.com/confidential-containers/operator/bl
 ## Creating a sample CoCo workload using enclave-cc
 
 As an example, we setup a sample *hello world*
-workload with an encrypted and cosign signed container image using the `enclave-cc` runtime class for process based TEEs.
+workload with an encrypted and cosign signed container image using the `enclave-cc` runtime class for process based TEEs. 
+This encrypted image is only used for testing. 
+If you want to use it in your own production use cases, please refer to
+the [guide](../quickstart.md#encrypting-an-image) to create a new encrypted image and deploy it.
+
 The deployment below assumes the hardware SGX mode build is installed by the operator. To try on a non-TEE system, please
 use simulate SGX mode build.
 
