@@ -76,6 +76,8 @@ kubectl get pods -n confidential-containers-system --watch
 
 ### Create the custom resource
 
+#### Create custom resource for kata
+
 Creating a custom resource installs the required CC runtime pieces into the cluster node and creates
 the `RuntimeClasses`
 
@@ -104,7 +106,10 @@ kubectl get pods -n confidential-containers-system --watch
 #### Create custom resource for enclave-cc
 
 **Note** For `enclave-cc` certain configuration changes, such as setting the
-URI of the KBS, must be made **before** applying the custom resource.
+URI of the KBS, must be made **before** applying the custom resource. 
+Please refer to the [guide](./guides/enclave-cc.md#configuring-enclave-cc-custom-resource-to-use-a-different-kbc)
+to modify the enclave-cc configuration.
+
 Please see the [enclave-cc guide](./guides/enclave-cc.md) for more information.
 
 `enclave-cc` is a form of Confidential Containers that uses process-based isolation.
