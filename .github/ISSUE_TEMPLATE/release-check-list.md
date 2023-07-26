@@ -111,8 +111,8 @@ assignees: ''
 
 22. - [ ] Cut an operator release
 
-23. - [ ] Make sure to update the release notes
+22. - [ ] Make sure to update the release notes and tag the confidential-containers repository
 
     * https://github.com/confidential-containers/documentation/tree/main/releases/v<TARGET_RELEASE>.md
-        
-24. - [ ] Poke Wainer Moschetta (@wainersm) to update the release to the OperatorHub
+
+23. - [ ] Poke Wainer Moschetta (@wainersm) to update the release to the OperatorHub
