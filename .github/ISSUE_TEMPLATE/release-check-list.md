@@ -60,17 +60,17 @@ assignees: ''
        * https://github.com/confidential-containers/attestation-service
        * Cut a release (AS/RVPS images will be automatically built triggered by release)
 
-8. - [ ] Update kbs to use the latest commit from attestation-service, cut a release and make image
+8. - [ ] Cut a guest-components v<TARGET_RELEASE> release
+
+9. - [ ] Cut a td-shim v<TARGET_RELEASE> release, if changes happened in the project
+
+10. - [ ] Update kbs to use the latest commit from attestation-service, cut a release and make image
 
        * https://github.com/confidential-containers/kbs/blob/main/src/api_server/Cargo.toml
        * Change the revision for the following crates (both use `v<TARGET_RELEASE>`)
      * `as-types`
      * `attestation-service`
        * Cut a release (kbs image will be automatically built triggered by release)
-
-9. - [ ] Cut a guest-components v<TARGET_RELEASE> release
-
-10. - [ ] Cut a td-shim v<TARGET_RELEASE> release, if changes happened in the project
 
 11. - [ ] Update Enclave CC to use the released version of image-rs
 
@@ -90,26 +90,25 @@ assignees: ''
 
 15. - [ ] Cut an Enclave CC release
 
-17. - [ ] Add a new Kata Containers tag
+16. - [ ] Add a new Kata Containers tag
 
-
-18. - [ ] Wait for release kata-runtime-payload to be successfully built
+17. - [ ] Wait for release kata-runtime-payload to be successfully built
     * After the Kata tag is created wait for (https://github.com/kata-containers/kata-containers/actions/workflows/cc-payload.yaml) to be successfully completed, so the latest commit kata-runtime-payload for the release is created
 
-19. - [ ] Update peer pods to use the release versions and then cut a release following the [documented flow](https://github.com/confidential-containers/cloud-api-adaptor/blob/main/docs/Release-Process.md#cutting-releases)
+18. - [ ] Update peer pods to use the release versions and then cut a release following the [documented flow](https://github.com/confidential-containers/cloud-api-adaptor/blob/main/docs/Release-Process.md#cutting-releases)
 
 ## Release
 
 
-20. - [ ] Update the operator to use the release tags coming from Enclave CC and Kata Containers
+19. - [ ] Update the operator to use the release tags coming from Enclave CC and Kata Containers
 
     * redo step 8, but now targeting the latest release of the payload image generated for Kata Containers eand Enclave CC
 
-21. - [ ] Update the Operator version
+20. - [ ] Update the Operator version
 
     * https://github.com/confidential-containers/operator/blob/main/config/release/kustomization.yaml#L7
 
-22. - [ ] Cut an operator release
+21. - [ ] Cut an operator release
 
 22. - [ ] Make sure to update the release notes and tag the confidential-containers repository
 
