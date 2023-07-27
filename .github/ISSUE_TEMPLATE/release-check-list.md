@@ -64,13 +64,14 @@ assignees: ''
 
 9. - [ ] Cut a td-shim v<TARGET_RELEASE> release, if changes happened in the project
 
-10. - [ ] Update kbs to use the latest commit from attestation-service, cut a release and make image
+10. - [ ] Update kbs to use the tagged attestation-service and guest-components, cut a release and make image
 
-       * https://github.com/confidential-containers/kbs/blob/main/src/api_server/Cargo.toml
-       * Change the revision for the following crates (both use `v<TARGET_RELEASE>`)
-     * `as-types`
-     * `attestation-service`
-       * Cut a release (kbs image will be automatically built triggered by release)
+       * https://github.com/confidential-containers/kbs/blob/main/src/api/Cargo.toml
+         * Change the revision for the `as-types` and `attestation-service` crates (both use `v<TARGET_RELEASE>`) and update the lock file
+       * https://github.com/confidential-containers/kbs/blob/main/tools/client/Cargo.toml
+         * Change the revision for the `as-types` and `kbs_protocol` crates (both use `v<TARGET_RELEASE>`)
+       * Cut a release
+         * kbs image will be automatically built triggered by release, so ensure that the [release workflow](https://github.com/confidential-containers/kbs/actions/workflows/release.yaml) ran successfully
 
 11. - [ ] Update Enclave CC to use the released version of image-rs
 
