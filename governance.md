@@ -98,7 +98,7 @@ Voting on a decision proposal should be used as a last resort solution, as it ca
 ### Meeting
 
 The SC meets every other week. Meeting time may change depending on the composition of the SC, in order to adapt to SC members local time zones.
-The meeting is public and recorded, and follows a [publicly available agenda](https://docs.google.com/document/d/15epr-ZDmlIp-8jR0HQAaK0aXNddYp-gdwZnvUFQysLw/edit?usp=sharing).
+The meeting is public and recorded, and follows a [publicly available agenda](https://docs.google.com/document/d/1YNbkUlcosjN1MFKvs3bJ0CAIZJEp-UEFALW8lDgilLU).
 
 The SC meeting scope is different from the weekly [Confidential Containers community meeting](https://docs.google.com/document/d/1E3GLCzNgrcigUlgWAZYlgqNTdVwiMwCRTJ0QnJhLZGA/edit?usp=sharing), the latter being mostly focused on specific and technical details of one or more Confidential Containers project.
 
