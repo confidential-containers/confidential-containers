@@ -80,7 +80,7 @@ The initial composition of the SC is self-defined and is made of 10 members:
 * James Magowan (@magowan)  and Tobin Feldman-Fitzthum (@fitzthum) - IBM
 * Peter Zhu (@peterzcst) and Dan Middleton (@dcmiddle) - Intel
 * Pradipta Banerjee (@bpradipt)  and Ariel Adam (@ariel-adam) - Red Hat
-* Samuel Ortiz (@sameo)
+* Samuel Ortiz (@sameo) - Rivos
 
 #### Selection
 
