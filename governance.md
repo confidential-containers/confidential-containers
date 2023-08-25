@@ -82,6 +82,7 @@ The current members of the SC are:
 * Pradipta Banerjee (@bpradipt)  and Ariel Adam (@ariel-adam) - Red Hat
 * Samuel Ortiz (@sameo) - Rivos
 * Zvonko Kaiser (@zvonkok) - NVIDIA
+* Vincent Batts (@vbatts) and Ananya Garg (@angarg05) - Microsoft
 
 #### Selection
 
