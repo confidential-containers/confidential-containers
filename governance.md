@@ -81,6 +81,7 @@ The current members of the SC are:
 * Peter Zhu (@peterzcst) and Dan Middleton (@dcmiddle) - Intel
 * Pradipta Banerjee (@bpradipt)  and Ariel Adam (@ariel-adam) - Red Hat
 * Samuel Ortiz (@sameo) - Rivos
+* Zvonko Kaiser (@zvonkok) - NVIDIA
 
 #### Selection
 
