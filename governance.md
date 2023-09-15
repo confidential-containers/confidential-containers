@@ -78,11 +78,15 @@ The current members of the SC are:
 * Larry Dewey (@larrydewey) - AMD
 * Jiang Liu (@jiangliu) and Jia Zhang (@jiazhang0) - Alibaba
 * James Magowan (@magowan)  and Tobin Feldman-Fitzthum (@fitzthum) - IBM
-* Peter Zhu (@peterzcst) and Dan Middleton (@dcmiddle) - Intel
+* Peter Zhu (@peterzcst) and Fabiano Fidêncio (@fidencio) - Intel
 * Pradipta Banerjee (@bpradipt)  and Ariel Adam (@ariel-adam) - Red Hat
 * Samuel Ortiz (@sameo) - Rivos
 * Zvonko Kaiser (@zvonkok) - NVIDIA
 * Vincent Batts (@vbatts) and Ananya Garg (@angarg05) - Microsoft
+
+### Emeritus Members
+
+* Dan Middleton [dcmiddle](https://github.com/dcmiddle) (he/him)
 
 #### Selection
 
