@@ -87,19 +87,7 @@ The image encryption key and key for SSH access have been attached to the CoCo s
 
 To learn more about creating custom policies, see the section on [Creating a simple-kbs Policy to Verify the SEV Firmware Measurement](#creating-a-simple-kbs-policy-to-verify-the-sev-firmware-measurement).
 
-`docker-compose` is required to run the `simple-kbs` and its database in docker containers:
-
-* Debian / Ubuntu:
-
-  ```
-  sudo apt install docker-compose
-  ```
-
-* CentOS / Fedora / RHEL:
-
-  ```
-  sudo dnf install docker-compose-plugin
-  ```
+`docker compose` is required to run the `simple-kbs` and its database in docker containers. Installation instructions are available on [Docker's website](https://docs.docker.com/compose/install/linux/).
 
 Clone the repository for specified tag:
 ```
@@ -108,19 +96,11 @@ git clone https://github.com/confidential-containers/simple-kbs.git
 (cd simple-kbs && git checkout -b "branch_${simple_kbs_tag}" "${simple_kbs_tag}")
 ```
 
-Run the service with `docker-compose`:
+Run the service with `docker compose`:
 
-* Debian / Ubuntu:
-
-  ```
-  (cd simple-kbs && sudo docker-compose up -d)
-  ```
-
-* CentOS / Fedora / RHEL:
-
-  ```
-  (cd simple-kbs && sudo docker compose up -d)
-  ```
+```
+(cd simple-kbs && sudo docker compose up -d)
+```
 
 ### Launch the Pod and Verify SEV Encryption
 
