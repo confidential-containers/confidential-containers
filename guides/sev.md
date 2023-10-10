@@ -99,7 +99,7 @@ git clone https://github.com/confidential-containers/simple-kbs.git
 Run the service with `docker compose`:
 
 ```
-(cd simple-kbs && sudo docker compose up -d)
+(sudo docker compose up -d)
 ```
 
 ### Launch the Pod and Verify SEV Encryption
