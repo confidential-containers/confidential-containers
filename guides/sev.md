@@ -35,7 +35,7 @@ Follow these steps to install `sevctl`:
   git clone https://github.com/virtee/sevctl.git
 
   # Build
-  (cd sevctl && cargo build)
+  (cd sevctl && cargo build && cargo install sevctl)
   ```
 
 * CentOS / Fedora / RHEL:
