@@ -20,6 +20,8 @@ spec:
     metadata:
       labels:
         app: ccv0-ssh
+      annotations:
+        io.containerd.cri.runtime-handler: kata
     spec:
       runtimeClassName: kata
       containers:
