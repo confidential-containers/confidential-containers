@@ -1,5 +1,7 @@
 # EAA Verdictd Guide
 
+**EAA/Verdictd support has been deprecated in Confidential Containers**
+
 EAA is used to perform attestation at runtime and provide guest with confidential resources such as keys.
 It is based on [rats-tls](https://github.com/inclavare-containers/rats-tls).
 
