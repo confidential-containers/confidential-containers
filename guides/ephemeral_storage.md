@@ -12,6 +12,8 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: trusted-lvm-block
+  annotations:
+    io.containerd.cri.runtime-handler: kata-qemu-tdx
 spec:
   runtimeClassName: kata-qemu-tdx
   containers:
