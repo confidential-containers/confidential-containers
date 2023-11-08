@@ -129,6 +129,8 @@ spec:
     metadata:
       labels:
         app: encrypted-image-tests
+      annotations:
+        io.containerd.cri.runtime-handler: kata-qemu-sev
     spec:
       runtimeClassName: kata-qemu-sev
       containers:

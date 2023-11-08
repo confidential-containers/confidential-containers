@@ -63,9 +63,9 @@ with the desired [release tag](https://github.com/confidential-containers/operat
 kubectl apply -k github.com/confidential-containers/operator/config/release?ref=<RELEASE_VERSION>
 ```
 
-For example, to deploy the `v0.3.0` release run:
+For example, to deploy the `v0.8.0` release run:
 ```
-kubectl apply -k github.com/confidential-containers/operator/config/release?ref=v0.3.0
+kubectl apply -k github.com/confidential-containers/operator/config/release?ref=v0.8.0
 ```
 
 Wait until each pod has the STATUS of Running.
@@ -87,14 +87,14 @@ kubectl apply -k github.com/confidential-containers/operator/config/samples/ccru
 
 The current present overlays are: `default` and `s390x`
 
-For example, to deploy the `v0.3.0` release for `x86_64`, run:
+For example, to deploy the `v0.8.0` release for `x86_64`, run:
 ```
-kubectl apply -k github.com/confidential-containers/operator/config/samples/ccruntime/default?ref=v0.3.0
+kubectl apply -k github.com/confidential-containers/operator/config/samples/ccruntime/default?ref=v0.8.0
 ```
 
-And to deploy `v0.3.0` release for `s390x`, run:
+And to deploy `v0.8.0` release for `s390x`, run:
 ```
-kubectl apply -k github.com/confidential-containers/operator/config/samples/ccruntime/s390x?ref=v0.3.0
+kubectl apply -k github.com/confidential-containers/operator/config/samples/ccruntime/s390x?ref=v0.8.0
 ```
 
 Wait until each pod has the STATUS of Running.
@@ -184,6 +184,8 @@ metadata:
   labels:
     run: nginx
   name: nginx
+  annotations:
+    io.containerd.cri.runtime-handler: kata
 spec:
   containers:
   - image: bitnami/nginx:1.22.0
@@ -392,6 +394,8 @@ metadata:
   labels:
     run: encrypted-image-test-busybox
   name: encrypted-image-test-busybox
+  annotations:
+    io.containerd.cri.runtime-handler: [RUNTIME_CLASS]
 spec:
   containers:
   - image: [REGISTRY_URL]:encrypted
