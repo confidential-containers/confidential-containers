@@ -15,8 +15,6 @@ assignees: ''
     * https://github.com/confidential-containers/enclave-cc/blob/main/src/enclave-agent/Cargo.toml
       * Change the revision
       * Run `cargo update -p image-rs`
-        Note that you can point to your own fork here, so you don't actually do changes in the other projects
-        before making sure this step works as expected.
 
 - [ ] 2. Update Kata Containers to use the latest commit from image-rs, attestation-agent and td-shim
 
@@ -24,8 +22,6 @@ assignees: ''
       * https://github.com/kata-containers/kata-containers/blob/CCv0/src/agent/Cargo.toml
       * Change the revision
       * Run `cargo update -p image-rs`
-          Note that you can point to your own fork here, so you don't actually do changes in the other projects
-          before making sure this step works as expected.
     * attestation-agent and td-shim
       * https://github.com/kata-containers/kata-containers/blob/CCv0/versions.yaml
         * Change the version
@@ -39,10 +35,10 @@ assignees: ''
       * The last commit there must match what's in the following files as preInstall / postUninstall image
         * Enclave CC: https://github.com/confidential-containers/operator/blob/main/config/samples/enclave-cc/base/ccruntime-enclave-cc.yaml
         * Kata Containers:
-              Note that for Kata Containers, we're looking for the newTag, below the quay.io/confidential-containers/container-engine-for-cc-payload image
+              Note that for Kata Containers, we're looking for the newTag, below the quay.io/confidential-containers/reqs-payload image
           * default: https://github.com/confidential-containers/operator/blob/main/config/samples/ccruntime/default/kustomization.yaml
 
-- [ ] 5. Ensure the Operator is using the latest CI builds and that the Operator tests are passsing
+- [ ] 5. Ensure the Operator is using the latest CI builds and that the Operator tests are passing
 
     * Enclave CC:
       * SIM: https://github.com/confidential-containers/operator/blob/main/config/samples/enclave-cc/sim/kustomization.yaml
@@ -50,6 +46,7 @@ assignees: ''
       * Note that we need the quay.io/confidential-containers/runtime-payload-ci registry and enclave-cc-{SIM,HW}-latest tags
     * Kata Containers:
       * default: https://github.com/confidential-containers/operator/blob/main/config/samples/ccruntime/default/kustomization.yaml
+      * s390x: https://github.com/confidential-containers/operator/blob/main/config/samples/ccruntime/s390x/kustomization.yaml
       * peer-pods: https://github.com/confidential-containers/operator/blob/main/config/samples/ccruntime/peer-pods/kustomization.yaml
           Note that we need the quay.io/confidential-containers/runtime-payload-ci registry and kata-containers-latest tag
 
@@ -75,17 +72,15 @@ assignees: ''
 
 - [ ] 11. Update Enclave CC to use the released version of image-rs
 
-    * redo step 3, but now using v<TARGET_RELEASE>
+    * redo step 1, but now using v<TARGET_RELEASE>
 
 - [ ] 12. Update Kata Containers to the latest released version of:
 
-    * image-rs (redo step 4, but now using the v<TARGET_RELEASE>)
-    * attestation-agent (redo step 5, but now using the v<TARGET_RELEASE>)
-    * td-shim (redo step 6, but now using the v<TARGET_RELEASE>)
+    * image-rs and attestation-agent (redo step 2, but now using the v<TARGET_RELEASE>)
 
 - [ ] 13. Update the operator to use the images generated from the latest commit of both Kata Containers and Enclave CC
 
-    * redo step 8, but now targetting the latest payload image generated for Kata Containers and Enclave CC
+    * redo step 5, but now targetting the latest payload image generated for Kata Containers and Enclave CC
 
 - [ ] 14. Make sure all the operator tests are passing
 
@@ -103,7 +98,7 @@ assignees: ''
 
 - [ ] 19. Update the operator to use the release tags coming from Enclave CC and Kata Containers
 
-    * redo step 8, but now targeting the latest release of the payload image generated for Kata Containers eand Enclave CC
+    * redo step 5, but now targeting the latest release of the payload image generated for Kata Containers eand Enclave CC
 
 - [ ] 20. Update the Operator version
 
@@ -113,6 +108,6 @@ assignees: ''
 
 - [ ] 22. Make sure to update the release notes and tag the confidential-containers repository
 
-    * https://github.com/confidential-containers/documentation/tree/main/releases/v<TARGET_RELEASE>.md
+    * https://github.com/confidential-containers/confidential-containers/tree/main/releases/v<TARGET_RELEASE>.md
 
 - [ ] 23. Poke Wainer Moschetta (@wainersm) to update the release to the OperatorHub
