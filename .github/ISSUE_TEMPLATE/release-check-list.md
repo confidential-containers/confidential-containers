@@ -110,4 +110,4 @@ assignees: ''
 
     * https://github.com/confidential-containers/confidential-containers/tree/main/releases/v<TARGET_RELEASE>.md
 
-- [ ] 23. Poke Wainer Moschetta (@wainersm) to update the release to the OperatorHub
+- [ ] 23. Poke Wainer Moschetta (@wainersm) to update the release to the OperatorHub. Find the documented flow [here](https://github.com/confidential-containers/operator/blob/main/docs/OPERATOR_HUB.md).
