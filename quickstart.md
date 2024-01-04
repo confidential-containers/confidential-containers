@@ -277,7 +277,7 @@ To quick start the KBS cluster, a `docker-compose` yaml is provided to launch.
 ```shell
 # Clone KBS git repository
 git clone https://github.com/confidential-containers/kbs.git
-cd kbs
+cd kbs/kbs
 export KBS_DIR_PATH=$(pwd)
 
 # Generate a user auth key pair
