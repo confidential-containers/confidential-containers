@@ -272,7 +272,7 @@ A tenant-side CoCo Key Broker System cluster includes:
 - Reference Value Provicer Service (RVPS): Provides reference values for AS.
 - CoCo Keyprovider: Component to encrypt the images following ocicrypt spec.
 
-To quick start the KBS cluster, a `docker-compose` yaml is provided to launch.
+To quick start the KBS cluster, a `docker compose` yaml is provided to launch.
 
 ```shell
 # Clone KBS git repository
@@ -285,10 +285,10 @@ openssl genpkey -algorithm ed25519 > config/private.key
 openssl pkey -in config/private.key -pubout -out config/public.pub
 
 # Start KBS cluster
-docker-compose up -d
+docker compose up -d
 ```
 
-If configuration of KBS cluster is required, edit the following config files and restart the KBS cluster with `docker-compose`:
+If configuration of KBS cluster is required, edit the following config files and restart the KBS cluster with `docker compose`:
 
 - `$KBS_DIR_PATH/config/kbs-config.json`: configuration for Key Broker Service.
 - `$KBS_DIR_PATH/config/as-config.json`: configuration for Attestation Service.
