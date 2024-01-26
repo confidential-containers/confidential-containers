@@ -69,7 +69,7 @@ This means our trust and threat modelling should
 - Consider existing Cloud Native technologies and the role they can play for confidential containers.
 - Consider additional technologies to fulfil a role in Cloud Native exploitation of TEEs.
 
-### Out of Scope
+## Out of Scope
 
 The following items are considered out-of-scope for the trust/threat modelling within confidential
 containers :
@@ -82,7 +82,7 @@ containers :
   and will only highlight them where they become relevant to the trust model or threats we
   consider.
 
-### Summary
+## Summary
 
 In practice, those deploying workloads into TEE environments may have varying levels of trust
 in the personas who have privileges regarding orchestration or hosting the workload. This trust
