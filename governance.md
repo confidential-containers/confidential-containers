@@ -106,6 +106,8 @@ Membership changes can be approved via GitHub and do not require an SC meeting.
 
 ##### Expansion
 
+###### Adding a new organization to the project
+
 The SC can be expanded if a new organization begins making significant contributions
 to the project.
 When evaluating requests for expansion, the SC will mainly consider whether
@@ -116,6 +118,13 @@ The candidates from a organization are understood to represent
 that organization. The SC may do some basic checks to ensure that
 candidates are familiar with the project and represent relevant contributors.
 Expansion should be approved by at least 2/3rds of current SC members.
+
+###### Adding a new member of an organization that is already represented in the SC
+
+As the organizations in the project are the ones responsible for selecting the
+individual(s) to represent them, any organization that is already part of the
+project can add a new member at its own will, as long as there are no more than
+two members of the same organization as part of the Steering Committee.
 
 ##### Replacement
 
