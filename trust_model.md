@@ -69,7 +69,22 @@ This means our trust and threat modelling should
 - Consider existing Cloud Native technologies and the role they can play for confidential containers.
 - Consider additional technologies to fulfil a role in Cloud Native exploitation of TEEs.
 
-### Out of Scope
+## Illustration
+
+The following diagram shows which components in a Confidential Containers setup
+are part of the TEE (outlined in a green box). The hardware and guest work in
+tandem to establish a TEE for the guest, which provides the isolation and
+integrity protection for data in use.
+
+![Threat model](./images/coco-threat-model.png)
+
+Note that threats could include:
+1. The host operating system
+2. The cloud provider (which controls the host operating system)
+3. Other virtual machines (and their processes) co-located in the same cloud
+4. Any other processes on the host machine (including the kubernetes control plane).
+
+## Out of Scope
 
 The following items are considered out-of-scope for the trust/threat modelling within confidential
 containers :
@@ -82,7 +97,7 @@ containers :
   and will only highlight them where they become relevant to the trust model or threats we
   consider.
 
-### Summary
+## Summary
 
 In practice, those deploying workloads into TEE environments may have varying levels of trust
 in the personas who have privileges regarding orchestration or hosting the workload. This trust
