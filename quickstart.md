@@ -285,7 +285,7 @@ openssl genpkey -algorithm ed25519 > config/private.key
 openssl pkey -in config/private.key -pubout -out config/public.pub
 
 # Start KBS cluster
-docker compose up -d
+docker-compose up -d
 ```
 
 If configuration of KBS cluster is required, edit the following config files and restart the KBS cluster with `docker compose`:
