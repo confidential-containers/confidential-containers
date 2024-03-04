@@ -31,7 +31,7 @@ To run the operator you must have an existing Kubernetes cluster that meets the 
 - Ensure a minimum of 8GB RAM and 4 vCPU for the Kubernetes cluster node
 - Only containerd runtime based Kubernetes clusters are supported with the current CoCo release
 - The minimum Kubernetes version should be 1.24
-- Ensure at least one Kubernetes node in the cluster is having the label `node-role.kubernetes.io/worker=`
+- Ensure at least one Kubernetes node in the cluster is having the label `node.kubernetes.io/worker=`
 - Ensure SELinux is disabled or not enforced (https://github.com/confidential-containers/operator/issues/115)
 
 For more details on the operator, including the custom resources managed by the operator, refer to the operator [docs](https://github.com/confidential-containers/operator).
