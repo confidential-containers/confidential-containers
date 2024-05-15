@@ -243,9 +243,6 @@ Secrets are provisioned to the guest in conjunction with an attestation, which i
 The rest of this guide focuses on setting up more substantial encrypted/signed workloads using attestation
 and confidential hardware.
 
-See [this guide](./guides/nontee_demo.md) if you would like to deploy an example encrypted image without
-confidential hardware.
-
 CoCo has a modular attestation interface and there are a few options for attestation.
 CoCo provides a generic Key Broker Service (KBS) that the rest of this guide will be focused on.
 The SEV runtime class uses `simple-kbs`, which is described in the [SEV guide](./guides/sev.md).
@@ -407,7 +404,7 @@ EOT
 
 Be sure to replace `[REGISTRY_URL]` with the desired registry URL of the encrypted image generated in previous step, replace `[RUNTIME_CLASS]` with kata runtime class for CC HW.
 
-Then configure `/opt/confidential-containers/share/defaults/kata-containers/configuration-<RUNTIME_CLASS_SUFFIX>.toml` to add `agent.aa_kbc_params=cc_kbc::<KBS_URI>` to kernal parameters. Here `RUNTIME_CLASS_SUFFIX` is something like `qemu-tdx`, `KBS_URI` is the address of Key Broker Service in KBS cluster like `http://123.123.123.123:8080`.
+Then configure `/opt/confidential-containers/share/defaults/kata-containers/configuration-<RUNTIME_CLASS_SUFFIX>.toml` to add `agent.aa_kbc_params=cc_kbc::<KBS_URI>` to kernel parameters. Here `RUNTIME_CLASS_SUFFIX` is something like `qemu-tdx`, `KBS_URI` is the address of Key Broker Service in KBS cluster like `http://123.123.123.123:8080`.
 
 Deploy encrypted image as a workload:
 
