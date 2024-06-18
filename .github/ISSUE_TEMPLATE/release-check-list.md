@@ -87,10 +87,11 @@ Identify/create the bundles that we will release for Kata and enclave-cc.
     Update the operator to use the payloads identified in steps 1, 2, and 3.
 
     Make sure that the operator pulls the most recent version of the pre-install container
-        * Find the last commit in the [pre-install directory](https://github.com/confidential-containers/operator/tree/main/install/pre-install-payload)
-            * As a sanity check, the sha hash of the last commit in that pre-install directory will correspond to a pre-install image in quay, i.e. a reqs-payload image [here](quay.io/confidential-containers/reqs-payload).
-            * Make sure that the commit matches the preInstall / postUninstall image specified for [enclave-cc CRD](https://github.com/confidential-containers/operator/blob/main/config/samples/enclave-cc/base/ccruntime-enclave-cc.yaml) and [ccruntime CRD](https://github.com/confidential-containers/operator/blob/main/config/samples/ccruntime/default/kustomization.yaml)
-                * If these do not match (for instance if you changed the snapshotter in step 3), update the operator so that they do match.
+
+    * Find the last commit in the [pre-install directory](https://github.com/confidential-containers/operator/tree/main/install/pre-install-payload)
+        * As a sanity check, the sha hash of the last commit in that pre-install directory will correspond to a pre-install image in quay, i.e. a reqs-payload image [here](quay.io/confidential-containers/reqs-payload).
+    * Make sure that the commit matches the preInstall / postUninstall image specified for [enclave-cc CRD](https://github.com/confidential-containers/operator/blob/main/config/samples/enclave-cc/base/ccruntime-enclave-cc.yaml) and [ccruntime CRD](https://github.com/confidential-containers/operator/blob/main/config/samples/ccruntime/default/kustomization.yaml)
+        * If these do not match (for instance if you changed the snapshotter in step 3), update the operator so that they do match.
 
     There are a number of places where the payloads are referenced. Make sure to update all of the following to the tag matching the latest commit hash from steps 1 and 2:
     * Enclave CC:
