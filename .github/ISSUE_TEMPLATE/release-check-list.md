@@ -79,7 +79,7 @@ Identify/create the bundles that we will release for Kata and enclave-cc.
     and that the operator pulls the most recent version of the container.
 
     * Check that the version of the `nydus-snapshotter` used by Kata matches the one used by the operator
-        * Compare `nydus-snapshotter` version in Kata [versions.yaml](https://github.com/kata-containers/kata-containers/blob/main/versions.yaml#L325) with the [Makefile](https://github.com/confidential-containers/operator/blob/main/install/pre-install-payload/Makefile#L4) for the operator pre-install container.
+        * Compare `nydus-snapshotter` version in Kata [versions.yaml](https://github.com/kata-containers/kata-containers/blob/main/versions.yaml#L320) with the [Makefile](https://github.com/confidential-containers/operator/blob/main/install/pre-install-payload/Makefile#L4) for the operator pre-install container.
             * **If they do not match, stop and open a PR now. In the PR, update the operator's Makefile to match the version used in kata. After the PR is merged, continue.**
 
 - [ ] 4. :wrench: **Open a PR to the operator to update the release artifacts**
