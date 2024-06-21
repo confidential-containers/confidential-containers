@@ -51,6 +51,8 @@ Releases of most subprojects are now decoupled from releases of the CoCo project
 
 ## The Steps
 
+Note: It may be useful when doing these steps to refer to a previous example. The v0.9.0-alpha1 release applied [these changes](https://github.com/confidential-containers/operator/pull/388/files). After following steps 1-4 below, you should end up with a similar set of changes.
+
 ### Determine release builds
 
 Identify/create the bundles that we will release for Kata and enclave-cc.
@@ -117,4 +119,4 @@ Identify/create the bundles that we will release for Kata and enclave-cc.
 ### Post-release
 
 - [ ] 8. :wrench: **Open a PR to the operator to go back to latest payloads after release**
-    After the release, the operator's payloads need to go back to what they were (e.g. using "latest" instead of a specific commit sha). As an example, step 4 for the v0.9.0-alpha0 release applied [these changes](https://github.com/confidential-containers/operator/pull/368/files), and for this step, you should use `git revert` to undo such changes you made during the release.
+    After the release, the operator's payloads need to go back to what they were (e.g. using "latest" instead of a specific commit sha). As an example, step 8 for the v0.9.0-alpha1 release applied [these changes](https://github.com/confidential-containers/operator/pull/389/files). You should use `git revert -s` for this.
