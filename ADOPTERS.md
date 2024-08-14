@@ -11,7 +11,7 @@ See list of adopter types at the bottom of this page.
 |-------------------------------------------------------------------|---------------------------------------------------------------|--------------------------|----------------------------------|---------------------------------------------------------------------------|
 | [Edgeless Systems](https://www.edgeless.systems/)                 | [Contrast](https://github.com/edgelesssys/contrast)           | Beta                     | Service Provider / Consultancy   | Contrast runs confidential container deployments on Kubernetes at scale.                                |
 | [IBM](https://www.ibm.com/z)                                    | [IBM LinuxONE](https://www.ibm.com/linuxone)                  | Beta                     | Service Provider                 | Confidential Containers with Red Hat OpenShift Container Platform and IBM® Secure Execution for Linux (see [details](https://www.ibm.com/blog/confidential-containers-with-red-hat-openshift-container-platform-and-ibm-secure-execution-for-linux/))  |
-|TBD| | | | |
+|NanhuLab|Trusted Big Data Sharing System |Beta |Service Provider |The system uses confidential containers to ensure that data users can utilize the data without being able to view the raw data.(No official website yet. For details: yzc@nanhulab.ac.cn) |
 |TBD| | | | |
 |TBD| | | | |
 
