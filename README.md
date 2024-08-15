@@ -24,7 +24,7 @@ delivering Confidential Computing for guest applications or data inside the TEE
 
 ### Get started quickly... 
 - [Kubernetes Operator for Confidential
-  Computing](https://github.com/confidential-containers/confidential-containers-operator) : An
+  Computing](https://github.com/confidential-containers/operator) : An
   operator to deploy confidential containers runtime (and required configs) on a Kubernetes cluster
 
 
@@ -35,6 +35,7 @@ delivering Confidential Computing for guest applications or data inside the TEE
 - [Project Overview](./overview.md)
 - [Project Architecture](./architecture.md)
 - [Our Roadmap](./roadmap.md)
+- [Our Release Content Planning](https://github.com/orgs/confidential-containers/projects/6)
 - [Alignment with other Projects](alignment.md)
 
 
