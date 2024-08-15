@@ -1,15 +1,18 @@
 # CoCo Steering Committee / Maintainers
 #
-# Github ID, Name, Email Address
+# Github ID, Name, Affiliation
 
-ariel-adam, Ariel Adam, aadam@redhat.com
-bpradipt, Pradipta Banerjee, prbanerj@redhat.com
-mythi, Mikko Ylinen, mikko.ylinen@intel.com
-fitzthum, Tobin Feldman-Fitzthum, tobin@ibm.com
-jiazhang0, Zhang Jia, zhang.jia@linux.alibaba.com
-Jiang Liu, jiangliu, gerry@linux.alibaba.com
-larrydewey, Larry Dewey, Larry.Dewey@amd.com
-magowan, James Magowan, magowan@uk.ibm.com
-peterzcst, Peter Zhu, peter.j.zhu@intel.com
-sameo, Samuel Ortiz, samuel.e.ortiz@protonmail.com
-
+ariel-adam, Ariel Adam, Redhat
+bpradipt, Pradipta Banerjee, Redhat
+peterzcst, Peter Zhu, Intel
+mythi, Mikko Ylinen, Intel
+magowan, James Magowan, IBM
+fitzthum, Tobin Feldman-Fitzthum, IBM
+jiazhang0, Zhang Jia, Alibaba
+jiangliu, Jiang Liu, Alibaba
+larrydewey, Larry Dewey, AMD
+ryansavino, Ryan Savino, AMD
+sameo, Samuel Ortiz, Rivos
+zvonkok, Zvonko Kaiser, NVIDIA
+vbatts, Vincent Batts, Microsoft
+danmihai1, Dan Mihai, Microsoft
