@@ -5,7 +5,7 @@ Otherwise referred to as actors or agents, these are individuals or groups capab
 carrying out a particular threat.
 In identifying personas we consider :
 - The Runtime Environment, Figure 5, Page 19 of CNCF
-  [Cloud Native Security Paper](https://github.com/cncf/tag-security/blob/main/security-whitepaper/v2/CNCF_cloud-native-security-whitepaper-May2022-v2.pdf).
+  [Cloud Native Security Paper](https://github.com/cncf/tag-security/blob/3e57e7c472f7053c693292281419ab926155fe2d/community/resources/security-whitepaper/v2/CNCF_cloud-native-security-whitepaper-May2022-v2.pdf).
   This highlights three layers, Cloud/Environment, Workload Orchestration, Application.
 - The Kubernetes
   [Overview of Cloud Native Security](https://kubernetes.io/docs/concepts/security/overview/)
@@ -19,7 +19,7 @@ In identifying personas we consider :
 
 In considering personas we recognise that a trust boundary exists between each persona and we
 explore how the least privilege principle (as described on Page 40 of
-  [Cloud Native Security Paper](https://github.com/cncf/tag-security/blob/main/security-whitepaper/v2/CNCF_cloud-native-security-whitepaper-May2022-v2.pdf)
+  [Cloud Native Security Paper](https://github.com/cncf/tag-security/blob/3e57e7c472f7053c693292281419ab926155fe2d/community/resources/security-whitepaper/v2/CNCF_cloud-native-security-whitepaper-May2022-v2.pdf)
 ) should apply to any actions which cross these boundaries.
 
  Confidential containers can provide enhancements to ensure that the expected code/containers
@@ -136,7 +136,7 @@ the images they need but also support the verification method they require.  A k
 relationship is the Workload Provider applying Supply Chain
 Security practices (as
 described on Page 42 of
-[Cloud Native Security Paper](https://github.com/cncf/tag-security/blob/main/security-whitepaper/v2/CNCF_cloud-native-security-whitepaper-May2022-v2.pdf)
+[Cloud Native Security Paper](https://github.com/cncf/tag-security/blob/3e57e7c472f7053c693292281419ab926155fe2d/community/resources/security-whitepaper/v2/CNCF_cloud-native-security-whitepaper-May2022-v2.pdf)
 ) when considering Container
 Image Providers. So the Container Image Provider must support the Workload Providers
 ability to provide assurance to the Data Owner regarding integrity of the code.

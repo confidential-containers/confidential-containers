@@ -37,7 +37,7 @@ Further documentation will highlight specific [threat vectors](./threats_overvie
 considering risk,
 impact, mitigation etc as the project progresses. The Security Assurance section, Page 31, of
 Cloud Native Computing Foundation (CNCF)
-[Cloud Native Security Paper](https://github.com/cncf/tag-security/blob/main/security-whitepaper/v2/CNCF_cloud-native-security-whitepaper-May2022-v2.pdf)
+[Cloud Native Security Paper](https://github.com/cncf/tag-security/blob/3e57e7c472f7053c693292281419ab926155fe2d/community/resources/security-whitepaper/v2/CNCF_cloud-native-security-whitepaper-May2022-v2.pdf)
  will guide this more detailed threat vector effort.
 
 ### Related Prior Effort
@@ -51,7 +51,7 @@ For example:
   "[A Technical Analysis of Confidential Computing](https://confidentialcomputing.io/wp-content/uploads/sites/10/2023/03/CCC-A-Technical-Analysis-of-Confidential-Computing-v1.3_unlocked.pdf)"
   section 5 of which defines the threat model for confidential computing.
 - CNCF Security Technical Advisory Group published
-  "[Cloud Native Security Whitepaper](https://github.com/cncf/tag-security/blob/main/security-whitepaper/v2/CNCF_cloud-native-security-whitepaper-May2022-v2.pdf)"
+  "[Cloud Native Security Whitepaper](https://github.com/cncf/tag-security/blob/3e57e7c472f7053c693292281419ab926155fe2d/community/resources/security-whitepaper/v2/CNCF_cloud-native-security-whitepaper-May2022-v2.pdf)"
 - Kubernetes provides documentation :
   "[Overview of Cloud Native Security](https://kubernetes.io/docs/concepts/security/overview/)"
 - Open Web Application Security Project -
