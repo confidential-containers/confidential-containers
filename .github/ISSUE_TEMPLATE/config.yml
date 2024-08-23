@@ -1,0 +1,7 @@
+contact_links:
+  - name: CNCF Slack for Community discussions and Q&A
+    url: https://slack.cncf.io/
+    about: |
+      Join `#confidential-containers` channel by first getting an invitation for the
+      CNCF Slack workspace. Our channel is the best place for getting questions
+      answered and to chat with the community and project maintainers.
