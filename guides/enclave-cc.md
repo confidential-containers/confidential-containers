@@ -5,6 +5,17 @@ This guide assumes that you already have a Kubernetes cluster
 and have deployed the operator as described in the **Installation**
 section of the [quickstart guide](../quickstart.md).
 
+## Configuring Kubernetes cluster when using SGX hardware mode build
+
+Additional setup steps when using the hardware SGX mode are needed:
+
+1. The cluster needs to have [Intel Software Guard Extensions (SGX) device plugin for Kubernetes](
+https://intel.github.io/intel-device-plugins-for-kubernetes/cmd/sgx_plugin/README.html#prerequisites) running.
+1. The cluster needs to have [Intel DCAP aesmd](
+https://github.com/intel/SGXDataCenterAttestationPrimitives) running on every SGX node and the nodes must be registered.
+
+**Note** kind/minikube based clusters are not recommended when using hardware mode SGX.
+
 ## Configuring enclave-cc custom resource to use a different KBC
 
 **Note** Before configuring KBC, please refer to the
@@ -66,7 +77,7 @@ spec:
   containers:
   - image: ghcr.io/confidential-containers/test-container-enclave-cc:encrypted
     name: hello-world
-    workingDir: "/run/rune/boot_instance/"
+    workingDir: "/run/rune/occlum_instance/"
     resources:
       limits:
         sgx.intel.com/epc: 600Mi
@@ -74,7 +85,7 @@ spec:
     - name: OCCLUM_RELEASE_ENCLAVE
       value: "1"
     command:
-    - /run/rune/boot_instance/build/bin/occlum-run
+    - /run/rune/occlum_instance/build/bin/occlum-run
     - /bin/hello_world
   runtimeClassName: enclave-cc
 
@@ -116,6 +127,9 @@ Hello world!
 Hello world!
 
 ```
+
+**NOTE** When running in the hardware SGX mode, the logging is disabled
+by default.
 
 We can also verify the host does not have the image for others to use:
 ```sh
