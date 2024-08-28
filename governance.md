@@ -40,15 +40,15 @@ Project maintainers are first and foremost active *Contributors* to the project 
 * Creating and assigning project issues.
 * Enforcing the [Code of Conduct](https://github.com/confidential-containers/community/blob/main/CODE_OF_CONDUCT.md).
 
-The list of maintainers for a project is defined by the project `CODEOWNERS` file placed at the top-level of each project's repository.
+Project maintainers are managed via GitHub teams. The maintainer team for a project is referenced in the `CODEOWNERS` file
+at the top level of each project repository.
 
 ### Becoming a project maintainer
 
 Existing maintainers may decide to elevate a *Contributor* to the *Maintainer* role based on the contributor established trust and contributions relevance.
 This decision process is not formally defined and is based on lazy consensus from the existing maintainers.
 
-Any contributor may request for becoming a project maintainer by opening a pull request (PR) against the `CODEOWNERS` file, and adding *all* current maintainers as reviewer of the PR.
-Maintainers may also pro-actively promote contributors based on their contributions and leadership track record.
+A contributor can propose themself or someone else as a maintainer by opening an issue in the repository for the project in question.
 
 ## Steering Committee Member
 
