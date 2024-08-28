@@ -50,6 +50,16 @@ This decision process is not formally defined and is based on lazy consensus fro
 
 A contributor can propose themself or someone else as a maintainer by opening an issue in the repository for the project in question.
 
+### Removing project maintainers
+
+Inactive maintainers can be removed by the Steering Committee.
+Maintainers are considered inactive if they have made no GitHub contributions relating to the project they maintain
+for more than six months.
+Before removing a maintainer, the Steering Commitee should notify the maintainer of their status.
+
+Not all inactive maintainers must be removed.
+This process should mainly be used to remove maintainers that have permanently moved on from the project.
+
 ## Steering Committee Member
 
 The Steering Committee (SC) is the overall Confidential Containers organization governing body.
