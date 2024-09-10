@@ -167,7 +167,7 @@ enclave-cc      enclave-cc      9m55s
 
 While the operator deploys all the required binaries and artifacts and sets up runtime classes that use them,
 certain platforms may require additional configuration to enable confidential computing. For example, a specific 
-host kernel or firmware may need to be utilized. The guides section has further instructions on how to apply
+host kernel or firmware may be required. The guides section has further instructions on how to apply
 individual TEE environments.
 
 ## Using CoCo
