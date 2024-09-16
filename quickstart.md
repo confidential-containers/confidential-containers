@@ -334,7 +334,7 @@ Be sure to replace `[SCHEME]` with registry scheme type like `docker`, replace `
 
 [cosign](https://github.com/sigstore/cosign) is required to sign the container image. Follow the instructions here to install `cosign`:
 
-[cosign installation](https://docs.sigstore.dev/cosign/installation/)
+[cosign installation](https://docs.sigstore.dev/cosign/system_config/installation/)
 
 Generate a cosign key pair and register the public key to KBS storage:
 
