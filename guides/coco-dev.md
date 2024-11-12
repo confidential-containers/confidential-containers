@@ -7,7 +7,7 @@ First, we will use the `kata-qemu-coco-dev` runtime class which uses CoCo withou
 Initially we will try this with an unencrypted container image.
 
 In this example, we will be using the bitnami/nginx image as described in the following yaml:
-```
+```yaml
 apiVersion: v1
 kind: Pod
 metadata:
@@ -30,7 +30,7 @@ more details.
 
 With Confidential Containers, the workload container images are never downloaded on the host.
 For verifying that the container image doesn’t exist on the host, you should log into the k8s node and ensure the following command returns an empty result:
-```
+```shell
 root@cluster01-master-0:/home/ubuntu# crictl -r unix:///run/containerd/containerd.sock image ls | grep bitnami/nginx
 ```
 You will run this command again after the container has started.
@@ -38,26 +38,28 @@ You will run this command again after the container has started.
 Create a pod YAML file as previously described (we named it `nginx.yaml`) .
 
 Create the workload:
-```
+```shell
 kubectl apply -f nginx.yaml
 ```
+
 Output:
-```
+```shell
 pod/nginx created
 ```
 
 Ensure the pod was created successfully (in running state):
-```
+```shell
 kubectl get pods
 ```
+
 Output:
-```
+```shell
 NAME    READY   STATUS    RESTARTS   AGE
 nginx   1/1     Running   0          3m50s
 ```
 
 Now go back to the k8s node and ensure that you don’t have any bitnami/nginx images on it:
-```
+```shell
 root@cluster01-master-0:/home/ubuntu# crictl  -r  unix:///run/containerd/containerd.sock image ls | grep bitnami/nginx
 ```
 
@@ -84,7 +86,7 @@ TDX has one runtime class, `kata-qemu-tdx`.
 
 For SEV(-ES) use the `kata-qemu-sev` runtime class and follow the [SEV guide](../guides/sev.md). 
 
-For SNP, use the `kata-qemu-snp` runtime class and follow the SNP guide.
+For SNP, use the `kata-qemu-snp` runtime class and follow the [SNP guide](../guides/snp.md).
 
 For `enclave-cc` follow the [enclave-cc guide](../guides/enclave-cc.md).
 
