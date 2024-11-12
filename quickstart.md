@@ -31,7 +31,7 @@ To run the operator you must have an existing Kubernetes cluster that meets the 
 - Ensure a minimum of 8GB RAM and 4 vCPU for the Kubernetes cluster node
 - Only containerd runtime based Kubernetes clusters are supported with the current CoCo release
 - The minimum Kubernetes version should be 1.24
-- Ensure at least one Kubernetes node in the cluster is having the label `node.kubernetes.io/worker=`
+- Ensure at least one Kubernetes node in the cluster has the labels `node-role.kubernetes.io/worker=` or `node.kubernetes.io/worker=`. This will assign the worker role to a node in your cluster, making it responsible for running your applications and services
 - Ensure SELinux is disabled or not enforced (https://github.com/confidential-containers/operator/issues/115)
 
 For more details on the operator, including the custom resources managed by the operator, refer to the operator [docs](https://github.com/confidential-containers/operator).
@@ -59,18 +59,18 @@ on the worker nodes is **not** on an overlayfs mount but the path is a `hostPath
 Deploy the operator by running the following command  where `<RELEASE_VERSION>` needs to be substituted
 with the desired [release tag](https://github.com/confidential-containers/operator/tags).
 
-```
+```shell
 kubectl apply -k github.com/confidential-containers/operator/config/release?ref=<RELEASE_VERSION>
 ```
 
 For example, to deploy the `v0.10.0` release run:
-```
+```shell
 kubectl apply -k github.com/confidential-containers/operator/config/release?ref=v0.10.0
 ```
 
 Wait until each pod has the STATUS of Running.
 
-```
+```shell
 kubectl get pods -n confidential-containers-system --watch
 ```
 
@@ -81,25 +81,25 @@ kubectl get pods -n confidential-containers-system --watch
 Creating a custom resource installs the required CC runtime pieces into the cluster node and creates
 the `RuntimeClasses`
 
-```
+```shell
 kubectl apply -k github.com/confidential-containers/operator/config/samples/ccruntime/<CCRUNTIME_OVERLAY>?ref=<RELEASE_VERSION>
 ```
 
 The current present overlays are: `default` and `s390x`
 
 For example, to deploy the `v0.10.0` release for `x86_64`, run:
-```
+```shell
 kubectl apply -k github.com/confidential-containers/operator/config/samples/ccruntime/default?ref=v0.10.0
 ```
 
 And to deploy `v0.10.0` release for `s390x`, run:
-```
+```shell
 kubectl apply -k github.com/confidential-containers/operator/config/samples/ccruntime/s390x?ref=v0.10.0
 ```
 
 Wait until each pod has the STATUS of Running.
 
-```
+```shell
 kubectl get pods -n confidential-containers-system --watch
 ```
 
@@ -114,11 +114,11 @@ Please see the [enclave-cc guide](./guides/enclave-cc.md) for more information.
 
 `enclave-cc` is a form of Confidential Containers that uses process-based isolation.
 `enclave-cc` can be installed with the following custom resources.
-```
+```shell
 kubectl apply -k github.com/confidential-containers/operator/config/samples/enclave-cc/sim?ref=<RELEASE_VERSION>
 ```
 or
-```
+```shell
 kubectl apply -k github.com/confidential-containers/operator/config/samples/enclave-cc/hw?ref=<RELEASE_VERSION>
 ```
 for the **simulated** SGX mode build or **hardware** SGX mode build, respectively.
@@ -127,11 +127,11 @@ for the **simulated** SGX mode build or **hardware** SGX mode build, respectivel
 
 Check the `RuntimeClasses` that got created.
 
-```
+```shell
 kubectl get runtimeclass
 ```
 Output:
-```
+```shell
 NAME                 HANDLER              AGE
 kata                 kata-qemu            8d
 kata-clh             kata-clh             8d
@@ -140,7 +140,6 @@ kata-qemu-coco-dev   kata-qemu-coco-dev   8d
 kata-qemu-sev        kata-qemu-sev        8d
 kata-qemu-snp        kata-qemu-snp        8d
 kata-qemu-tdx        kata-qemu-tdx        8d
-
 ```
 
 Details on each of the runtime classes:
@@ -158,11 +157,11 @@ Details on each of the runtime classes:
 
 If you are using `enclave-cc` you should see the following runtime classes.
 
-```
+```shell
 kubectl get runtimeclass
 ```
 Output:
-```
+```shell
 NAME            HANDLER         AGE
 enclave-cc      enclave-cc      9m55s
 ```
@@ -204,7 +203,7 @@ With some TEEs, the CoCo use cases and/or configurations are implemented differe
 
 - [CoCo-dev](./guides/coco-dev.md)
 - [SEV(-ES)](./guides/sev.md)
-- SNP
+- [SNP](./guides/snp.md)
 - TDX: No additional steps required.
 - [SGX](./guides/enclave-cc.md)
 - [IBM Secure Execution](./guides/ibm-se.md)
