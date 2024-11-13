@@ -14,6 +14,7 @@ See list of adopter types at the bottom of this page.
 | [IBM](https://www.ibm.com/z)                                    | [IBM LinuxONE](https://www.ibm.com/linuxone)                  | Beta                     | Service Provider                 | Confidential Containers with Red Hat OpenShift Container Platform and IBM® Secure Execution for Linux (see [details](https://www.ibm.com/blog/confidential-containers-with-red-hat-openshift-container-platform-and-ibm-secure-execution-for-linux/))  |
 |NanhuLab|Trusted Big Data Sharing System |Beta |Service Provider |The system uses confidential containers to ensure that data users can utilize the data without being able to view the raw data.(No official website yet. For details: yzc@nanhulab.ac.cn) |
 | [KubeArmor](https://www.kubearmor.io/) | Runtime Security | Beta | Another project | An open source project that leverages CoCo as part of their solution, integrates with for compatibility and interoperability, or is used in the supply chain of another project [(5GSEC)](https://github.com/5GSEC/nimbus/blob/main/examples/clusterscoped/coco-workload-si-sib.yaml). |
+| [Red Hat](https://www.redhat.com/en) | [OpenShift confidential containers](https://www.redhat.com/en/blog/learn-about-confidential-containers) | Beta | Service Provider | Confidential Containers are available from [OpenShift sandboxed containers release version 1.7.0](https://docs.redhat.com/en/documentation/openshift_sandboxed_containers/1.7/) as a tech preview on Azure cloud for both Intel TDX and AMD SEV-SNP. |
 |TBD| | | | |
 |TBD| | | | |
 
