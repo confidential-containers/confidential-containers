@@ -69,6 +69,24 @@ This means our trust and threat modelling should
 - Consider existing Cloud Native technologies and the role they can play for confidential containers.
 - Consider additional technologies to fulfil a role in Cloud Native exploitation of TEEs.
 
+## Illustration
+
+The following diagram shows which components in a Confidential Containers setup
+are part of the TEE (green boxes labeled TEE). The hardware and guest work in
+tandem to establish a TEE for the pod, which provides the isolation and
+integrity protection for data in use.
+
+![Threat model](./images/coco-threat-model.png)
+
+Not depicted: Process-based isolation from the enclave-cc runtime class. That isolation model further removes the guest operating system from the trust boundary. See the enclave-cc sub-project for more details:
+https://github.com/confidential-containers/enclave-cc/
+
+Untrusted components include:
+1. The host operating system, including its hypervisor, KVM
+2. Other Cloud Provider host software beyond the host OS and hypervisor
+3. Other virtual machines (and their processes) resident on the same host
+4. Any other processes on the host machine (including the kubernetes control plane).
+
 ## Out of Scope
 
 The following items are considered out-of-scope for the trust/threat modelling within confidential
