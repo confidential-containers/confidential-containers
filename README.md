@@ -2,7 +2,7 @@
 
 # Confidential Containers
 
-[![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/5719/badge)](https://bestpractices.coreinfrastructure.org/projects/5719)
+[![CII Best Practices](https://bestpractices.dev/projects/5719/badge)](https://bestpractices.dev/projects/5719)
 
 ## Welcome to confidential-containers
 
