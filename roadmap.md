@@ -23,5 +23,7 @@ We target the following use cases:
 - Trusted Pipeline (Supply Chain)
 - Confidential RAG LLMs
 
-A dedicated working group leads this effort. For additional details we recommend reviewing the working group's notes: [Confidential containers use cases driven development](https://docs.google.com/document/d/1LnGNeyUyPM61Iv4kBKFbfgmBr3RmxHYZ7Ev88obN0_E/edit?tab=t.0#heading=h.b0rnn2bw76n)
+These use cases are outlined within [Confidential Computing Use Case Slides](https://docs.google.com/presentation/d/1YSybvMRku1eoFjAmign9DzKGRpKW4REPYpJCNT0sxmc) created by a dedicated working group.
+
+For additional details we recommend reviewing the working group's notes: [Confidential containers use cases driven development](https://docs.google.com/document/d/1LnGNeyUyPM61Iv4kBKFbfgmBr3RmxHYZ7Ev88obN0_E/edit?tab=t.0#heading=h.b0rnn2bw76n)
 
