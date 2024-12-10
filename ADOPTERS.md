@@ -15,6 +15,7 @@ See list of adopter types at the bottom of this page.
 |NanhuLab|Trusted Big Data Sharing System |Beta |Service Provider |The system uses confidential containers to ensure that data users can utilize the data without being able to view the raw data.(No official website yet. For details: yzc@nanhulab.ac.cn) |
 | [KubeArmor](https://www.kubearmor.io/) | Runtime Security | Beta | Another project | An open source project that leverages CoCo as part of their solution, integrates with for compatibility and interoperability, or is used in the supply chain of another project [(5GSEC)](https://github.com/5GSEC/nimbus/blob/main/examples/clusterscoped/coco-workload-si-sib.yaml). |
 | [Red Hat](https://www.redhat.com/en) | [OpenShift confidential containers](https://www.redhat.com/en/blog/learn-about-confidential-containers) | Beta | Service Provider | Confidential Containers are available from [OpenShift sandboxed containers release version 1.7.0](https://docs.redhat.com/en/documentation/openshift_sandboxed_containers/1.7/) as a tech preview on Azure cloud for both Intel TDX and AMD SEV-SNP. The tech preview also includes support for confidential containers on IBM Z and LinuxONE using Secure Execution for Linux (IBM SEL).|
+| [ByteDance](https://www.bytedance.com/) | Jeddak Sandbox | Beta | End-User / Service Provider | Jeddak Sandbox leverages CoCo to protect the data privacy in the process of the company's business  (for details chendian.imtyrant@bytedance.com)
 |TBD| | | | |
 |TBD| | | | |
 
