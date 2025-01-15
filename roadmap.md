@@ -18,10 +18,11 @@ This helps the community deliver releases which address real use cases customers
 
 We target the following use cases:
 
-- Confidential Federated Learning
-- Multi-party Computing (data clean room, confidential spaces etc)
+- [Confidential AI](./use-case-confidential-ai.md)
+  - [Federated Learning](./use-case-confidential-ai.md#federated-learning)
+  - [Multi-party Computing](./use-case-confidential-ai.md#multi-party-computing)
+  - [Retrieval Augmented Generation Large Language Models (RAG LLM)](./use-case-confidential-ai.md#retrieval-augmented-generation-large-language-models-rag-llm)
 - Trusted Pipeline (Supply Chain)
-- Confidential RAG LLMs
 
 These use cases are outlined within [Confidential Computing Use Case Slides](https://docs.google.com/presentation/d/1YSybvMRku1eoFjAmign9DzKGRpKW4REPYpJCNT0sxmc) created by a dedicated working group.
 
