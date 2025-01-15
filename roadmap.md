@@ -20,7 +20,7 @@ We target the following use cases:
 
 - Confidential Federated Learning
 - Multi-party Computing (data clean room, confidential spaces etc)
-- Trusted Pipeline (Supply Chain)
+- [Secure Supply Chain (Trusted Pipeline)](./use-case-supply-chain.md)
 - Confidential RAG LLMs
 
 These use cases are outlined within [Confidential Computing Use Case Slides](https://docs.google.com/presentation/d/1YSybvMRku1eoFjAmign9DzKGRpKW4REPYpJCNT0sxmc) created by a dedicated working group.
