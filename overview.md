@@ -31,9 +31,8 @@ Cloud Computing adoption continues to accelerate whether it be Public, Private o
 common a Hybrid approach and with it the trust boundaries change. Consideration of insider threats
 needs to now consider the cloud provider, infrastructure provider, and managed service provider.
 
-Certain industries are heavily focused on compliance to standards. Governments, too, are concerned
-both [collectively](https://www.un.org/counterterrorism/cybersecurity) and
-[individually](https://www.whitehouse.gov/briefing-room/presidential-actions/2021/05/12/executive-order-on-improving-the-nations-cybersecurity/).
+Certain industries are heavily focused on compliance to standards. Governments are also
+[interested](https://www.un.org/counterterrorism/cybersecurity).
 The standards expected to protect software solutions continue to evolve towards a concept of
 Confidential Computing.
 
