@@ -16,14 +16,7 @@ In CoCo use case driven development we identify the main functional requirements
 
 This helps the community deliver releases which address real use cases customers require and focusing on the right priorities. The use case driven development approach also includes developing the relevant CI/CDs to ensure end-to-end use cases the community delivers work over time.
 
-We target the following use cases:
+These use cases are outlined on our [website](https://confidentialcontainers.org/docs/use-cases/).
 
-- Confidential Federated Learning
-- Multi-party Computing (data clean room, confidential spaces etc)
-- Trusted Pipeline (Supply Chain)
-- Confidential RAG LLMs
-
-These use cases are outlined within [Confidential Computing Use Case Slides](https://docs.google.com/presentation/d/1YSybvMRku1eoFjAmign9DzKGRpKW4REPYpJCNT0sxmc) created by a dedicated working group.
-
-For additional details we recommend reviewing the working group's notes: [Confidential containers use cases driven development](https://docs.google.com/document/d/1LnGNeyUyPM61Iv4kBKFbfgmBr3RmxHYZ7Ev88obN0_E/edit?tab=t.0#heading=h.b0rnn2bw76n)
+For additional details the Use Case working group's notes can be found here : [Confidential containers use cases driven development](https://docs.google.com/document/d/1LnGNeyUyPM61Iv4kBKFbfgmBr3RmxHYZ7Ev88obN0_E/edit?tab=t.0#heading=h.b0rnn2bw76n)
 
