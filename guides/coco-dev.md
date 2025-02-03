@@ -77,16 +77,13 @@ and confidential hardware.
 
 CoCo has a modular attestation interface and there are a few options for attestation.
 CoCo provides a generic Key Broker Service (KBS) that the rest of this guide will be focused on.
-The SEV runtime class uses `simple-kbs`, which is described in the [SEV guide](../guides/sev.md).
 
 ### Select Runtime Class
 
 To use CoCo with confidential hardware, first switch to the appropriate runtime class.
 TDX has one runtime class, `kata-qemu-tdx`. 
 
-For SEV(-ES) use the `kata-qemu-sev` runtime class and follow the [SEV guide](../guides/sev.md). 
-
-For SNP, use the `kata-qemu-snp` runtime class and follow the [SNP guide](../guides/snp.md).
+For SNP, use the `kata-qemu-snp` runtime class and follow the [SNP guide](https://confidentialcontainers.org/docs/examples/snp-container-launch/).
 
 For `enclave-cc` follow the [enclave-cc guide](../guides/enclave-cc.md).
 
