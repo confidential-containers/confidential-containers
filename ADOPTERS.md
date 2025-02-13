@@ -16,6 +16,7 @@ See list of adopter types at the bottom of this page.
 | [KubeArmor](https://www.kubearmor.io/) | Runtime Security | Beta | Another project | An open source project that leverages CoCo as part of their solution, integrates with for compatibility and interoperability, or is used in the supply chain of another project [(5GSEC)](https://github.com/5GSEC/nimbus/blob/main/examples/clusterscoped/coco-workload-si-sib.yaml). |
 | [Red Hat](https://www.redhat.com/en) | [OpenShift confidential containers](https://www.redhat.com/en/blog/learn-about-confidential-containers) | Beta | Service Provider | Confidential Containers are available from [OpenShift sandboxed containers release version 1.7.0](https://docs.redhat.com/en/documentation/openshift_sandboxed_containers/1.7/) as a tech preview on Azure cloud for both Intel TDX and AMD SEV-SNP. The tech preview also includes support for confidential containers on IBM Z and LinuxONE using Secure Execution for Linux (IBM SEL).|
 | [ByteDance](https://www.bytedance.com/) | Jeddak Sandbox | Beta | End-User / Service Provider | Jeddak Sandbox leverages CoCo to protect the data privacy in the process of the company's business  (for details chendian.imtyrant@bytedance.com) |
+| [Intel](https://www.intel.com/) | [Enterprise-RAG](https://github.com/opea-project/Enterprise-RAG/blob/main/docs/tdx.md)<br>[OPEA](https://github.com/opea-project/GenAIInfra/tree/main/helm-charts/TDX.md) | Beta | End-User / Service Provider | Intel runs confidential container deployments on Kubernetes with Intel TDX |
 |TBD| | | | |
 |TBD| | | | |
 
