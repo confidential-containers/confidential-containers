@@ -22,7 +22,7 @@ hardware support and limitations.
 You can enable Confidential Containers in an existing Kubernetes cluster using the Confidential Containers Operator.
 When installation is finished, your cluster will have new runtime classes for different hardware platforms,
 including a generic runtime for testing CoCo without confidential hardware support, a runtime using a remote hypervisor
-that allows for cloud integration, a runtime for process-based isolation using SGX, as well as runtimes for TDX and SEV.
+that allows for cloud integration, a runtime for process-based isolation using SGX, as well as runtimes for TDX and SNP.
 
 ## Prerequisites
 
@@ -148,7 +148,6 @@ Details on each of the runtime classes:
 - *kata-clh* - standard kata runtime using the cloud hypervisor 
 - *kata-qemu* - same as kata
 - *kata-qemu-coco-dev* - standard kata runtime using the QEMU hypervisor including all CoCo building blocks for a non CC HW
-- *kata-qemu-sev* - using QEMU, and support for AMD SEV HW
 - *kata-qemu-snp* - using QEMU, and support for AMD SNP HW
 - *kata-qemu-tdx* -using QEMU, and support Intel TDX HW based on what's provided by [Ubuntu](https://github.com/canonical/tdx) and [CentOS 9 Stream](https://sigs.centos.org/virt/tdx/).
 
@@ -202,8 +201,7 @@ With some TEEs, the CoCo use cases and/or configurations are implemented differe
 [guide](./guides) section. To get started using CoCo without TEE hardware, follow the CoCo-dev guide below:
 
 - [CoCo-dev](./guides/coco-dev.md)
-- [SEV(-ES)](./guides/sev.md)
-- [SNP](./guides/snp.md)
+- [SNP](https://confidentialcontainers.org/docs/getting-started/prerequisites/hardware/snp/)
 - TDX: No additional steps required.
 - [SGX](./guides/enclave-cc.md)
 - [IBM Secure Execution](./guides/ibm-se.md)
