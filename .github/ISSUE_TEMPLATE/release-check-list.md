@@ -78,6 +78,12 @@ Identify/create the bundles that we will release for Kata and enclave-cc.
 
 ### Test Release with Operator
 
+    NOTE: There is a release-helper script for these steps in the operator
+    repo [here](https://github.com/confidential-containers/operator/tree/main/hack/release-helper.sh).
+    Before using it, however, you should sanity check that the list of
+    prereq- and kata-related yaml files that it modifies are correct (see
+    [here](https://github.com/confidential-containers/operator/tree/main/hack/release-helper-yaml-list.sh)).
+
 - [ ] 4. :eyes: **Check operator pre-installation and open PR if needed**
     
     The operator uses a pre-install container to setup the node.
