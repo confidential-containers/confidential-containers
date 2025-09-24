@@ -85,7 +85,7 @@ Further, as leaders in the community, the SC members will make themselves famili
 
 The current members of the SC are:
 
-* Larry Dewey (@larrydewey) and Ryan Savino (@ryansavino) - AMD
+* Ryan Savino (@ryansavino) - AMD
 * Jiang Liu (@jiangliu) and Jia Zhang (@jiazhang0) - Alibaba
 * James Magowan (@magowan)  and Tobin Feldman-Fitzthum (@fitzthum) - IBM
 * Peter Zhu (@peterzcst) and Mikko Ylinen (@mythi) - Intel
@@ -97,6 +97,7 @@ The current members of the SC are:
 ### Emeritus Members
 
 * Dan Middleton [dcmiddle](https://github.com/dcmiddle) (he/him)
+* Larry Dewey (@larrydewey) - AMD
 
 #### Selection
 
