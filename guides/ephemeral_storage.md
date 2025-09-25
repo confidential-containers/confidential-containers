@@ -47,7 +47,6 @@ spec:
       storage: 1Gi
   storageClassName: open-local-lvm
 ```
-Before deploy the workload, we can follow this [documentation](https://github.com/kata-containers/kata-containers/blob/CCv0/docs/how-to/how-to-build-and-test-ccv0.md) and use [ccv0.sh](https://github.com/kata-containers/kata-containers/blob/CCv0/docs/how-to/ccv0.sh) to enable CoCo console debug(optional, check whether working as expected).
 
 Create the workload:
 ```sh
