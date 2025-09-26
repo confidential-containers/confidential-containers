@@ -78,6 +78,8 @@ with the community as early as possible. Consider making an `RFC` issue
 that explains the changes. You might also try to break large contributions
 into smaller steps.
 
+Any new feature must be accompanied by new unit tests.
+
 ### Making a Pull Request
 
 If you aren't familiar with Git or the GitHub PR workflow, take a look at [this section](https://github.com/kata-containers/community/blob/main/CONTRIBUTING.md#github-workflow)
