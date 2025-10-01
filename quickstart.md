@@ -137,7 +137,6 @@ kata                 kata-qemu            8d
 kata-clh             kata-clh             8d
 kata-qemu            kata-qemu            8d
 kata-qemu-coco-dev   kata-qemu-coco-dev   8d
-kata-qemu-sev        kata-qemu-sev        8d
 kata-qemu-snp        kata-qemu-snp        8d
 kata-qemu-tdx        kata-qemu-tdx        8d
 ```

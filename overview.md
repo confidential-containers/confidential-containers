@@ -43,7 +43,7 @@ combining and growing in the future.
 ### Trusted Execution Environments
 
 We are actively working to support multiple TEE Technologies:
-- AMD Secure Encrypted Virtualization (SEV, SEV-ES)
+- AMD Secure Encrypted Virtualization (SEV-SNP)
 - Intel Software Guard Extensions (SGX)
 - Intel Trusted Domain Extensions (TDX)
 - IBM 
