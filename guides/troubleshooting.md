@@ -48,13 +48,13 @@ To do this, first look at the containerd config file located at
 be a section for each runtime class. For example:
 
 ```toml
-[plugins."io.containerd.grpc.v1.cri".containerd.runtimes.kata-qemu-sev]
+[plugins."io.containerd.grpc.v1.cri".containerd.runtimes.kata-qemu-snp]
   cri_handler = "cc"
-  runtime_type = "io.containerd.kata-qemu-sev.v2"
+  runtime_type = "io.containerd.kata-qemu-snp.v2"
   privileged_without_host_devices = true
   pod_annotations = ["io.katacontainers.*"]
-  [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.kata-qemu-sev.options]
-    ConfigPath = "/opt/confidential-containers/share/defaults/kata-containers/configuration-qemu-sev.toml"
+  [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.kata-qemu-snp.options]
+    ConfigPath = "/opt/confidential-containers/share/defaults/kata-containers/configuration-qemu-snp.toml"
 ```
 
 The `ConfigPath` entry on the final line shows the path to the Kata configuration file that will be used
@@ -106,7 +106,7 @@ rather than to the hypervisor. This method can also be used to add
 additional parameters to the command line. Just have the bash script
 call the hypervisor with whatever arguments it received plus any that
 you want to add. This could be useful for enabling debugging or tracing
-flags in your hypervisor. For instance, if you are using QEMU and SEV
+flags in your hypervisor. For instance, if you are using QEMU and SEV-SNP
 you might want to add the argument `--trace 'kvm_sev_*'`. Make sure
 that QEMU was built with an appropriate tracing backend.
 
