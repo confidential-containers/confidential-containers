@@ -105,7 +105,7 @@ same goals and attributes:
 
 ### VM-based TEE
 
-VM-based TEEs (e.g. AMD SEV, IBM SE or Intel TDX) can be used to build a
+VM-based TEEs (e.g. AMD SEV-SNP, IBM SE or Intel TDX) can be used to build a
 confidential containers software architecture:
 
 ![CC_TEE_container](./images/CC_TEE_container.png)
