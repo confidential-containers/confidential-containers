@@ -87,7 +87,7 @@ The current members of the SC are:
 
 * Ryan Savino (@ryansavino) - AMD
 * Jiang Liu (@jiangliu) and Jia Zhang (@jiazhang0) - Alibaba
-* James Magowan (@magowan)  and Tobin Feldman-Fitzthum (@fitzthum) - IBM
+* James Magowan (@magowan) and Nina Goradia (@ninag) - IBM
 * Peter Zhu (@peterzcst) and Mikko Ylinen (@mythi) - Intel
 * Pradipta Banerjee (@bpradipt)  and Ariel Adam (@ariel-adam) - Red Hat
 * Samuel Ortiz (@sameo) - Rivos
@@ -98,6 +98,7 @@ The current members of the SC are:
 
 * Dan Middleton [dcmiddle](https://github.com/dcmiddle) (he/him)
 * Larry Dewey (@larrydewey) - AMD
+* Tobin Feldman-Fitzthum (@fitzthum) - IBM
 
 #### Selection
 
