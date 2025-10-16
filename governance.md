@@ -91,14 +91,13 @@ The current members of the SC are:
 * Peter Zhu (@peterzcst) and Mikko Ylinen (@mythi) - Intel
 * Pradipta Banerjee (@bpradipt)  and Ariel Adam (@ariel-adam) - Red Hat
 * Samuel Ortiz (@sameo) - Rivos
-* Zvonko Kaiser (@zvonkok) - NVIDIA
+* Zvonko Kaiser (@zvonkok) and Tobin Feldman-Fitzthum (@fitzthum) - NVIDIA
 * Vincent Batts (@vbatts) and Dan Mihai (@danmihai1) - Microsoft
 
 ### Emeritus Members
 
 * Dan Middleton [dcmiddle](https://github.com/dcmiddle) (he/him)
 * Larry Dewey (@larrydewey) - AMD
-* Tobin Feldman-Fitzthum (@fitzthum) - IBM
 
 #### Selection
 
