@@ -106,7 +106,7 @@ rather than to the hypervisor. This method can also be used to add
 additional parameters to the command line. Just have the bash script
 call the hypervisor with whatever arguments it received plus any that
 you want to add. This could be useful for enabling debugging or tracing
-flags in your hypervisor. For instance, if you are using QEMU and SEV
+flags in your hypervisor. For instance, if you are using QEMU and SEV-SNP
 you might want to add the argument `--trace 'kvm_sev_*'`. Make sure
 that QEMU was built with an appropriate tracing backend.
 
