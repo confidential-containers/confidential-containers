@@ -91,7 +91,7 @@ Identify/create the bundles that we will release for Kata and enclave-cc.
 
 - [ ] 4. :wrench: **Open a PR to the operator to update the release artifacts**
 
-    Update the operator to use the payloads identified in steps 1, 2, 3, and 4.
+    Update the operator to use the payloads identified in steps 1, 2, and 3.
 
     Make sure that the operator pulls the most recent version of the pre-install container
 
