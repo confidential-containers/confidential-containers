@@ -128,6 +128,15 @@ that organization. The SC may do some basic checks to ensure that
 candidates are familiar with the project and represent relevant contributors.
 Expansion should be approved by at least 2/3rds of current SC members.
 
+If an SC member moves from one company to another, their membership does not travel
+with them. Instead, they should initiate a replacement (described below) so that
+their former employer's representation is up-to-date.
+If the new employer has zero or one members on the steering committe, the member
+can initiate an expansion to remain on the steering commitee.
+
+If a company reduces their number of representatives, an expansion is required
+to increase their footprint on the SC again.
+
 ##### Replacement
 
 An SC member can replace themselves with another member from the same organization at will.
@@ -135,6 +144,14 @@ This is understood to represent a decision by that organization.
 If the SC contains another member from the same organization, they must approve the replacement.
 Otherwise, unless there are significant concerns that the change does not represent the
 organization in question, a vote is not required to approve a replacement.
+
+If an SC member leaves their company and is no longer engaged with the project, replacement
+can be initiated by the other SC member from that company.
+In this case a vote is not required to approve the replacement as long as it is clear
+that the member being replaced is no longer with the company.
+If the company does not have a suitable replacement for the outgoing member,
+the same procedure can be used to reduce their representation on the SC
+from two seats to one.
 
 ##### Recusal
 
@@ -145,11 +162,18 @@ An individual can remove themselves from the SC at any time. A vote is not requi
 A member can be removed from the SC in the case of gross violation of the Code of Conduct.
 This should be done only in exceptional circumstances and requires a unanimous vote of remaining SC members.
 
+A member can also be removed for longterm inactivity. This also requires unanimous approval and the steering
+committee must attempt to contact the member in multiple ways first.
+If possible, a replacement should occur instead.
+There is no standard definition of longterm inactivity, but this procedure should only be used in extreme circumstances
+where inactivity is expected to be permanent (e.g. retirement), and where the member is inactive
+not just in the SC but in the community as a whole, and is not involved in any related internal work.
+
 ### Decision-making
 
 The SC routinely makes decisions, technical or not, sometimes as a consulting request from project Maintainers or Contributors.
 
-The SC decision-making process is [driven by consensus](https://en.wikipedia.org/wiki/Consensus_decision-making), i.e. the SC will try to reach consensus through discussions and potentially many revisions iterations for any given proposal.
+The SC decision-making process is [driven by consensus](https://en.wikipedia.org/wiki/Consensus_decision-making), i.e. the SC will try to reach consensus through discussions and potentially many revisions for any given proposal.
 The main goal is not to get full agreement from all SC members on a final decision, but rather for most people to only be left with minor objections.
 
 Voting on a decision proposal should be used as a last resort solution, as it can potentially leave several SC members major concerns unaddressed.
@@ -157,6 +181,10 @@ Voting on a decision proposal should be used as a last resort solution, as it ca
 Some procedural decisions, such as expansion, can be approved without an SC meeting. This is done via GitHub and requires approval by
 2/3rds of SC members. If an SC member feels that further discussion is required a meeting can be called, even if the PR has otherwise been approved.
 If a meeting is called, the above procedure should be followed.
+
+Changes to this document should also be approved by 2/3rds of SC members, usually following a discussion in an SC meeting.
+When a quorum of SC members is required to approve a pull request, if the author of the pull request
+is a member of the steering committee, they can be counted towards the quorum.
 
 Community members who are not on the SC are also welcome to submit non-binding feedback regarding any SC process.
 
@@ -170,5 +198,5 @@ The SC meeting scope is different from the weekly [Confidential Containers commu
 
 Each SC member is expected to attend the SC meetings, and the following guidelines are used to determine if quorum is reached:
 
-* Quorum to meet is 1/2 (5/10)
-* Quorum to vote is 2/3 (7/10)
+* Quorum to meet is 1/2
+* Quorum to vote is 2/3
