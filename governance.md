@@ -128,6 +128,15 @@ that organization. The SC may do some basic checks to ensure that
 candidates are familiar with the project and represent relevant contributors.
 Expansion should be approved by at least 2/3rds of current SC members.
 
+If an SC member moves from one company to another, their membership does not travel
+with them. Instead, they should initiate a replacement (described below) so that
+their former employer's representation is up-to-date.
+If the new employer has zero or one members on the steering committe, the member
+can initiate an expansion to remain on the steering commitee.
+
+If a company reduces their number of representatives, an expansion is required
+to increase their footprint on the SC again.
+
 ##### Replacement
 
 An SC member can replace themselves with another member from the same organization at will.
@@ -135,6 +144,14 @@ This is understood to represent a decision by that organization.
 If the SC contains another member from the same organization, they must approve the replacement.
 Otherwise, unless there are significant concerns that the change does not represent the
 organization in question, a vote is not required to approve a replacement.
+
+If an SC member leaves their company and is no longer engaged with the project, replacement
+can be initiated by the other SC member from that company.
+In this case a vote is not required to approve the replacement as long as it is clear
+that the member being replaced is no longer with the company.
+If the company does not have a suitable replacement for the outgoing member,
+the same procedure can be used to reduce their representation on the SC
+from two seats to one.
 
 ##### Recusal
 
@@ -144,6 +161,13 @@ An individual can remove themselves from the SC at any time. A vote is not requi
 
 A member can be removed from the SC in the case of gross violation of the Code of Conduct.
 This should be done only in exceptional circumstances and requires a unanimous vote of remaining SC members.
+
+A member can also be removed for longterm inactivity. This also requires unanimous approval and the steering
+committee must attempt to contact the member in multiple ways first.
+If possible, a replacement should occur instead.
+There is no standard definition of longterm inactivity, but this procedure should only be used in extreme circumstances
+where inactivity is expected to be permanent (i.e. retirement), and where the member is inactive
+not just in the SC but in the community as a whole, and is not involved in any related internal work.
 
 ### Decision-making
 
