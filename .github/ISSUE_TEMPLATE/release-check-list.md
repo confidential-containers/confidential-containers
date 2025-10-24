@@ -20,6 +20,7 @@ flowchart LR
     Guest-Components .-> Client-tool
     Guest-Components --> enclave-agent
     enclave-cc --> kustomization.yaml
+    Operator --> versions.yaml
     Guest-Components --> versions.yaml
     Trustee --> versions.yaml
     Kata --> versions.yaml
@@ -47,7 +48,8 @@ flowchart LR
 Starting with v0.9.0 the release process no longer involves centralized dependency management.
 In other words, when doing a CoCo release, we don't push the most recent versions of the subprojects
 into Kata and enclave-cc. Instead, dependencies should be updated during the normal process of development.
-Releases of most subprojects are now decoupled from releases of the CoCo project.
+After the release, we typically cut a release of the subprojects that reflects whatever commit was used
+in the Kata release.
 
 ## The Steps
 
@@ -72,13 +74,12 @@ Identify/create the bundles that we will release for Kata and enclave-cc.
     If you absolutely cannot use a Kata release,
     you can consider releasing one of these bundles.
 
-- [ ] 3. :eyes: **Create a peer pods release**
+### Update the Operator
 
-    Create a peer pods release based on the Kata release, by following the [documented flow](https://github.com/confidential-containers/cloud-api-adaptor/blob/main/docs/Release-Process.md).
+    NOTE: There is a release-helper script for these steps in the operator
+    repo [here](https://github.com/confidential-containers/operator/tree/main/hack/release-helper.sh).
 
-### Test Release with Operator
-
-- [ ] 4. :eyes: **Check operator pre-installation and open PR if needed**
+- [ ] 3. :eyes: **Check operator pre-installation and open PR if needed**
     
     The operator uses a pre-install container to setup the node.
     Check that the container matches the dependencies used in Kata
@@ -88,7 +89,7 @@ Identify/create the bundles that we will release for Kata and enclave-cc.
         * Compare the `nydus-snapshotter` version in Kata [versions.yaml](https://github.com/kata-containers/kata-containers/blob/main/versions.yaml) (search for `nydus-snapshotter` and check its `version` field) with the [Makefile](https://github.com/confidential-containers/operator/blob/main/install/pre-install-payload/Makefile) (check the `NYDUS_SNAPSHOTTER_VERSION` value) for the operator pre-install container.
             * **If they do not match, stop and open a PR now. In the PR, update the operator's Makefile to match the version used in kata. After the PR is merged, continue.**
 
-- [ ] 5. :wrench: **Open a PR to the operator to update the release artifacts**
+- [ ] 4. :wrench: **Open a PR to the operator to update the release artifacts**
 
     Update the operator to use the payloads identified in steps 1, 2, 3, and 4.
 
@@ -114,13 +115,40 @@ Identify/create the bundles that we will release for Kata and enclave-cc.
 
 ### Final Touches
 
-- [ ] 6. :trophy: **Cut an operator release using the GitHub release tool**
+- [ ] 5. :trophy: **Cut an operator release using the GitHub release tool**
+
+- [ ] 6. :wrench: **Create a peer pods release**
+
+    Create a peer pods release based on the Kata release, by following the [documented flow](https://github.com/confidential-containers/cloud-api-adaptor/blob/main/docs/Release-Process.md).
 
 - [ ] 7. :green_book: **Make sure to update the [release notes](https://github.com/confidential-containers/confidential-containers/tree/main/releases) and tag/release the confidential-containers repo using the GitHub release tool.**
 
-- [ ] 8. :hammer: **Poke Wainer Moschetta (@wainersm) to update the release to the OperatorHub. Find the documented flow [here](https://github.com/confidential-containers/operator/blob/main/docs/OPERATOR_HUB.md).**
-
 ### Post-release
 
-- [ ] 9. :wrench: **Open a PR to the operator to go back to latest payloads after release**
+- [ ] 8. :wrench: **Open a PR to the operator to go back to latest payloads after release**
     After the release, the operator's payloads need to go back to what they were (e.g. using "latest" instead of a specific commit sha). As an example, the v0.9.0-alpha1 release applied [these changes](https://github.com/confidential-containers/operator/pull/389/files). You should use `git revert -s` for this.
+
+- [ ] 9. :pushpin: **Tag the version of guest-components used in the release**.
+
+    Go look at [versions.yaml](https://github.com/kata-containers/kata-containers/blob/main/versions.yaml)
+    in Kata Containers and find the version of the guest-components that was used in the Kata release.
+    Tag this commit in guest-components with the latest version of guest components.
+    Note that the version of guest-components might not be the same as the version of CoCo.
+
+- [ ] 10. :scissors: **Cut a release of guest-components using GitHub release tool**
+
+- [ ] 11. :pushpin: **Tag the version of Trustee used in the release**
+
+    Follow the same process as step 9 but for Trustee.
+
+- [ ] 12. :scissors: **Cut a release of Trustee using GitHub release tool**
+
+- [ ] 13. :wrench: **Tag the Trustee release images**
+
+    Use the Trustee release helper script to push the CI images corresponding to the released hash
+    as the release images.
+
+- [ ] 14. :pushpin: **Tag the latest version of the website for the release**
+
+    Make sure the website is up-to-date for the latest release, and then tag the repo.
+
