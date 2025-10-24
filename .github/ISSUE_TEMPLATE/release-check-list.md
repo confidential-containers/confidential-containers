@@ -151,4 +151,3 @@ Identify/create the bundles that we will release for Kata and enclave-cc.
 - [ ] 14. :pushpin: **Tag the latest version of the website for the release**
 
     Make sure the website is up-to-date for the latest release, and then tag the repo.
-

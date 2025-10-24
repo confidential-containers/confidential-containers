@@ -19,7 +19,7 @@ https://github.com/intel/SGXDataCenterAttestationPrimitives) running on every SG
 ## Configuring enclave-cc custom resource to use a different KBC
 
 **Note** Before configuring KBC, please refer to the
-[guide](../quickstart.md#deploy-and-configure-tenant-side-coco-key-broker-system-cluster) to deploy KBS cluster.
+[guide](coco-dev.md#deploy-and-configure-tenant-side-coco-key-broker-system-cluster) to deploy KBS cluster.
 
 **Note** The KBC configuration changes to the enclave-cc custom resource yaml 
 must be made **before** deploying it. 

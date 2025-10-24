@@ -1,21 +1,27 @@
 # Confidential Containers Adopters
 
-This page contains a list of organizations/companies and projects/products who use confidential containers as adopters in different usage levels (development, beta, production, GA etc...) 
+This page contains a list of organizations/companies and projects/products who use confidential containers as adopters in different usage levels (development, beta, production, GA etc...)
 
-**NOTE:** For adding your organization/company and project/product to this table (alphabetical order) fork the repository and open a PR with the required change. 
+**NOTE:** For adding your organization/company and project/product to this table (alphabetical order) fork the repository and open a PR with the required change.
 See list of adopter types at the bottom of this page.
 
 ## Adopters
 
 | Organization/Company                                              | Project/Product                                               | Usage level              | Adopter type                     | Details                                                                   |
 |-------------------------------------------------------------------|---------------------------------------------------------------|--------------------------|----------------------------------|---------------------------------------------------------------------------|
+|[Alibaba Cloud (Aliyun)](https://www.alibabacloud.com/)| [Elastic Algorithm Service](https://www.alibabacloud.com/help/en/pai/user-guide/eas-model-serving/?spm=a2c63.p38356.0.0.2b2b6679Pjozxy) and [Elastic GPU Service](https://www.alibabacloud.com/help/en/egs/) | Beta | Service Provider | Both services use sub-projects of confidential containers to protect the user data and AI model from being exposed to CSP (For details mading.ma@alibaba-inc.com) |
 | [Edgeless Systems](https://www.edgeless.systems/)                 | [Contrast](https://github.com/edgelesssys/contrast)           | Beta                     | Service Provider / Consultancy   | Contrast runs confidential container deployments on Kubernetes at scale.                                |
 | [IBM](https://www.ibm.com/z)                                    | [IBM LinuxONE](https://www.ibm.com/linuxone)                  | Beta                     | Service Provider                 | Confidential Containers with Red Hat OpenShift Container Platform and IBM® Secure Execution for Linux (see [details](https://www.ibm.com/blog/confidential-containers-with-red-hat-openshift-container-platform-and-ibm-secure-execution-for-linux/))  |
 |NanhuLab|Trusted Big Data Sharing System |Beta |Service Provider |The system uses confidential containers to ensure that data users can utilize the data without being able to view the raw data.(No official website yet. For details: yzc@nanhulab.ac.cn) |
+| [KubeArmor](https://www.kubearmor.io/) | Runtime Security | Beta | Another project | An open source project that leverages CoCo as part of their solution, integrates with for compatibility and interoperability, or is used in the supply chain of another project [(5GSEC)](https://github.com/5GSEC/nimbus/blob/main/examples/clusterscoped/coco-workload-si-sib.yaml). |
+| [Red Hat](https://www.redhat.com/en) | [OpenShift confidential containers](https://www.redhat.com/en/blog/learn-about-confidential-containers) | Beta | Service Provider | Confidential Containers are available from [OpenShift sandboxed containers release version 1.7.0](https://docs.redhat.com/en/documentation/openshift_sandboxed_containers/1.7/) as a tech preview on Azure cloud for both Intel TDX and AMD SEV-SNP. The tech preview also includes support for confidential containers on IBM Z and LinuxONE using Secure Execution for Linux (IBM SEL).|
+| [ByteDance](https://www.bytedance.com/) | Jeddak Sandbox | Beta | End-User / Service Provider | Jeddak Sandbox leverages CoCo to protect the data privacy in the process of the company's business  (for details chendian.imtyrant@bytedance.com) |
+| [Intel](https://www.intel.com/) | [Enterprise-RAG](https://github.com/opea-project/Enterprise-RAG/blob/main/docs/tdx.md)<br>[OPEA](https://github.com/opea-project/GenAIInfra/tree/main/helm-charts/TDX.md) | Beta | End-User / Service Provider | Intel runs confidential container deployments on Kubernetes with Intel TDX |
+| [Switchboard](https://www.switchboard.xyz/) | [Decentralized Crypto Oracle](https://docs.switchboard.xyz/switchboard-protocol/running-a-switchboard-oracle) | Production | Service Provider | Running our Decentralized Oracles code in CoCo on AMD SEV SNP bare metal machines |
 |TBD| | | | |
 |TBD| | | | |
 
-## Adopter types 
+## Adopter types
 
 See CNCF [definition of an adopter](https://github.com/cncf/toc/blob/main/FAQ.md#what-is-the-definition-of-an-adopter) <br>
 
