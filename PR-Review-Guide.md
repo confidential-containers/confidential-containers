@@ -19,7 +19,7 @@
 ---
 
 This document attempts to capture some of the points to consider when
-reviewing a [new code contribution](CONTRIBUTING.md) (a Pull Request (PR)) to
+reviewing a new code contribution (a Pull Request (PR)) to
 ensure overall quality is high.
 
 ## High level considerations

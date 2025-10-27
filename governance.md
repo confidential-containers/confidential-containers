@@ -3,7 +3,7 @@
 The Confidential Containers is an open source organization and community that adheres to the following principles:
 
 * Open - Confidential Containers is an open source project licensed under the [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0).
-  We welcome all [contributions](https://github.com/confidential-containers/community/blob/main/CONTRIBUTING.md)
+  We welcome all contributions (see our [Contributing Guidelines](https://github.com/confidential-containers/confidential-containers/?tab=contributing-ov-file#readme))
 * Respectful and welcoming - See our [Code of Conduct](https://github.com/confidential-containers/community/blob/main/CODE_OF_CONDUCT.md)
 * Transparent - All discussions leading to contributions to the project should be open to all and done in public.
   There maybe exceptions for preliminary effort (e.g. security related work) but the point of disclosure will still lead to a transparent discussion in public, either through our GitHub repositories or public meetings.
