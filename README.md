@@ -38,10 +38,9 @@ delivering Confidential Computing for guest applications or data inside the TEE
 - [Our Release Content Planning](https://github.com/orgs/confidential-containers/projects/6)
 - [Alignment with other Projects](alignment.md)
 
+## Contributing
 
-### Contribute...
-- [CONTRIBUTING](CONTRIBUTING.md)
-
+We welcome contributions from the community! Please see our [Contributing Guidelines](https://github.com/confidential-containers/confidential-containers/?tab=contributing-ov-file#readme) for details on how to get started.
 
 ## License
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fconfidential-containers%2Fcommunity.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fconfidential-containers%2Fcommunity?ref=badge_large)
