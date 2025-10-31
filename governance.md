@@ -4,7 +4,7 @@ The Confidential Containers is an open source organization and community that ad
 
 * Open - Confidential Containers is an open source project licensed under the [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0).
   We welcome all contributions (see our [Contributing Guidelines](https://github.com/confidential-containers/confidential-containers/?tab=contributing-ov-file#readme))
-* Respectful and welcoming - See our [Code of Conduct](https://github.com/confidential-containers/community/blob/main/CODE_OF_CONDUCT.md)
+* Respectful and welcoming - See our [Code of Conduct](https://github.com/confidential-containers/confidential-containers/blob/main/CODE_OF_CONDUCT.md)
 * Transparent - All discussions leading to contributions to the project should be open to all and done in public.
   There maybe exceptions for preliminary effort (e.g. security related work) but the point of disclosure will still lead to a transparent discussion in public, either through our GitHub repositories or public meetings.
 
@@ -13,7 +13,7 @@ The Confidential Containers is an open source organization and community that ad
 The Confidential Containers organization is composed of multiple projects.
 
 A project is the primary unit of collaboration, therefore each project has its own repository and maintainers team.
-All projects follow the [Code of Conduct](https://github.com/confidential-containers/community/blob/main/CODE_OF_CONDUCT.md).
+All projects follow the [Code of Conduct](https://github.com/confidential-containers/confidential-containers/blob/main/CODE_OF_CONDUCT.md).
 
 # Community Members and Roles
 
@@ -38,7 +38,7 @@ Project maintainers are first and foremost active *Contributors* to the project 
 * Facilitating, reviewing and merging contributions.
   They have write access to the project repository.
 * Creating and assigning project issues.
-* Enforcing the [Code of Conduct](https://github.com/confidential-containers/community/blob/main/CODE_OF_CONDUCT.md).
+* Enforcing the [Code of Conduct](https://github.com/confidential-containers/confidential-containers/blob/main/CODE_OF_CONDUCT.md).
 
 Project maintainers are managed via GitHub teams. The maintainer team for a project is referenced in the `CODEOWNERS` file
 at the top level of each project repository.
