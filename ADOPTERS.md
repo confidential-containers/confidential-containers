@@ -18,6 +18,7 @@ See list of adopter types at the bottom of this page.
 | [ByteDance](https://www.bytedance.com/) | Jeddak Sandbox | Beta | End-User / Service Provider | Jeddak Sandbox leverages CoCo to protect the data privacy in the process of the company's business  (for details chendian.imtyrant@bytedance.com) |
 | [Intel](https://www.intel.com/) | [Enterprise-RAG](https://github.com/opea-project/Enterprise-RAG/blob/main/docs/tdx.md)<br>[OPEA](https://github.com/opea-project/GenAIInfra/tree/main/helm-charts/TDX.md) | Beta | End-User / Service Provider | Intel runs confidential container deployments on Kubernetes with Intel TDX |
 | [Switchboard](https://www.switchboard.xyz/) | [Decentralized Crypto Oracle](https://docs.switchboard.xyz/switchboard-protocol/running-a-switchboard-oracle) | Production | Service Provider | Running our Decentralized Oracles code in CoCo on AMD SEV SNP bare metal machines |
+|[JDCloud](https://www.jdcloud.com)|JoyScale |Beta |End-User / Service Provider  | JoyScale leverages CoCo to protect the AI data privacy in the process of the company's business and end user. (For details: huoqifeng1@jd.com)|
 |TBD| | | | |
 |TBD| | | | |
 
