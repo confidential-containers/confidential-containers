@@ -18,5 +18,3 @@ This helps the community deliver releases which address real use cases customers
 
 These use cases are outlined on our [website](https://confidentialcontainers.org/docs/use-cases/).
 
-For additional details the Use Case working group's notes can be found here : [Confidential containers use cases driven development](https://docs.google.com/document/d/1LnGNeyUyPM61Iv4kBKFbfgmBr3RmxHYZ7Ev88obN0_E/edit?tab=t.0#heading=h.b0rnn2bw76n)
-
