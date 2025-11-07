@@ -92,7 +92,7 @@ spec:
   runtimeName: kata
   config:
     installType: bundle
-    payloadImage: quay.io/confidential-containers/runtime-payload:ccv0-ssh-demo
+    payloadImage: quay.io/confidential-containers/runtime-payload:latest
 EOF
 ```
 This will create an install daemonset targeting the worker nodes for installation.
@@ -117,4 +117,3 @@ kata-qemu   kata-qemu   92s
 `kata-cc` runtimeclass uses CCv0 specific configurations. 
 
 Now you can deploy the PODs targeting the specific runtimeclasses.
-The [SSH demo](/demos/ssh-demo) can be used as a compatible workload.
