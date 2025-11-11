@@ -14,7 +14,7 @@ This guide walks through these steps and touches on some platform-specific confi
 For more advanced features, specific hardware setup, and troubleshooting information,
 see the [guides](./guides) directory.
 
-Confidential Containers is still maturing. See [release notes](./releases) for currrent
+Confidential Containers is still maturing. See [release notes](./releases) for current
 hardware support and limitations.
 
 # Installation
@@ -26,7 +26,7 @@ that allows for cloud integration, a runtime for process-based isolation using S
 
 ## Prerequisites
 
-To run the operator you must have an existing Kubernetes cluster that meets the followng requirements.
+To run the operator you must have an existing Kubernetes cluster that meets the following requirements.
 
 - Ensure a minimum of 8GB RAM and 4 vCPU for the Kubernetes cluster node
 - Only containerd runtime based Kubernetes clusters are supported with the current CoCo release
@@ -186,7 +186,7 @@ Below is a brief summary and description of some of the CoCo use cases and featu
   automatically decrypted by proving the workload is running in a TEE
 - **Ephemeral Storage** - Temporary storage that is used during the lifecycle of the container but is cleared out 
   when a pod is restarted or finishes its task. At the moment, only ephemeral storage of the container itself is 
-  supported and it has to be explicityly configured.
+  supported and it has to be explicitly configured.
 - **Authenticated Registries** - Create secure container registries that require authentication to access and manage container 
   images that ensures that only trusted images are deployed in the Confidential Container. The host must have access 
   to the registry credentials.
