@@ -29,7 +29,6 @@ delivering Confidential Computing for guest applications or data inside the TEE
 
 
 ## Further Detail
-[![asciicast](https://asciinema.org/a/eGHhZdQY3uYnDalFAfuB7VYqF.svg)](https://asciinema.org/a/eGHhZdQY3uYnDalFAfuB7VYqF)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fconfidential-containers%2Fcommunity.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fconfidential-containers%2Fcommunity?ref=badge_shield)
 
 - [Project Overview](./overview.md)
