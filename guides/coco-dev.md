@@ -85,8 +85,6 @@ TDX has one runtime class, `kata-qemu-tdx`.
 
 For SNP, use the `kata-qemu-snp` runtime class and follow the [SNP guide](https://confidentialcontainers.org/docs/examples/snp-container-launch/).
 
-For `enclave-cc` follow the [enclave-cc guide](../guides/enclave-cc.md).
-
 ### Deploy and Configure tenant-side CoCo Key Broker System cluster
 
 The following describes how to run and provision the generic KBS.

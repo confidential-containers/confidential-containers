@@ -131,56 +131,13 @@ Following is the workflow when deploying a Kubernetes pod with VM-based TEEs:
   - Enclave verifies/decrypts the container image(s) : **step 6 in the diagram**.
   - Enclave starts the container workload.
 
-### Process-based TEE
-
-The confidential containers software architecture can also be built on top of
-process-based TEEs like e.g. Intel SGX:
-
-![CC_SGX_container](./images/CC_SGX_container.png)
-
-Following is the workflow when deploying a Kubernetes pod with a process-based
-TEEs. The main differences from the VM-based TEE approach are the last 3 steps
-involving interaction between 2 enclave processes:
-
-- CC workload preparation
-  - User builds the container image(s) (e.g. with tools like `podman`).
-  - User signs/encrypts the container image(s).
-  - User pushes the container image(s) to the image registry.
-- Deploying the CC workload in k8s
-  - User deploys the workload (`kubectl apply -f cc_workload.yaml`).
-  - Kubernetes schedules the workload to target host having the required
-    capability to run confidential containers.
-- CC workload execution flow (**red connector** in the diagram)
-  - Confidential containers runtime on the host starts the enclave agent.
-  - Enclave (agent) performs remote attestation: **steps 1-2 in the diagram**.
-  - Enclave (agent) gets the keys required to verify/decrypt the containers
-    image(s): **steps 3-4 in the diagram**.
-  - Enclave (image management) downloads the container image(s) : **step 5 in
-    the diagram**.
-  - Enclave verifies, decrypts and writes the container image(s) to a local
-    encrypted filesystem: **step 6 in the diagram**.
-  - The runtime starts the app enclave which reads the container bundle from the
-    encrypted filesystem.
-  - Secure use of the encrypted filesystem is facilitated by a key exchange
-    between the agent and app enclaves using either sealing or local attestation.
-
-As can be seen, the flows for process and VM-based TEEs are almost identical. It
-should be noted that process-based TEE requires a few additional software
-components like `libOS` without which the application requires re-architecting.
-This is not the case for VM-based TEEs. Conversely, Process based TEEs do not
-require a separate VM and CC-aware hypervisor.
-
-The up-to-date design for the Confidential Containers process-based architecture
-is maintained in the [enclave-cc documentation](https://github.com/confidential-containers/enclave-cc/blob/main/docs/design.md).
-
 # CNCF Confidential Containers
 
 The CNCF Confidential Containers project is an implementation of the
 confidential containers architecture described in the previous section.
 
-It relies on several major cloud native components like `containerd`, both the
-`Kata Containers` and the `enclave-cc` runtimes, or the `ocicrypt` container
-image encryption APIs.
+It relies on several major cloud native components like `containerd`,
+`Kata Containers`, and the `ocicrypt` container image encryption APIs.
 It also depends on the standard Linux virtualization stack, including the `KVM`
 hypervisor and open source VMMs like `QEMU` or `cloud-hypervisor`.
 
@@ -200,9 +157,3 @@ The following diagram shows the upcoming v1 architecture to run Confidential
 Containers using VM-based TEEs by leveraging the peer-pods approach. This relies on Kata Containers remote hypervisor support and the [cloud-api-adaptor](https://github.com/confidential-containers/cloud-api-adaptor/) project:
 
 ![COCO_ccv1_TEE](./images/COCO_ccv1_peerpods_TEE.png)
-
-The following diagram shows the upcoming v1 architecture to run Confidential
-Containers using the Intel SGX process-based TEE. It relies on the
-[enclave-cc](https://github.com/confidential-containers/enclave-cc) project:
-
-![COCO_ccv1_enclave](./images/COCO_ccv1_enclave.png)
