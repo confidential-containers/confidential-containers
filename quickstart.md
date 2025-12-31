@@ -48,9 +48,6 @@ get using `ansible-galaxy collection install community.docker`.
 > **Note** You can also use a Kind or Minikube cluster with containerd runtime to try out the CoCo stack
 for development purposes.  Make sure to use the `kata-clh` runtime class for your workloads when using Kind or
 Minikube, [as QEMU is known to **not** be working with Kind or Minikube](https://github.com/confidential-containers/operator/issues/124).
-Also, with the `enclave-cc` runtime class, the cluster must be prepared so that `/opt/confidential-containers`
-on the worker nodes is **not** on an overlayfs mount but the path is a `hostPath` mount (see
-[a sample configuration](https://github.com/confidential-containers/operator/blob/cf6a4f38114f7c5b71daec6cb666b1b40bcea140/tests/e2e/enclave-cc-kind-config.yaml#L6-L8))
 
 ## Operator Installation
 
@@ -103,26 +100,6 @@ Wait until each pod has the STATUS of Running.
 kubectl get pods -n confidential-containers-system --watch
 ```
 
-#### Create custom resource for enclave-cc
-
-**Note** For `enclave-cc` certain configuration changes, such as setting the
-URI of the KBS, must be made **before** applying the custom resource. 
-Please refer to the [guide](./guides/enclave-cc.md#configuring-enclave-cc-custom-resource-to-use-a-different-kbc)
-to modify the enclave-cc configuration.
-
-Please see the [enclave-cc guide](./guides/enclave-cc.md) for more information.
-
-`enclave-cc` is a form of Confidential Containers that uses process-based isolation.
-`enclave-cc` can be installed with the following custom resources.
-```shell
-kubectl apply -k github.com/confidential-containers/operator/config/samples/enclave-cc/sim?ref=<RELEASE_VERSION>
-```
-or
-```shell
-kubectl apply -k github.com/confidential-containers/operator/config/samples/enclave-cc/hw?ref=<RELEASE_VERSION>
-```
-for the **simulated** SGX mode build or **hardware** SGX mode build, respectively.
-
 ### Verify Installation
 
 Check the `RuntimeClasses` that got created.
@@ -152,17 +129,6 @@ Details on each of the runtime classes:
 
 
 
-
-If you are using `enclave-cc` you should see the following runtime classes.
-
-```shell
-kubectl get runtimeclass
-```
-Output:
-```shell
-NAME            HANDLER         AGE
-enclave-cc      enclave-cc      9m55s
-```
 
 The CoCo operator environment has been setup and deployed!
 
@@ -202,6 +168,5 @@ With some TEEs, the CoCo use cases and/or configurations are implemented differe
 - [CoCo-dev](./guides/coco-dev.md)
 - [SNP](https://confidentialcontainers.org/docs/getting-started/prerequisites/hardware/snp/)
 - TDX: No additional steps required.
-- [SGX](./guides/enclave-cc.md)
 - [IBM Secure Execution](./guides/ibm-se.md)
 - ...
