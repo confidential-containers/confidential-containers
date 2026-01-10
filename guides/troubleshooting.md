@@ -6,7 +6,7 @@ Here are some tips.
 
 If you get stuck or find a bug, please make an issue on this repository or
 the repository for the component in question, e.g.,
-[the operator](https://github.com/confidential-containers/operator/issues).
+[the charts](https://github.com/confidential-containers/charts/issues).
 
 ## Kubernetes
 

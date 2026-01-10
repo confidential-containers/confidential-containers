@@ -2,7 +2,7 @@
 
 ## Creating a sample CoCo workload
 
-Once you've used the operator to install Confidential Containers, you can run a pod with CoCo by simply adding a runtime class.
+Once you've used the Helm charts to install Confidential Containers, you can run a pod with CoCo by simply adding a runtime class.
 First, we will use the `kata-qemu-coco-dev` runtime class which uses CoCo without hardware support.
 Initially we will try this with an unencrypted container image.
 

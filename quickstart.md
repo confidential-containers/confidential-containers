@@ -5,7 +5,7 @@ across a wide array of platforms and deployment models.
 
 In general, using CoCo involves the following steps:
 
-- Install CoCo using the operator
+- Install CoCo using the Helm charts
 - Add a runtimeClassName to your pod yaml
 - Deploy signed/encrypted container images (optional)
 - Setup attestation (optional)
@@ -19,86 +19,58 @@ hardware support and limitations.
 
 # Installation
 
-You can enable Confidential Containers in an existing Kubernetes cluster using the Confidential Containers Operator.
+You can enable Confidential Containers in an existing Kubernetes cluster using the Confidential Containers Helm charts.
 When installation is finished, your cluster will have new runtime classes for different hardware platforms,
 including a generic runtime for testing CoCo without confidential hardware support, a runtime using a remote hypervisor
 that allows for cloud integration, a runtime for process-based isolation using SGX, as well as runtimes for TDX and SNP.
 
 ## Prerequisites
 
-To run the operator you must have an existing Kubernetes cluster that meets the followng requirements.
+To install the Helm charts you must have an existing Kubernetes cluster that meets the following requirements.
 
 - Ensure a minimum of 8GB RAM and 4 vCPU for the Kubernetes cluster node
 - Only containerd runtime based Kubernetes clusters are supported with the current CoCo release
 - The minimum Kubernetes version should be 1.24
 - Ensure at least one Kubernetes node in the cluster has the labels `node-role.kubernetes.io/worker=` or `node.kubernetes.io/worker=`. This will assign the worker role to a node in your cluster, making it responsible for running your applications and services
-- Ensure SELinux is disabled or not enforced (https://github.com/confidential-containers/operator/issues/115)
+- Ensure SELinux is disabled or not enforced
+- Helm 3.8+ installed
 
-For more details on the operator, including the custom resources managed by the operator, refer to the operator [docs](https://github.com/confidential-containers/operator).
-
-> **Note** If you need to quickly deploy a single-node test cluster, you can
-use the [run-local.sh
-script](https://github.com/confidential-containers/operator/blob/main/tests/e2e/run-local.sh)
-from the operator test suite, which will setup a single-node cluster on your
-machine for testing purpose.
-This script requires `ansible-playbook`, which you can install on CentOS/RHEL using
-`dnf install ansible-core`, and the Ansible `docker_container` module, which you can
-get using `ansible-galaxy collection install community.docker`.
+For more details on the Helm charts, including detailed installation options and troubleshooting,
+refer to the [charts repository](https://github.com/confidential-containers/charts).
 
 > **Note** You can also use a Kind or Minikube cluster with containerd runtime to try out the CoCo stack
-for development purposes.  Make sure to use the `kata-clh` runtime class for your workloads when using Kind or
-Minikube, [as QEMU is known to **not** be working with Kind or Minikube](https://github.com/confidential-containers/operator/issues/124).
+for development purposes. Make sure to use the `kata-clh` runtime class for your workloads when using Kind or
+Minikube, as QEMU is known to **not** work with Kind or Minikube.
 
-## Operator Installation
+## Helm Installation
 
-### Deploy the operator
-
-Deploy the operator by running the following command  where `<RELEASE_VERSION>` needs to be substituted
-with the desired [release tag](https://github.com/confidential-containers/operator/tags).
+Install the CoCo runtime using the Helm chart, substituting `<VERSION>` with the desired
+[release version](https://github.com/confidential-containers/charts/releases):
 
 ```shell
-kubectl apply -k github.com/confidential-containers/operator/config/release?ref=<RELEASE_VERSION>
+helm install coco oci://ghcr.io/confidential-containers/charts/confidential-containers \
+  --version <VERSION> \
+  --namespace coco-system \
+  --create-namespace
 ```
 
-For example, to deploy the `v0.10.0` release run:
-```shell
-kubectl apply -k github.com/confidential-containers/operator/config/release?ref=v0.10.0
-```
-
-Wait until each pod has the STATUS of Running.
+For example, to install version 0.18.0:
 
 ```shell
-kubectl get pods -n confidential-containers-system --watch
-```
-
-### Create the custom resource
-
-#### Create custom resource for kata
-
-Creating a custom resource installs the required CC runtime pieces into the cluster node and creates
-the `RuntimeClasses`
-
-```shell
-kubectl apply -k github.com/confidential-containers/operator/config/samples/ccruntime/<CCRUNTIME_OVERLAY>?ref=<RELEASE_VERSION>
-```
-
-The current present overlays are: `default` and `s390x`
-
-For example, to deploy the `v0.10.0` release for `x86_64`, run:
-```shell
-kubectl apply -k github.com/confidential-containers/operator/config/samples/ccruntime/default?ref=v0.10.0
-```
-
-And to deploy `v0.10.0` release for `s390x`, run:
-```shell
-kubectl apply -k github.com/confidential-containers/operator/config/samples/ccruntime/s390x?ref=v0.10.0
+helm install coco oci://ghcr.io/confidential-containers/charts/confidential-containers \
+  --version 0.18.0 \
+  --namespace coco-system \
+  --create-namespace
 ```
 
 Wait until each pod has the STATUS of Running.
 
 ```shell
-kubectl get pods -n confidential-containers-system --watch
+kubectl get pods -n coco-system --watch
 ```
+
+For platform-specific installation options (s390x, peer-pods, etc.) and advanced configuration,
+see the [charts repository documentation](https://github.com/confidential-containers/charts).
 
 ### Verify Installation
 
@@ -130,11 +102,11 @@ Details on each of the runtime classes:
 
 
 
-The CoCo operator environment has been setup and deployed!
+The CoCo environment has been setup and deployed!
 
 ### Platform Setup
 
-While the operator deploys all the required binaries and artifacts and sets up runtime classes that use them,
+While the Helm charts deploy all the required binaries and artifacts and set up runtime classes that use them,
 certain platforms may require additional configuration to enable confidential computing. For example, a specific 
 host kernel or firmware may be required. See the [guides](./guides/) for more information.
 

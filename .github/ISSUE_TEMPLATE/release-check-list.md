@@ -16,9 +16,9 @@ The release process mainly follows from this dependency graph.
 flowchart LR
     Trustee --> Versions.yaml
     Guest-Components --> Versions.yaml
-    Kata --> kustomization.yaml
+    Kata --> Chart.yaml
     Guest-Components .-> Client-tool
-    Operator --> versions.yaml
+    Charts --> versions.yaml
     Guest-Components --> versions.yaml
     Trustee --> versions.yaml
     Kata --> versions.yaml
@@ -31,9 +31,9 @@ flowchart LR
     subgraph Trustee
         Client-tool
     end
-    subgraph Operator
-        kustomization.yaml
-        reqs-deploy
+    subgraph Charts
+        Chart.yaml
+        values.yaml
     end
     subgraph cloud-api-adaptor
         versions.yaml
@@ -48,91 +48,86 @@ in the Kata release.
 
 ## The Steps
 
-Note: It may be useful when doing these steps to refer to a previous example. The v0.9.0-alpha1 release applied [these changes](https://github.com/confidential-containers/operator/pull/388/files). After following steps 1-5 below, you should end up with a similar set of changes.
+### Prepare the Helm Charts Release
 
-### Determine release builds
+The [charts repository](https://github.com/confidential-containers/charts) provides a `scripts/prepare-release.sh`
+script that automates most of the release preparation. See the [scripts README](https://github.com/confidential-containers/charts/blob/main/scripts/README.md) for detailed documentation.
 
-Identify/create the bundles that we will release for Kata.
+- [ ] 1. :wrench: **Run the prepare-release script**
 
-- [ ] 1. :eyes: **Find Kata release version**
+    Clone the charts repository and run the release preparation script:
 
-    The release will be based on an existing Kata containers bundle.
-    You should use a release of Kata containers.
-    Release bundles can be found [here](https://quay.io/repository/kata-containers/kata-deploy?tab=tags).
-    There is also a bundle built for [each commit](https://quay.io/repository/kata-containers/kata-deploy-ci?tab=tags).
-    If you absolutely cannot use a Kata release,
-    you can consider releasing one of these bundles.
-
-### Update the Operator
-
-    NOTE: There is a release-helper script for these steps in the operator
-    repo [here](https://github.com/confidential-containers/operator/tree/main/hack/release-helper.sh).
-
-- [ ] 2. :eyes: **Check operator pre-installation and open PR if needed**
+    ```bash
+    cd /path/to/confidential-containers/charts
     
-    The operator uses a pre-install container to setup the node.
-    Check that the container matches the dependencies used in Kata
-    and that the operator pulls the most recent version of the container.
+    # For a minor version bump (e.g., 0.17.0 → 0.18.0)
+    ./scripts/prepare-release.sh minor
+    
+    # Or for a patch version bump (e.g., 0.17.0 → 0.17.1)
+    ./scripts/prepare-release.sh
+    ```
 
-    * Check that the version of the `nydus-snapshotter` used by Kata matches the one used by the operator
-        * Compare the `nydus-snapshotter` version in Kata [versions.yaml](https://github.com/kata-containers/kata-containers/blob/main/versions.yaml) (search for `nydus-snapshotter` and check its `version` field) with the [Makefile](https://github.com/confidential-containers/operator/blob/main/install/pre-install-payload/Makefile) (check the `NYDUS_SNAPSHOTTER_VERSION` value) for the operator pre-install container.
-            * **If they do not match, stop and open a PR now. In the PR, update the operator's Makefile to match the version used in kata. After the PR is merged, continue.**
+    The script will:
+    - Fetch the latest kata-containers release from GitHub
+    - Update `Chart.yaml` with new chart and kata-deploy versions
+    - Update Helm dependencies (`helm dependency update`)
+    - Create a branch, commit, push, and open a PR
 
-- [ ] 3. :wrench: **Open a PR to the operator to update the release artifacts**
+- [ ] 2. :eyes: **Review and merge the release PR**
 
-    Update the operator to use the payloads identified in steps 1, 2, and 3.
+    - Review the automatically created PR
+    - Ensure the kata-deploy version matches the intended Kata Containers release
+    - Test the changes if needed
+    - Merge the PR
 
-    Make sure that the operator pulls the most recent version of the pre-install container
+### Cut the Charts Release
 
-    * Find the last commit in the [pre-install directory](https://github.com/confidential-containers/operator/tree/main/install/pre-install-payload)
-        * As a sanity check, the sha hash of the last commit in that pre-install directory will correspond to a pre-install image in quay, i.e. a reqs-payload image [here](https://quay.io/confidential-containers/reqs-payload).
-    * Make sure that the commit matches the preInstall / postUninstall image specified for [ccruntime CRD](https://github.com/confidential-containers/operator/blob/main/config/samples/ccruntime/default/kustomization.yaml)
-        * If these do not match (for instance if you changed the snapshotter in step 4), update the operator so that they do match.
+- [ ] 3. :trophy: **Trigger the Release workflow**
 
-    There are a number of places where the payloads are referenced. Make sure to update all of the following to the tag matching the latest commit hash from steps 1, 2, and 3:
-    * Kata Containers:
-      * [default](https://github.com/confidential-containers/operator/blob/main/config/samples/ccruntime/default/kustomization.yaml)
-      * [s390x](https://github.com/confidential-containers/operator/blob/main/config/samples/ccruntime/s390x/kustomization.yaml)
-      * [peer-pods](https://github.com/confidential-containers/operator/blob/main/config/samples/ccruntime/peer-pods/kustomization.yaml)
-          Note that we need the quay.io/confidential-containers/runtime-payload-ci registry and kata-containers-latest tag
+    After the PR is merged:
+    1. Go to **Actions** → **Release Helm Chart** in the charts repository
+    2. Click **Run workflow**
+    3. Select the **main** branch
+    4. Click **Run workflow**
 
-    **Also, update the [operator version](https://github.com/confidential-containers/operator/blob/main/config/release/kustomization.yaml) (update the `newTag` value)**
+    This will:
+    - Create a git tag (`v{version}`)
+    - Package the Helm chart
+    - Publish to GHCR (`ghcr.io/confidential-containers/charts/confidential-containers:{version}`)
+    - Create a GitHub Release with the chart artifact
 
-### Final Touches
+### Other Releases
 
-- [ ] 4. :trophy: **Cut an operator release using the GitHub release tool**
-
-- [ ] 5. :wrench: **Create a peer pods release**
+- [ ] 4. :wrench: **Create a peer pods release**
 
     Create a peer pods release based on the Kata release, by following the [documented flow](https://github.com/confidential-containers/cloud-api-adaptor/blob/main/docs/Release-Process.md).
 
-- [ ] 6. :green_book: **Make sure to update the [release notes](https://github.com/confidential-containers/confidential-containers/tree/main/releases) and tag/release the confidential-containers repo using the GitHub release tool.**
+- [ ] 5. :green_book: **Update the release notes and tag this repository**
+
+    Make sure to update the [release notes](https://github.com/confidential-containers/confidential-containers/tree/main/releases) and tag/release the confidential-containers repo using the GitHub release tool.
 
 ### Post-release
 
-- [ ] 7. :wrench: **Open a PR to the operator to go back to latest payloads after release**
-    After the release, the operator's payloads need to go back to what they were (e.g. using "latest" instead of a specific commit sha). As an example, the v0.9.0-alpha1 release applied [these changes](https://github.com/confidential-containers/operator/pull/389/files). You should use `git revert -s` for this.
-
-- [ ] 8. :pushpin: **Tag the version of guest-components used in the release**.
+- [ ] 6. :pushpin: **Tag the version of guest-components used in the release**.
 
     Go look at [versions.yaml](https://github.com/kata-containers/kata-containers/blob/main/versions.yaml)
     in Kata Containers and find the version of the guest-components that was used in the Kata release.
     Tag this commit in guest-components with the latest version of guest components.
     Note that the version of guest-components might not be the same as the version of CoCo.
 
-- [ ] 9. :scissors: **Cut a release of guest-components using GitHub release tool**
+- [ ] 7. :scissors: **Cut a release of guest-components using GitHub release tool**
 
-- [ ] 10. :pushpin: **Tag the version of Trustee used in the release**
+- [ ] 8. :pushpin: **Tag the version of Trustee used in the release**
 
-    Follow the same process as step 9 but for Trustee.
+    Follow the same process as step 6 but for Trustee.
 
-- [ ] 11. :scissors: **Cut a release of Trustee using GitHub release tool**
+- [ ] 9. :scissors: **Cut a release of Trustee using GitHub release tool**
 
-- [ ] 12. :wrench: **Tag the Trustee release images**
+- [ ] 10. :wrench: **Tag the Trustee release images**
 
     Use the Trustee release helper script to push the CI images corresponding to the released hash
     as the release images.
 
-- [ ] 13. :pushpin: **Tag the latest version of the website for the release**
+- [ ] 11. :pushpin: **Tag the latest version of the website for the release**
 
     Make sure the website is up-to-date for the latest release, and then tag the repo.
