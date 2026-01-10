@@ -23,9 +23,8 @@ Our key considerations are:
 delivering Confidential Computing for guest applications or data inside the TEE
 
 ### Get started quickly... 
-- [Kubernetes Operator for Confidential
-  Computing](https://github.com/confidential-containers/operator) : An
-  operator to deploy confidential containers runtime (and required configs) on a Kubernetes cluster
+- [Confidential Containers Helm Charts](https://github.com/confidential-containers/charts) : Helm
+  charts to deploy confidential containers runtime (and required configs) on a Kubernetes cluster
 
 
 ## Further Detail
@@ -44,4 +43,3 @@ We welcome contributions from the community! Please see our [Contributing Guidel
 
 ## License
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fconfidential-containers%2Fcommunity.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fconfidential-containers%2Fcommunity?ref=badge_large)
-

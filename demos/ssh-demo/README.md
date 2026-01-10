@@ -10,7 +10,7 @@ Because this container image is encrypted, and the key to decrypting this image 
 ## Using a pre-provided container image
 
 If you would rather build the image with your own keys, skip to [Building the container image](#building-the-container-image).
-The [operator](/demos/operator-demo) can be used to set up a compatible runtime.
+Follow the [quickstart guide](../../quickstart.md) to set up a compatible runtime using Helm charts.
 
 A demo image is provided at [docker.io/katadocker/ccv0-ssh](https://hub.docker.com/r/katadocker/ccv0-ssh).
 It is encrypted with [Attestation Agent](https://github.com/confidential-containers/attestation-agent)'s [offline file system key broker](https://github.com/confidential-containers/attestation-agent/tree/64c12fbecfe90ba974d5fe4896bf997308df298d/src/kbc_modules/offline_fs_kbc) and [`aa-offline_fs_kbc-keys.json`](./aa-offline_fs_kbc-keys.json) as its key file.
