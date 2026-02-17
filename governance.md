@@ -29,6 +29,16 @@ Adding or enhancing documentation, tests, tools, project artifacts are all valua
 
 Project contributions will be reviewed by the project maintainers and should pass all applicable tests.
 
+## Member
+
+Confidential Containers does not officially recognize a project member role.
+That said, occasionally it is useful for contributors to be a member of the Confidential Containers
+GitHub organization (i.e. to have an issue assigned to them).
+In this case, contributors can be added by organization owners.
+Inactive organization members can be removed by organization owners.
+
+Anyone in the Confidential Containers GitHub organization must have two-factor authentication enabled.
+
 ## Maintainer
 
 Each project has one or more *Maintainer*.
