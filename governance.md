@@ -43,6 +43,8 @@ Project maintainers are first and foremost active *Contributors* to the project 
 Project maintainers are managed via GitHub teams. The maintainer team for a project is referenced in the `CODEOWNERS` file
 at the top level of each project repository.
 
+Project maintainers must have two-factor authentication enabled.
+
 ### Becoming a project maintainer
 
 Existing maintainers may decide to elevate a *Contributor* to the *Maintainer* role based on the contributor established trust and contributions relevance.
