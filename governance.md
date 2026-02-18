@@ -17,7 +17,7 @@ All projects follow the [Code of Conduct](https://github.com/confidential-contai
 
 # Community Members and Roles
 
-Everyone is welcome to participate to the Confidential Containers projects, and there are 3 community member roles:
+Everyone is welcome to participate to the Confidential Containers projects in any of the following roles. 
 
 ## Contributor
 
@@ -28,6 +28,15 @@ Contributions are not limited to code alone.
 Adding or enhancing documentation, tests, tools, project artifacts are all valuable ways to contribute to a Confidential Containers project.
 
 Project contributions will be reviewed by the project maintainers and should pass all applicable tests.
+
+## Member
+
+Confidential Containers does not officially recognize a project member role.
+That said, occasionally it is useful for contributors to be a member of the Confidential Containers
+GitHub organization (i.e. to have an issue assigned to them).
+In this case, contributors can be added by organization owners.
+
+Anyone in the Confidential Containers GitHub organization must have two-factor authentication enabled.
 
 ## Maintainer
 
@@ -42,6 +51,8 @@ Project maintainers are first and foremost active *Contributors* to the project 
 
 Project maintainers are managed via GitHub teams. The maintainer team for a project is referenced in the `CODEOWNERS` file
 at the top level of each project repository.
+
+Project maintainers must have two-factor authentication enabled.
 
 ### Becoming a project maintainer
 
@@ -60,12 +71,45 @@ Before removing a maintainer, the Steering Commitee should notify the maintainer
 Not all inactive maintainers must be removed.
 This process should mainly be used to remove maintainers that have permanently moved on from the project.
 
+## Security Manager
+
+Security managers have access to security advisories across the project and are expected
+to engage with them.
+Specifically, they have the GitHub security manager role across the entire organization.
+
+Individual repository maintainers as well as the steering committee also have the
+security manager GitHub role.
+This section captures individuals outside of those groups who might participate in
+security reviews.
+Security managers might include key users and ecosystem consumers,
+such as developers of other OSS projects or commercial distributions/services.
+
+Security managers can be added at the discretion of the steering committee.
+To become a security manager, create an issue in this repository
+describing why you have a compelling security interest in the project.
+Or, if you do not wish to share this information publicly, contact
+a member of the Steering Committee directly.
+In either case, the Steering Committee will assess the applicant via lazy consensus.
+The Steering Committee can remove inactive security managers, but should first try
+to contact the individual to confirm that they are inactive.
+
+Other individuals may also be added to individual advisory issues at the discretion of the
+security managers or the author of the issue.
+Security managers may also coordinate with external parties affected by pending advisories
+and share otherwise embargoed information with them on a need-to-know basis.
+
+Security managers must have two-factor authentication enabled.
+
 ## Steering Committee Member
 
 The Steering Committee (SC) is the overall Confidential Containers organization governing body.
 
 The SC provides decision-making and strategic oversight for the project.
 It also defines and enforces the project values and structure.
+
+The steering committee also has the security manager GitHub role.
+
+Steering committee members must have two-factor authentication enabled.
 
 ### Scope and Responsibilities
 
