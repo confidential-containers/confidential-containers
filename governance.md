@@ -98,6 +98,7 @@ The current members of the SC are:
 
 * Dan Middleton [dcmiddle](https://github.com/dcmiddle) (he/him)
 * Larry Dewey (@larrydewey) - AMD
+* Ryan Savino [ryansavino](https://github.com/ryansavino) - AMD
 
 #### Selection
 
