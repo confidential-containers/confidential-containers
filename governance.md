@@ -88,7 +88,7 @@ The current members of the SC are:
 * Jiang Liu (@jiangliu) and Jia Zhang (@jiazhang0) - Alibaba
 * James Magowan (@magowan) and Nina Goradia (@ngoradia) - IBM
 * Mikko Ylinen (@mythi) and Bartlomiej Sulich (@bsulich2) - Intel
-* Ryan Savino (@ryansavino) and Harshitha Gowda (@hgowda-amd) - AMD
+* Harshitha Gowda (@hgowda-amd) - AMD
 * Pradipta Banerjee (@bpradipt)  and Ariel Adam (@ariel-adam) - Red Hat
 * Samuel Ortiz (@sameo) - Rivos
 * Zvonko Kaiser (@zvonkok) and Tobin Feldman-Fitzthum (@fitzthum) - NVIDIA
