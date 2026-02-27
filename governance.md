@@ -78,14 +78,14 @@ Security managers have access to security advisories across the project and are 
 to engage with them.
 Specifically, they have the GitHub security manager role across the entire organization.
 
-Individual repository maintainers as well as the steering committee also have the
+Individual repository maintainers as well as the Steering Committee also have the
 security manager GitHub role.
 This section captures individuals outside of those groups who might participate in
 security reviews.
 Security managers might include key users and ecosystem consumers,
 such as developers of other OSS projects or commercial distributions/services.
 
-Security managers can be added at the discretion of the steering committee.
+Security managers can be added at the discretion of the Steering Committee.
 To become a security manager, create an issue in this repository
 describing why you have a compelling security interest in the project.
 Or, if you do not wish to share this information publicly, contact
@@ -108,7 +108,7 @@ The Steering Committee (SC) is the overall Confidential Containers organization 
 The SC provides decision-making and strategic oversight for the project.
 It also defines and enforces the project values and structure.
 
-The steering committee also has the security manager GitHub role.
+The Steering Committee also has the security manager GitHub role.
 
 Steering committee members must have two-factor authentication enabled.
 
@@ -230,7 +230,7 @@ If a meeting is called, the above procedure should be followed.
 
 Changes to this document should also be approved by 2/3rds of SC members, usually following a discussion in an SC meeting.
 When a quorum of SC members is required to approve a pull request, if the author of the pull request
-is a member of the steering committee, they can be counted towards the quorum.
+is a member of the Steering Committee, they can be counted towards the quorum.
 
 Community members who are not on the SC are also welcome to submit non-binding feedback regarding any SC process.
 
