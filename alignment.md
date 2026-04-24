@@ -4,7 +4,29 @@ Confidential Containers are connected to a wide array of projects. Some projects
 
 ## Directly Related
 
-Given that Confidential Containers are deployed via containerd/cri-o and Kubernetes, these projects are directly implicated. With Confidential Containers, container images are pulled inside the enclave and are essentially not present on the host. Some changes will be needed higher up the stack to accommodate this. Work is already ongoing in at least one of these communities (containerd) to support Confidential Containers.
+These projects are central to how Confidential Containers is built and deployed. With Confidential Containers, container images are pulled inside the enclave and are essentially not present on the host.
+
+### CNCF Projects
+
+- **[containerd](https://containerd.io/)**: The default container runtime used by Kubernetes. containerd's pluggable image snapshotter architecture is a key dependency for Confidential Containers, enabling the custom snapshotters needed to support secure image pulling.
+
+- **[CRI-O](https://cri-o.io/)**: An alternative container runtime for Kubernetes. Similar to containerd, CRI-O runtime support was extended to enable secure image guest pull for Confidential Containers.
+
+- **[Nydus](https://nydus.dev/)**: Confidential Containers uses the Nydus containerd snapshotter plugin to implement secure image pulling inside the confidential guest pod, keeping image data within the trusted execution environment.
+
+- **[Helm](https://helm.sh/)**: Confidential Containers releases are distributed as Helm charts and maintained in a dedicated charts repository, making deployment on Kubernetes clusters straightforward.
+
+- **[Operator Framework](https://operatorframework.io/)**: CoCo subprojects such as the Trustee operator are built using the Operator Framework and publish releases via [operatorhub.io](https://operatorhub.io/).
+
+### Non-CNCF Projects
+
+- **[Kata Containers](https://katacontainers.io/)**: The primary runtime requirement for Confidential Containers. Kata Containers provides the ability to sandbox pods inside virtual machines, forming the foundation on which CoCo's hardware-based isolation is built.
+
+- **[Open Container Initiative (OCI)](https://opencontainers.org/)**: Confidential Containers is one of the adopters of the drafted and proposed OCI encrypted container images specification, aligning with emerging standards for protecting image content.
+
+- **[IETF Remote Attestation Procedures (RATS) Architecture](https://www.rfc-editor.org/rfc/rfc9334)**: The CoCo attestation architecture closely follows the IETF RATS architecture, providing a standards-based foundation for verifying the trustworthiness of confidential workloads.
+
+- **[skopeo](https://github.com/containers/skopeo)**: A useful container image manipulation tool that developers working with Confidential Containers can use to inspect, copy, and manage encrypted or signed container images across registries.
 
 ## Potentially Related
 
