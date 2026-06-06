@@ -137,6 +137,24 @@ Events:
   Warning  BackOff    4s (x3 over 18s)  kubelet            Back-off restarting failed container
 ```
 
+## Trustee (KBS) vs CDH guest image pull
+
+Confidential Containers with KBS guest-pull involve two separate network paths:
+
+```
+Pod start → Kata VM → attestation-agent → KBS (attest + release secrets)
+                    → CDH (guest image pull using NVCR creds from KBS)
+```
+
+| Symptom | Likely layer | What to check |
+|---------|--------------|---------------|
+| `ttrpc request error`, `Initialize resource provider failed` | Trustee / KBS | KBS `dir_path` + kvstorage layout; attestation policies; `POST /attest 200` then `GET .../nvcr-auth.json 200` in KBS logs |
+| `rtmr_1 in query_reference_value`, attestation **401** | Attestation Service | Custom policies not loaded after AS restart — run `SetAttestationPolicy` (see [trustee policy docs](https://github.com/confidential-containers/trustee/blob/main/attestation-service/docs/policy.md)) |
+| `[CDH] Image Pull error`, blob timeout, `create container timeout` | Kata / CDH | Kubelet + Kata + agent timeouts; guest VM RAM; see [Kata guest-pull large images doc](https://github.com/kata-containers/kata-containers/blob/main/docs/how-to/how-to-pull-images-in-guest-with-kata.md#large-images-and-confidential-gpu-workloads-nim--kbs-guest-pull) |
+| `remote I/O error` on PVC mount | Storage (Longhorn/NFS) | Not a trustee issue — pin RWO volumes or fix cross-node mounts |
+
+KBS kvstorage configuration: [trustee-operator docs](https://github.com/confidential-containers/trustee-operator/blob/main/docs/kbs-kvstorage-storage.md).
+
 #### Debug Console
 
 One very useful debugging tool is the Kata guest debug console. You can
