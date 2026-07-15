@@ -1,0 +1,215 @@
+# Confidential Containers v1 - peer-pods (Kata remote hypervisor + cloud-api-adaptor)
+#
+# Regenerate the image with:
+#   d2 diagrams/coco_v1_peerpods.d2 images/COCO_ccv1_peerpods_TEE.svg
+
+vars: {
+  d2-config: {
+    theme-id: 0
+  }
+}
+
+classes: {
+  step: {
+    style: {
+      stroke: "#D32F2F"
+      font-color: "#C62828"
+      stroke-width: 2
+      font-size: 18
+      bold: true
+    }
+  }
+  ctl: {
+    style: {
+      stroke: "#607D8B"
+      font-color: "#455A64"
+      font-size: 16
+    }
+  }
+  card: {
+    style: {
+      fill: "#FFFFFF"
+      stroke: "#546E7A"
+      border-radius: 6
+      shadow: true
+      font-size: 18
+    }
+  }
+  invisible: {
+    label: ""
+    style: {
+      stroke: transparent
+      fill: transparent
+    }
+  }
+}
+
+grid-columns: 3
+grid-gap: 160
+
+host: "Host (Kubernetes Node)" {
+  grid-rows: 4
+  grid-gap: 40
+  style: {
+    fill: "#E8F5E9"
+    stroke: "#2E7D32"
+    border-radius: 12
+    font-color: "#1B5E20"
+  }
+
+  kubelet.class: card
+  containerd.class: card
+  kata-runtime.class: card
+  caa: "cloud-api-adaptor" {
+    class: card
+    style.fill: "#C8E6C9"
+  }
+
+  kubelet -> containerd: {class: ctl}
+  containerd -> kata-runtime: {class: ctl}
+  kata-runtime -> caa: {class: ctl}
+}
+
+cloud: "Cloud Provider (AWS / Azure / ...)" {
+  style: {
+    fill: "#E1F5FE"
+    stroke: "#0277BD"
+    border-radius: 12
+    font-color: "#01579B"
+  }
+
+  cvm: "Confidential Virtual Machine (CVM / TEE)" {
+    grid-rows: 3
+    grid-gap: 60
+    style: {
+      fill: "#E8EAF6"
+      stroke: "#3949AB"
+      border-radius: 12
+      font-color: "#283593"
+    }
+
+    pod: "Kubernetes Pod" {
+      grid-columns: 2
+      style: {
+        fill: "#E8F5E9"
+        stroke: "#2E7D32"
+        border-radius: 8
+        font-color: "#1B5E20"
+      }
+      a: "Container A" {class: card}
+      b: "Container B" {class: card}
+    }
+
+    mid: {
+      class: invisible
+      grid-columns: 2
+      grid-gap: 200
+
+      podimgs: "Pod Container\nImages" {
+        shape: cylinder
+        style: {
+          fill: "#FFFFFF"
+          stroke: "#546E7A"
+          font-size: 16
+        }
+      }
+      kata-agent.class: card
+    }
+
+    guest: "Guest Components (measured)" {
+      label.near: top-left
+      grid-rows: 2
+      grid-gap: 50
+      style: {
+        fill: "#F5F5F5"
+        stroke: "#78909C"
+        border-radius: 8
+        stroke-dash: 3
+      }
+
+      rest: "api-server-rest" {class: card}
+
+      row: {
+        class: invisible
+        grid-columns: 2
+        grid-gap: 80
+
+        aa: "Attestation Agent (AA)" {
+          class: card
+          style.fill: "#FFF8E1"
+        }
+
+        cdh: "Confidential Data Hub (CDH)" {
+          label.near: bottom-center
+          style: {
+            fill: "#FFF8E1"
+            stroke: "#F9A825"
+            border-radius: 8
+            font-color: "#795548"
+          }
+          img: "Image Mgmt\n(pull / verify / decrypt)" {class: card}
+        }
+      }
+
+      rest -> row.aa: {class: ctl; style.stroke-dash: 3}
+      rest -> row.cdh: {class: ctl; style.stroke-dash: 3}
+    }
+
+    pod -> guest.rest: "REST API\n(attestation, secrets)" {class: ctl}
+    mid.podimgs -> pod: {class: ctl}
+    mid.kata-agent -> guest.row.cdh: "1. pull image" {class: step}
+    guest.row.cdh.img -> mid.podimgs: "6. decrypted images" {class: step}
+  }
+}
+
+ext: {
+  class: invisible
+  grid-rows: 3
+  grid-gap: 60
+
+  registry: "Container Images Registry\n(signed / encrypted images)" {
+    shape: cylinder
+    style: {
+      fill: "#FAFAFA"
+      stroke: "#757575"
+      font-size: 18
+    }
+  }
+
+  spacer: {
+    class: invisible
+    height: 300
+  }
+
+  trustee: "Trustee" {
+    grid-rows: 3
+    grid-gap: 50
+    style: {
+      fill: "#FCE4EC"
+      stroke: "#C2185B"
+      border-radius: 12
+      font-color: "#880E4F"
+    }
+
+    kbs: "Key Broker Service (KBS)\n(Relying Party)" {class: card}
+    as: "Attestation Service (AS)\n(Verifier)" {class: card}
+    rvps: "Reference Value Provider Service (RVPS)" {class: card}
+
+    kbs -> as: "verify evidence" {class: ctl}
+    rvps -> as: "reference values" {class: ctl}
+  }
+}
+
+host.caa -> cloud.cvm: "invoke cloud APIs\nto create the CVM" {
+  class: ctl
+  style.stroke-dash: 3
+}
+host.kata-runtime -> cloud.cvm.mid.kata-agent: "agent protocol\n(over network)" {
+  class: ctl
+  style.stroke-dash: 3
+}
+
+cloud.cvm.guest.row.aa <-> ext.trustee.kbs: "2. RCAR handshake" {class: step}
+cloud.cvm.guest.row.aa -> cloud.cvm.guest.row.cdh: "3. token" {class: step}
+cloud.cvm.guest.row.cdh -> ext.trustee.kbs: "4. keys (token)" {class: step}
+cloud.cvm.guest.row.cdh.img -> ext.registry: "5. pull image" {class: step}

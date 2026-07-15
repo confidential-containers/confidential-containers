@@ -108,7 +108,7 @@ same goals and attributes:
 VM-based TEEs (e.g. AMD SEV-SNP, IBM SE or Intel TDX) can be used to build a
 confidential containers software architecture:
 
-![CC_TEE_container](./images/CC_TEE_container.png)
+![CC_TEE_container](./images/CC_TEE_container.svg)
 
 
 Following is the workflow when deploying a Kubernetes pod with VM-based TEEs:
@@ -123,9 +123,10 @@ Following is the workflow when deploying a Kubernetes pod with VM-based TEEs:
     capability to run confidential containers.
 - CC workload execution flow (**red connector** in the diagram)
   - Confidential containers runtime on the host starts the VM TEE (The enclave).
-  - Enclave (agent) performs remote attestation: **steps 1-2 in the diagram**.
-  - Enclave (agent) gets the keys required to verify/decrypt the containers
-    image(s):  **steps 3-4 in the diagram**.
+  - Enclave (Attestation Agent) performs remote attestation: **steps 1-2 in the
+    diagram**.
+  - Enclave (Confidential Data hub) gets the keys required to verify/decrypt the
+    containers image(s):  **steps 3-4 in the diagram**.
   - Enclave (image management) downloads the container image(s) : **step 5 in
     the diagram**.
   - Enclave verifies/decrypts the container image(s) : **step 6 in the diagram**.
@@ -142,18 +143,65 @@ It also depends on the standard Linux virtualization stack, including the `KVM`
 hypervisor and open source VMMs like `QEMU` or `cloud-hypervisor`.
 
 The project supports both VM-based and process-based TEEs, with the key
-objective to reuse the generic components around enclave agent and attestation
-services across both TEE models.
+objective to reuse the generic components around the Attestation Agent and
+attestation services across both TEE models.
 
 It is a [Cloud Native Computing Foundation Sandbox](https://www.cncf.io/projects/confidential-containers/)
 project.
 
-The following diagram shows the upcoming v1 architecture to run Confidential
+## Guest Components and Trustee
+
+Inside the TEE guest, next to the workload pod and the `kata-agent`, the
+project deploys the [guest components](https://github.com/confidential-containers/guest-components):
+
+- **Confidential Data Hub (CDH)** - The guest service handling confidential
+  resources. It embeds the **image management** module which pulls, verifies
+  and decrypts the container images. The `kata-agent` simply calls the CDH
+  image pull API to make workload images available inside the guest.
+- **Attestation Agent (AA)** - The guest component in charge of remote
+  attestation. It collects the TEE evidence and performs the attestation
+  handshake with the Key Broker Service.
+- **api-server-rest** - A REST gateway which exposes the AA and CDH ttrpc APIs
+  (attestation, secret retrieval, etc.) as RESTful endpoints to the pod
+  containers, so that workloads themselves can request attestation results and
+  secrets.
+
+On the other side, [Trustee](https://github.com/confidential-containers/trustee)
+provides the attestation services which typically run in a trusted
+environment:
+
+- **Key Broker Service (KBS)** - the *Relying Party*, facilitating the remote
+  attestation and releasing keys and secrets to the guest.
+- **Attestation Service (AS)** - the *Verifier*, validating the TEE evidence.
+- **Reference Value Provider Service (RVPS)** - managing and providing the
+  reference values used to appraise the evidence.
+
+The attestation and secret delivery flow works as follows:
+
+1. The `kata-agent` calls the CDH image pull API to pull the workload
+   image(s).
+2. The AA and the KBS perform the RCAR (Request-Challenge-Attestation-Response)
+   handshake to remotely attest the guest. The KBS responds to the protocol
+   and forwards the TEE evidence to the AS for verification. The AS appraises
+   the evidence against the reference values provided by the RVPS.
+3. Upon successful attestation, the AA obtains an attestation token (the
+   "passport").
+4. The CDH accesses the KBS with this token to retrieve the keys and secrets
+   it needs, e.g. the container image decryption keys.
+5. The CDH image management module pulls the container image(s) from the
+   registry.
+6. The CDH verifies the image signature and/or decrypts the image(s), which
+   are then used to run the workload containers.
+
+The following diagram shows the architecture to run Confidential
 Containers using VM-based TEEs and the Kata Containers runtime:
 
-![COCO_ccv1_TEE](./images/COCO_ccv1_TEE.png)
+![COCO_ccv1_TEE](./images/COCO_ccv1_TEE.svg)
 
-The following diagram shows the upcoming v1 architecture to run Confidential
-Containers using VM-based TEEs by leveraging the peer-pods approach. This relies on Kata Containers remote hypervisor support and the [cloud-api-adaptor](https://github.com/confidential-containers/cloud-api-adaptor/) project:
+The following diagram shows the architecture to run Confidential
+Containers using VM-based TEEs by leveraging the peer-pods approach. This relies on Kata Containers remote hypervisor support and the [cloud-api-adaptor](https://github.com/confidential-containers/cloud-api-adaptor/) project. The `cloud-api-adaptor` invokes the cloud provider APIs to create the confidential VM which hosts the pod, while the guest internals and the attestation flow stay the same:
 
-![COCO_ccv1_TEE](./images/COCO_ccv1_peerpods_TEE.png)
+![COCO_ccv1_peerpods_TEE](./images/COCO_ccv1_peerpods_TEE.svg)
+
+These two diagrams are maintained as [D2](https://d2lang.com) sources in the
+[diagrams](./diagrams) directory.
