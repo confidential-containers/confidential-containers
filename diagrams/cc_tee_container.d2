@@ -1,0 +1,180 @@
+# Generic confidential containers architecture with VM-based TEEs
+#
+# Regenerate the image with:
+#   d2 diagrams/cc_tee_container.d2 images/CC_TEE_container.svg
+
+vars: {
+  d2-config: {
+    theme-id: 0
+  }
+}
+
+classes: {
+  step: {
+    style: {
+      stroke: "#D32F2F"
+      font-color: "#C62828"
+      stroke-width: 2
+      font-size: 18
+      bold: true
+    }
+  }
+  ctl: {
+    style: {
+      stroke: "#607D8B"
+      font-color: "#455A64"
+      font-size: 16
+    }
+  }
+  card: {
+    style: {
+      fill: "#FFFFFF"
+      stroke: "#546E7A"
+      border-radius: 6
+      shadow: true
+      font-size: 18
+    }
+  }
+  invisible: {
+    label: ""
+    style: {
+      stroke: transparent
+      fill: transparent
+    }
+  }
+}
+
+grid-columns: 2
+grid-gap: 160
+
+main: {
+  class: invisible
+  grid-rows: 2
+  grid-gap: 80
+
+  vm: "VM (TEE)" {
+    grid-rows: 3
+    grid-gap: 60
+    style: {
+      fill: "#E8EAF6"
+      stroke: "#3949AB"
+      border-radius: 12
+      font-color: "#283593"
+    }
+
+    pod: "Kubernetes Pod" {
+      grid-columns: 2
+      style: {
+        fill: "#E8F5E9"
+        stroke: "#2E7D32"
+        border-radius: 8
+        font-color: "#1B5E20"
+      }
+      a: "Container A" {class: card}
+      b: "Container B" {class: card}
+    }
+
+    podimgs: "Pod Container\nImages" {
+      shape: cylinder
+      width: 200
+      style: {
+        fill: "#FFFFFF"
+        stroke: "#546E7A"
+        font-size: 16
+      }
+    }
+
+    stack: "Guest Components (measured)" {
+      label.near: bottom-center
+      grid-rows: 2
+      grid-gap: 70
+      style: {
+        fill: "#F5F5F5"
+        stroke: "#78909C"
+        border-radius: 8
+        stroke-dash: 3
+      }
+
+      img: "Confidential Data Hub (image-rs)" {
+        class: card
+        style.fill: "#FFF8E1"
+      }
+      aa: "Attestation Agent" {
+        class: card
+        style.fill: "#FFF8E1"
+      }
+    }
+
+    podimgs -> pod: {class: ctl}
+    stack.img -> podimgs: "6. verified &\ndecrypted images" {class: step}
+  }
+
+  host: "Host" {
+    grid-columns: 2
+    grid-gap: 60
+    style: {
+      fill: "#E8F5E9"
+      stroke: "#2E7D32"
+      border-radius: 12
+      font-color: "#1B5E20"
+    }
+
+    runtime: "CC Container Runtime" {class: card}
+    hwtee: "HW TEE" {
+      class: card
+      style.fill: "#C8E6C9"
+    }
+
+    runtime -> hwtee: {class: ctl}
+  }
+}
+
+ext: {
+  class: invisible
+  grid-rows: 4
+  grid-gap: 60
+
+  registry: "Container Images Registry\n(signed / encrypted images)" {
+    shape: cylinder
+    style: {
+      fill: "#FAFAFA"
+      stroke: "#757575"
+      font-size: 18
+    }
+  }
+
+  spacer: {
+    class: invisible
+    height: 80
+  }
+
+  trustee: "Trustee" {
+    grid-rows: 3
+    grid-gap: 50
+    style: {
+      fill: "#FCE4EC"
+      stroke: "#C2185B"
+      border-radius: 12
+      font-color: "#880E4F"
+    }
+
+    rvps: "Reference Value Provider Service (RVPS)" {class: card}
+    as: "Attestation Service\n(Verifier)" {class: card}
+    kbs: "Key Broker Service\n(Relying Party)" {class: card}
+
+    rvps -> as: "reference values" {class: ctl}
+    kbs <-> as: "2. verify evidence" {class: step}
+  }
+
+  kms: "Key Management Service" {class: card}
+}
+
+main.host.runtime -> main.vm: "start VM TEE\n(the enclave)" {
+  class: ctl
+  style.stroke-dash: 3
+}
+
+main.vm.stack.aa -> ext.trustee.kbs: "1. evidence (remote attestation)" {class: step}
+ext.trustee.kbs <-> ext.kms: "3. retrieve keys" {class: step}
+ext.trustee.kbs -> main.vm.stack.img: "4. keys" {class: step}
+main.vm.stack.img -> ext.registry: "5. pull image" {class: step}
