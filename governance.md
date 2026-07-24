@@ -134,7 +134,7 @@ The current members of the SC are:
 * James Magowan (@magowan) and Nina Goradia (@ngoradia) - IBM
 * Mikko Ylinen (@mythi) and Bartlomiej Sulich (@bsulich2) - Intel
 * Harshitha Gowda (@hgowda-amd) - AMD
-* Pradipta Banerjee (@bpradipt)  and Ariel Adam (@ariel-adam) - Red Hat
+* Beraldo Leal (@Beraldo Leal) and Ariel Adam (@ariel-adam) - Red Hat
 * Samuel Ortiz (@sameo) - Rivos
 * Zvonko Kaiser (@zvonkok) and Tobin Feldman-Fitzthum (@fitzthum) - NVIDIA
 * Magnus Kulke (@mkulke) and Dan Mihai (@danmihai1) - Microsoft
