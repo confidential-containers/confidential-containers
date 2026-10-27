@@ -130,7 +130,7 @@ Further, as leaders in the community, the SC members will make themselves famili
 
 The current members of the SC are:
 
-* Jiang Liu (@jiangliu) and Jia Zhang (@jiazhang0) - Alibaba
+* Ding Ma (@xynnn007) and Jia Zhang (@jiazhang0) - Alibaba
 * James Magowan (@magowan) and Nina Goradia (@ngoradia) - IBM
 * Mikko Ylinen (@mythi) and Bartlomiej Sulich (@bsulich2) - Intel
 * Harshitha Gowda (@hgowda-amd) - AMD
